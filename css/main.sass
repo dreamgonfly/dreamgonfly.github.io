@@ -5,14 +5,15 @@
 
 @import 'bourbon/bourbon'
 
+@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css)
+
 .cf
   @include clearfix
 
 $rs: 16px
 
-$font-serif: Linux Libertine
-$font-sans: Open Sans, MundoSans, "Helvetica Neue", Arial, Helvetica, sans-serif
-
+$font-serif: 'Nanum Barun Gothic', Linux Libertine
+$font-sans: 'Nanum Barun Gothic', Open Sans, MundoSans, "Helvetica Neue", Arial, Helvetica, sans-serif
 
 @mixin respond-to($breakpoint)
   @media only screen and (max-width: $breakpoint + px)
