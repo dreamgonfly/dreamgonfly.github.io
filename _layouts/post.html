@@ -22,12 +22,12 @@
               <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ site.author }}</h4>
               on
               <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time>
+              {% if page.comments %} • <a href="https://dreamgonfly.github.io{{ page.url }}#disqus_thread">0 Comments</a>{% endif %}
               <!-- , tagged on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}} -->
             </div>
             <div style="text-align:center">
               <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
             </div>
-            {% if page.comments %} • <a href="https://dreamgonfly.github.io{{ page.url }}#disqus_thread">0 Comments</a>{% endif %}
           </div>
         </div>
         {% else %}
