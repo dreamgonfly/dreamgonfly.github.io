@@ -4,8 +4,7 @@ title:  "머신 러닝 소개 (Introduction to Machine Learning)"
 date:   2017-08-13 14:34:25
 categories: machine learning
 tags: featured
-image: /assets/article_images/2014-11-30-mediator_features/night-track.JPG
-image2: /assets/article_images/2014-11-30-mediator_features/night-track-mobile.JPG
+image: https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/blogs/545/images/s4KYd1XTZijRkleaJzpm_Think_of_Your_Strategy_as_a_Journey.jpg
 comments: true
 ---
 *이 글은 머신 러닝에 관심은 있지만 머신 러닝이 무엇인지는 아직 잘 모르는 사람들을 위한 글입니다. 이 글에서는 머신 러닝의 개념과 일반적인 머신 러닝 프로젝트의 진행 과정(workflow)에 대해 알아봅니다.*
