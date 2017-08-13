@@ -16,9 +16,9 @@ float_logo: false # true, false (default)
 # blog cover
 cover: "/assets/images/cA4aKEIPQrerBnp1yGHv_IMG_9534-3-2.jpg"
 
-name: 'Jo, Yongrae'
-author: 'Jo, Yongrae'
-author_image: "/assets/images/author.jpg"
+name: 'Dreamgonfly'
+author: 'Dreamgonfly'
+author_image: "/assets/images/dragonfly_moon.jpg"
 
 paginate:	5
 
