@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://dreamgonfly.github.io/sitemap.xml
