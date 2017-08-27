@@ -224,13 +224,11 @@ Next를 누르면 학습이 한번 진행된다. 첫번째로 `eat`이 들어가
 
 다음은 이 글을 쓰며 참고했던 자료 및 이 글과 함께 읽으면 좋은 글들이다.
 
-* [word2vec Parameter Learning Explained](https://arxiv.org/abs/1411.2738)
-* [wevi](https://ronxin.github.io/wevi/)
-* [Modern NLP in Python](http://nbviewer.jupyter.org/github/skipgram/modern-nlp-in-python/blob/master/executable/Modern_NLP_in_Python.ipynb)
-
-
-* [Word2Vec Tutorial - The Skip-Gram Model](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/)
-* [Word2Vec Resources](http://mccormickml.com/2016/04/27/word2vec-resources/)
-* [한국어와 NLTK, Gensim의 만남](https://www.lucypark.kr/slides/2015-pyconkr/#1)
-* [브런치 작가 추천과 Word2Vec](https://brunch.co.kr/@goodvc78/7)
-* [A Primer on Neural Network Models for Natural Language Processing](http://u.cs.biu.ac.il/~yogo/nnlp.pdf)
+- [word2vec Parameter Learning Explained](https://arxiv.org/abs/1411.2738)
+- [wevi](https://ronxin.github.io/wevi/)
+- [Modern NLP in Python](http://nbviewer.jupyter.org/github/skipgram/modern-nlp-in-python/blob/master/executable/Modern_NLP_in_Python.ipynb)
+- [Word2Vec Tutorial - The Skip-Gram Model](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/)
+- [Word2Vec Resources](http://mccormickml.com/2016/04/27/word2vec-resources/)
+- [한국어와 NLTK, Gensim의 만남](https://www.lucypark.kr/slides/2015-pyconkr/#1)
+- [브런치 작가 추천과 Word2Vec](https://brunch.co.kr/@goodvc78/7)
+- [A Primer on Neural Network Models for Natural Language Processing](http://u.cs.biu.ac.il/~yogo/nnlp.pdf)
