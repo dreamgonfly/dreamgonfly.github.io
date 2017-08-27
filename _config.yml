@@ -62,4 +62,4 @@ social:
 #    share_title:
 #    share_link:
 
-markdown: redcarpet
+markdown: kramdown
