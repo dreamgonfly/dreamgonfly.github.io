@@ -63,8 +63,6 @@ Dense representation은 또다른 말로 distributed representation이라고도 
 
 위 그림에서 '강아지'란 단어는 [0.16, -0.50, 0.20. -0.11, 0.15]라는 5차원 벡터로 표현된다. 이 때 각각의 차원이 어떤 의미를 갖는지는 알 수 없다. 여러 속성이 버무러져서 표현되었기 때문이다. 다만 '강아지'를 표현하는 벡터가 '멍멍이'를 표현하는 벡터와 얼마나 비슷한지, 또는 '의자'를 표현하는 벡터와는 얼마나 다른지는 벡터 간의 거리를 통해 알 수 있다. 이러한 관계에서 단어 벡터의 의미가 드러난다.
 
-단어를 꼭 5차원으로 표시해야 하는 것은 아니다. 이 예시에서 단어를 표현하는 차원의 개수는 임의로 정하였다. 단어를 몇 차원으로 표현하는 것이 적절한지에 대한 논의는 뒤에서 다룰 것이다.
-
 단어 벡터의 값들은 머신 러닝을 통해 학습된다. 뒤에 나올 word2vec은 이 값들을 학습하는 방법론 중의 하나이다.
 
 ## Dense Representation의 장점
@@ -101,11 +99,11 @@ word2vec은 단어를 표현하는 방법을 어떻게 학습하는 것일까? w
 
 잠시 퀴즈를 하나 풀어보자. 다음 빈칸에 들어갈 수 있는 단어는 무엇이 있을까?
 
-![food](https://camo.githubusercontent.com/a43674f3c2fc5a93841c2753b812c2215a34006d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f736b69706772616d2d696d616765732f776f7264327665632d312e706e67)
+![빈칸에 어떤 단어가 들어갈 수 있을까?](https://camo.githubusercontent.com/a43674f3c2fc5a93841c2753b812c2215a34006d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f736b69706772616d2d696d616765732f776f7264327665632d312e706e67)
 
 italian, mexican 등의 단어를 떠올릴 수 있다. 하지만 chair, parking 이런 말들은 들어가기 어려울 것이다.
 
-![food](https://camo.githubusercontent.com/30d4fe1ae96e11d679de6e65632cc708c1237ba7/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f736b69706772616d2d696d616765732f776f7264327665632d322e706e67)
+![빈칸에 들어가기 적합한 단어들과 부적합한 단어들](https://camo.githubusercontent.com/30d4fe1ae96e11d679de6e65632cc708c1237ba7/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f736b69706772616d2d696d616765732f776f7264327665632d322e706e67)
 
 단어의 주위만 보았는데도 어떤 단어가 적합하고 어떤 단어가 부적합한지가 어느정도 드러난다. 이 빈칸에 들어갈 수 있는 단어들은 서로 비슷한 맥락을 갖는 단어들, 즉 서로 비슷한 단어들이다. 단어의 주변을 보면 그 단어를 알 수 있기 때문에, 단어의 주변이 비슷하면 비슷한 단어라는 말이 된다.
 
@@ -147,7 +145,7 @@ CBOW에서 모델의 입력은 주변 단어이다. 그런데 입력이 비슷�
 
 레이어들 사이의 뉴런들은 서로 모두 연결되어(fully connected) 있다. 입력 레이어(input layer)와 히든 레이어(hidden layer) 사이를 연결하는 파라미터들은 V X N의 행렬 W로 나타낼 수 있고, 입력 레이어에서 히든 레이어로 넘어가는 것은 단순히 행렬 W를 곱하는 것과 같다. x가 입력 벡터라고 하면, 히든 레이어 h는 <span>$W^Tx$</span> 로 계산된다. 이 벡터는 V차원, 즉 임베딩 차원의 벡터가 된다.
 
-입력 벡터 x는 one-hot encoding된 벡터이다. x의 요소 중 k번째 요소만 1이라고 하자. x의 나머지 요소가 모두 0이기 때문에 다른 부분은 모두 무시되고 <span>$W^Tx$</span> 의 결과는$W^T$ 의 k번째 열, 즉 W의 k번째 행만 남는다. 이 벡터가 해당 단어의 N차원 벡터 표현이다. W의 각 행들은 각각 해당하는 단어의 N차원의 벡터 표현인 것이다. W의 i번째 행을 <span>$v^T_w$</span> 라고 부르면, 히든 레이어 h는 <span>$v^T_{w_I}$</span>와 결국 같다는 것을 알 수 있다. 
+입력 벡터 x는 one-hot encoding된 벡터이다. x의 요소 중 k번째 요소만 1이라고 하자. x의 나머지 요소가 모두 0이기 때문에 다른 부분은 모두 무시되고 <span>$W^Tx$</span> 의 결과는 $W^T$ 의 k번째 열, 즉 W의 k번째 행만 남는다. 이 벡터가 해당 단어의 N차원 벡터 표현이다. W의 각 행들은 각각 해당하는 단어의 N차원의 벡터 표현인 것이다. W의 i번째 행을 <span>$v^T_w$</span> 라고 부르면, 히든 레이어 h는 <span>$v^T_{w_I}$</span>와 결국 같다는 것을 알 수 있다. 
 
 
 $$
@@ -190,3 +188,49 @@ $$
 word2vec의 원리를 시각화해서 이해해보자. 아래는 word2vec을 이해하기 쉽게 직접 학습시켜보며 시각적으로 볼 수 있는 웹페이지다.
 
 [wevi](https://ronxin.github.io/wevi/)
+
+
+
+![wevi 시작 화면](https://files.slack.com/files-pri/T25783BPY-F6V57JD0W/screenshot.png?pub_secret=309c6d1eb9)
+
+
+
+* 왼쪽 위는 이 모델의 설정과 학습 데이터셋을 보여준다. 학습 데이터셋에서 `eat|apple`은 `eat`이 들어왔을 때 `apple`을 예측하도록 학습하겠다는 뜻이다. 
+* 오른쪽 위에는 word2vec 모델이 있다. 왼쪽 단어들이 입력 레이어(input layer)이고 오른쪽 단어들이 출력 레이어(output layer)이다. 왼쪽 단어들 중 하나가 들어왔을 때 오른쪽 단어가 어떻게 예측되는지를 보여준다.
+* 왼쪽 아래는 단어 벡터의 값을 색깔로 보여준다. 정확한 숫자는 보여지지 않지만 빨간색일수록 숫자가 크다는 뜻이고 파란색일수록 숫자가 작다는 뜻이다. 이 색깔의 의미는 오른쪽 위 Neurons에도 동일하게 적용된다. 
+* 오른쪽 아래는 PCA를 이용해 단어 벡터를 2차원으로 표현한 것이다.
+
+Next를 누르면 학습이 한번 진행된다. 첫번째로 `eat`이 들어가서 `apple`을 예측해야 한다. 처음에는 무작위값으로 초기화된 weights가 곱해지기 때문에 `eat`에서 `apple`을 예측할 확률이나 `water` 예측할 확률이나 차이가 없다. 하지만 점차 학습이 진행되면서 같이 나올만한 단어와 나오지 않을 단어들의 차이가 뚜렷해진다. 점점 좋은 벡터를 학습하게 되며 오른쪽 아래 PCA 화면에서 비슷한 단어끼리는 뭉치고, 다른 단어끼리는 떨어진다. 이렇게 학습이 되는 과정을 볼 수 있다.
+
+![word2vec 학습 후 화면](https://files.slack.com/files-pri/T25783BPY-F6UA6M1KN/screenshot.png?pub_secret=ff640bfd0b)
+
+
+
+학습이 된 결과를 보면 오른쪽 아래 그래프에서 apple, orange, rice가 뭉쳤고 milk, juice, water가 뭉쳤다. 먹는 것과 마시는 것이 나눠진 것을 알 수 있다. 오른쪽 위 그래프에서는 drink라는 입력이 들어오자 juice, milk, water에 붉은색으로 높은 가중치가 부여되는 것을 알 수 있다.
+
+
+
+# 실제 데이터로 만든 단어 벡터 시각화
+
+다음은 아마존에서 스마트폰 구매자들이 남긴 리뷰 텍스트를 바탕으로 word2vec을 이용해 만든 단어 벡터를 t-SNE라는 기법을 이용해 2차원으로 차원 축소한 뒤 인터렉티브 시각화를 해본 것이다. 아래 링크에서 그래프의 아무 점이나 점에 마우스를 올리면 어떤 단어들끼리 뭉쳤는지 직접 눈으로 확인할 수 있다. 더불어 실제 텍스트 데이터를 어떻게 가공해서 word2vec 알고리즘을 적용하는지 실습 코드까지 볼 수 있다. 아래 링크에 들어가 직접 마우스를 대보길 바란다.
+
+[t-SNE를 이용한 단어 벡터 시각화](http://nbviewer.jupyter.org/github/dreamgonfly/phone-review-nlp/blob/master/phone_reviews_nlp.ipynb#Visualizing-word-vectors-with-t-SNE)
+
+![word2vec t-sne](https://files.slack.com/files-pri/T25783BPY-F6U8ENC7L/word2vec_t-sne.png?pub_secret=71267565ce)
+
+
+
+# 참고 자료
+
+다음은 이 글을 쓰며 참고했던 자료 및 이 글과 함께 읽으면 좋은 글들이다.
+
+* [word2vec Parameter Learning Explained](https://arxiv.org/abs/1411.2738)
+* [wevi](https://ronxin.github.io/wevi/)
+* [Modern NLP in Python](http://nbviewer.jupyter.org/github/skipgram/modern-nlp-in-python/blob/master/executable/Modern_NLP_in_Python.ipynb)
+
+
+* [Word2Vec Tutorial - The Skip-Gram Model](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/)
+* [Word2Vec Resources](http://mccormickml.com/2016/04/27/word2vec-resources/)
+* [한국어와 NLTK, Gensim의 만남](https://www.lucypark.kr/slides/2015-pyconkr/#1)
+* [브런치 작가 추천과 Word2Vec](https://brunch.co.kr/@goodvc78/7)
+* [A Primer on Neural Network Models for Natural Language Processing](http://u.cs.biu.ac.il/~yogo/nnlp.pdf)
