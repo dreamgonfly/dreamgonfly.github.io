@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "RNN 이해하기"
+title:  "Recurrent Neural Network (RNN) 이해하기"
 date:   2017-09-04
 categories: rnn
 tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
 ---
-# RNN 이해하기 (Understanding Recurrent Neural Networks)
+# Recurrent Neural Network (RNN) 이해하기
 
 음악, 동영상, 에세이, 시, 소스 코드, 주가 차트. 이것들의 공통점은 무엇일까요? 바로 시퀀스라는 점입니다. 음악은 음계들의 시퀀스, 동영상은 이미지의 시퀀스, 에세이는 단어들의 시퀀스로 볼 수 있습니다. 시퀀스의 길이는 가변적입니다. 소설에는 한 페이지짜리 단편소설도 있고 열권짜리 장편소설도 있죠. 기존의 뉴럴 네트워크 알고리즘은 이미지처럼 고정된 크기의 입력을 다루는 데는 탁월하지만, 가변적인 크기의 데이터를 모델링하기에는 적합하지 않습니다.
 
