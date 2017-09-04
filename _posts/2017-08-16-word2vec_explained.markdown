@@ -53,7 +53,7 @@ Sparse representation은 가장 단순하고 전통적으로 자주 쓰이던 �
 
 ## Dense representation
 
-Dense representation은 각각의 속성을 독립적인 차원으로 나타내지 않는다. 대신, 우리가 정한 개수의 차원으로 대상을 매핑해서 표현한다. 예컨대 해당 속성을 5차원으로 표현할 것이라고 정하면 그 속성을 5차원 안에 매핑하는 것이다. 이 매핑을 임베딩(embedding)이라고 하며, 임베딩하는 방식은 머신 러닝을 통해 학습하게 된다. 
+Dense representation은 각각의 속성을 독립적인 차원으로 나타내지 않는다. 대신, 우리가 정한 개수의 차원으로 대상을 대응시켜서 표현한다. 예컨대 해당 속성을 5차원으로 표현할 것이라고 정하면 그 속성을 5차원 벡터에 대응시키는 것이다. 이 대응을 임베딩(embedding)이라고 하며, 임베딩하는 방식은 머신 러닝을 통해 학습하게 된다. 
 
 ![dense representation](https://files.slack.com/files-pri/T25783BPY-F6P915890/dense.png?pub_secret=3f6e3ccd28)
 
@@ -141,7 +141,7 @@ CBOW에서 모델의 입력은 주변 단어이다. 그런데 입력이 비슷�
 
 ![CBOW](https://files.slack.com/files-pri/T25783BPY-F6CPDPKHP/screenshot.png?pub_secret=8ce6c11e3b)
 
-입력은 one-hot encoding된 벡터이다. 입력 단어, 즉 타겟 단어의 앞 단어는 V개의 요소 중 하나만 1이고 나머지는 모두 0인 벡터로 표현된다. 이렇게 단어의 개수만큼의 차원을 갖는 입력 레이어(input layer)가 히든 레이어(hidden layer)에서 임베딩 차원으로 매핑 된다. 마지막으로 출력 레이어(output layer)는 다시 단어의 개수만큼의 차원을 갖는다. 출력은 타겟 단어이므로 단어의 개수만큼의 경우의 수가 있기 때문이다.
+입력은 one-hot encoding된 벡터이다. 입력 단어, 즉 타겟 단어의 앞 단어는 V개의 요소 중 하나만 1이고 나머지는 모두 0인 벡터로 표현된다. 이렇게 단어의 개수만큼의 차원을 갖는 입력 레이어(input layer)가 히든 레이어(hidden layer)에서 임베딩 크기만큼의 차원의 벡터로 대응된다. 마지막으로 출력 레이어(output layer)는 다시 단어의 개수만큼의 차원을 갖는다. 출력은 타겟 단어이므로 단어의 개수만큼의 경우의 수가 있기 때문이다.
 
 레이어들 사이의 뉴런들은 서로 모두 연결되어(fully connected) 있다. 입력 레이어(input layer)와 히든 레이어(hidden layer) 사이를 연결하는 파라미터들은 V X N의 행렬 W로 나타낼 수 있고, 입력 레이어에서 히든 레이어로 넘어가는 것은 단순히 행렬 W를 곱하는 것과 같다. x가 입력 벡터라고 하면, 히든 레이어 h는 <span>$W^Tx$</span> 로 계산된다. 이 벡터는 V차원, 즉 임베딩 차원의 벡터가 된다.
 
