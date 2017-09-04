@@ -25,7 +25,7 @@ RNN의 입력과 출력은 우리가 네트워크에게 시키고 싶은 것이 
 
 
 
-![[RNN의 구조 예시]((http://karpathy.github.io/2015/05/21/rnn-effectiveness/))](https://files.slack.com/files-pri/T25783BPY-F6XAEQH7T/rnn-examples.png?pub_secret=0eb724d01b)
+[![RNN의 구조 예시](https://files.slack.com/files-pri/T25783BPY-F6XAEQH7T/rnn-examples.png?pub_secret=0eb724d01b)](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 
 
 
@@ -41,7 +41,7 @@ RNN의 입력과 출력은 우리가 네트워크에게 시키고 싶은 것이 
 
 이미지를 처리하는 CNN(Convolutional Neural Network)과 RNN을 결합하여 이미지를 텍스트로 설명해주는 모델을 만드는 것이 가능합니다. 이 모델은 위의 구조들 중 두번째, 고정크기 입력 & 시퀀스 출력에 해당합니다. 이미지라는 고정된 크기의 입력을 받아서 몇 단어로 표현될지 모를 가변적인 길이의 문장을 만들어내기 때문입니다.
 
-![이미지 캡션 생성 예시](https://files.slack.com/files-pri/T25783BPY-F6XPSQ4NP/show-and-tell.png?pub_secret=1e78ced420)
+![이미지 캡션 생성](https://files.slack.com/files-pri/T25783BPY-F6XPSQ4NP/show-and-tell.png?pub_secret=1e78ced420)
 
 [Show and Tell: A Neural Image Caption Generator](https://arxiv.org/abs/1411.4555)
 
@@ -51,7 +51,7 @@ RNN의 입력과 출력은 우리가 네트워크에게 시키고 싶은 것이 
 
 구글의 번역기와 네이버의 파파고는 RNN을 응용한 모델로 만들어졌습니다. RNN 기반 모델은 기존 통계 기반 모델의 비해 우수한 성능을 낸다고 알려져 있습니다. 이 모델은 시퀀스 입력 & 시퀀스 출력 구조를 갖고 있습니다. 이 구조의 모델을 다른 말로 encoder-decoder 모델이라고도 부릅니다.
 
-![자동 번역 예시](https://files.slack.com/files-pri/T25783BPY-F6X6W5UTA/machine-translator.png?pub_secret=c4b0c11754)
+![자동 번역](https://files.slack.com/files-pri/T25783BPY-F6X6W5UTA/machine-translator.png?pub_secret=c4b0c11754)
 
 [Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation](https://arxiv.org/abs/1609.08144)
 
@@ -73,21 +73,16 @@ RNN의 입력과 출력은 우리가 네트워크에게 시키고 싶은 것이 
 
 가장 먼저 할 일은 변수를 정의하는 것입니다. 아래 다이어그램은 만들려고 하는 모델을 변수 기호와 함께 나타낸 것입니다. $x_t$는 t 시간 스텝에서의 입력 벡터, $s_t$는 t 시간 스텝에서 RNN의 기억을 담당하는 hidden state, $o$는 출력 벡터입니다. U, W, V는 모델의 파라미터입니다. 첫 다이어그램에 없던 $s_{init}$은 hidden state의 초기값으로, 구현을 위해 필요한 부분입니다.
 
-![RNN 다이어그램 (변수 정의 포함)](https://files.slack.com/files-pri/T25783BPY-F6YNRNSTY/rnn-diagram-variables.png?pub_secret=fd7a7351a5)
+![변수가 정의된 RNN 다이어그램](https://files.slack.com/files-pri/T25783BPY-F6YNRNSTY/rnn-diagram-variables.png?pub_secret=fd7a7351a5)
 
 변수들의 차원을 써보면 이해하는 데 많은 도움이 됩니다. 
 
-$x_t \in \mathcal{R}^{28}$
-
-$o \in \mathcal{R}^{10}$
-
-$s_t \in \mathcal{R}^{100}$
-
-$U \in \mathcal{R}^{28 \times 100}$
-
-$W \in \mathcal{R}^{100 \times 100}$
-
-$V \in \mathcal{R}^{100 \times 10}$
+* $x_t \in \mathcal{R}^{28}$
+* $o \in \mathcal{R}^{10}$
+* $s_t \in \mathcal{R}^{100}$
+* $U \in \mathcal{R}^{28 \times 100}$
+* $W \in \mathcal{R}^{100 \times 100}$
+* $V \in \mathcal{R}^{100 \times 10}$
 
 
 
@@ -111,16 +106,18 @@ MNIST 이미지를 변형하여 벡터의 시퀀스로 만드는 부분입니다
 
 ```python
 x_raw = tf.placeholder(tf.float32, shape=[batch_size, h_size, w_size, c_size]) # [100, 28, 28, 1] 
-
 x_split = tf.split(x_raw, h_size, axis=1) # [100, 28, 28, 1] -> list of [100, 1, 28, 1]
-
 ```
+
+
 
 우리가 맞춰야 하는 0부터 9까지의 label을 `y`로 두겠습니다.
 
 ```python
 y = tf.placeholder(tf.float32, shape=[batch_size, 10])
 ```
+
+
 
 이제 모델 정의에 필요한 변수들인 `U`, `W`, `V` 및 hidden state `s`를 정의합니다.
 
@@ -144,7 +141,7 @@ s[-1] = s_init
 
 네트워크의 기억에 해당하는 hidden state $s_t$는 입력 x와 과거의 기억 $s_{t-1}$을 조합하여 만들어집니다. 조합하는 방식은 파라미터 U와 W에 의해 결정됩니다. U는 새로운 입력이 새로운 기억에 영향을 미치는 정도를, W는 과거의 기억이 새로운 기억에 영향을 미치는 정도를 결정한다고 볼 수 있습니다. 비선형함수로는 tanh나 ReLU가 주로 사용됩니다. 여기에서는 tanh를 쓰겠습니다.
 
-$s_t = tanh(x_tU + s_{t−1}W)$
+$$s_t = tanh(x_tU + s_{t−1}W)$$
 
 ```python
 for t, x_split in enumerate(x_split):
@@ -156,7 +153,7 @@ for t, x_split in enumerate(x_split):
 
 출력, 즉 예측값은 마지막 hidden state $s_t$로부터 계산됩니다. $s_t$와 V를 곱하는데, 여기서 V는 hidden state와 출력을 연결시켜주며 출력 벡터의 크기를 맞춰주는 역할을 합니다. 마지막으로 출력을 확률값으로 변환하기 위해 softmax 함수를 적용합니다. softmax 함수는 모든 출력값을 0 ~ 1 사이로 변환하고, 출력값의 합이 1이 되도록 합니다.
 
-$o = softmax(s_tV)$
+$$o = softmax(s_tV)$$
 
 ```python
 o = tf.nn.softmax(tf.matmul(s[h_size-1], V))
@@ -199,7 +196,9 @@ init.run()
 
 ```python
 import tensorflow.examples.tutorials.mnist.input_data as input_data
+```
 
+```python
 mnist = input_data.read_data_sets("data/", one_hot=True, reshape=False)
 trainimgs, trainlabels, testimgs, testlabels \
  = mnist.train.images, mnist.train.labels, mnist.test.images, mnist.test.labels 
