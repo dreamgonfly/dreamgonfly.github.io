@@ -123,7 +123,7 @@ CBOW 모델은 주변 단어, 다른 말로 맥락(context)으로 타겟 단어(
 
 앞과 뒤에서 몇 단어까지 볼지는 지정해줄 수 있다. 이를 window size라고 한다.
 
-데이터셋을 만들 때 word2vec은 sliding window라는 방법을 쓴다. cat을 타겟 단어로 놓고 A부터 sits까지 한번 본 다음에 window를 밀어서 이번에는 sits를 중심에 놓는다. 그 다음은 on을 중심에 놓고 본다. 이렇게 window를 점차 옆으로 밀면서 타겟 단어를 계속 바꾸는 방식을 sliding window라고 부른다. 만들어진 window 하나 하나가 우리의 학습 데이터가 된다. 
+데이터셋을 만들 때 word2vec은 sliding window라는 방법을 쓴다. green을 타겟 단어로 놓고 Colorless부터 ideas까지 한번 본 다음에 window를 밀어서 이번에는 ideas를 중심에 놓는다. 그 다음은 sleep을 중심에 놓고 본다. 이렇게 window를 점차 옆으로 밀면서 타겟 단어를 계속 바꾸는 방식을 sliding window라고 부른다. 만들어진 window 하나 하나가 우리의 학습 데이터가 된다. 
 
 ![sliding window](https://files.slack.com/files-pri/T25783BPY-F6P9HGPGS/sliding_window.png?pub_secret=2f5ff24df3)
 
@@ -145,7 +145,7 @@ CBOW에서 모델의 입력은 주변 단어이다. 그런데 입력이 비슷�
 
 레이어들 사이의 뉴런들은 서로 모두 연결되어(fully connected) 있다. 입력 레이어(input layer)와 히든 레이어(hidden layer) 사이를 연결하는 파라미터들은 V X N의 행렬 W로 나타낼 수 있고, 입력 레이어에서 히든 레이어로 넘어가는 것은 단순히 행렬 W를 곱하는 것과 같다. x가 입력 벡터라고 하면, 히든 레이어 h는 <span>$W^Tx$</span> 로 계산된다. 이 벡터는 V차원, 즉 임베딩 차원의 벡터가 된다.
 
-입력 벡터 x는 one-hot encoding된 벡터이다. x의 요소 중 k번째 요소만 1이라고 하자. x의 나머지 요소가 모두 0이기 때문에 다른 부분은 모두 무시되고 <span>$W^Tx$</span> 의 결과는 $W^T$ 의 k번째 열, 즉 W의 k번째 행만 남는다. 이 벡터가 해당 단어의 N차원 벡터 표현이다. W의 각 행들은 각각 해당하는 단어의 N차원의 벡터 표현인 것이다. W의 i번째 행을 <span>$v^T_w$</span> 라고 부르면, 히든 레이어 h는 <span>$v^T_{w_I}$</span>와 결국 같다는 것을 알 수 있다. 
+입력 벡터 x는 one-hot encoding된 벡터이다. x의 요소 중 k번째 요소만 1이라고 하자. x의 나머지 요소가 모두 0이기 때문에 다른 부분은 모두 무시되고 <span>$W^Tx$</span> 의 결과는 $W^T$ 의 k번째 열, 즉 W의 k번째 행만 남는다. 이 벡터가 해당 단어의 N차원 벡터 표현이 된다. W의 각 행들은 각각 해당하는 단어의 N차원의 벡터 표현인 것이다. W의 i번째 행을 <span>$v^T_{w_I}$</span> 라고 부르면, 히든 레이어 h는 <span>$v^T_{w_I}$</span>와 결국 같다는 것을 알 수 있다. 
 
 
 $$
@@ -173,7 +173,7 @@ $$
 
 
 $$
-p(w_j|w_I) = \frac{\exp({v'{w_j}}^Tv_{w_I})}{\sum^V_{j' = 1}\exp({v'{w_{j'}}}^Tv_{w_I})}
+p(w_j|w_I) = \frac{\exp({v'_{w_j}}^Tv_{w_I})}{\sum^V_{j' = 1}\exp({v'_{w_{j'}}}^Tv_{w_I})}
 $$
 
 
