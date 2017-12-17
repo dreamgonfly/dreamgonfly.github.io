@@ -53,14 +53,14 @@ USB 하나를 부팅 디스크로 만들어야 합니다.
 
 먼저, Disk Utility를 이용해서 USB를 포맷합니다.
 
-1. **Applications** > **Disk Utility**를 실행합니다.
-2. USB를 선택한 뒤 **Erase**를 클릭합니다.
-3. Format은 **MS-DOS (FAT)**으로 지정하고 Scheme은 디폴트 상태로 둔 뒤 **Erase**를 눌러 포맷을 진행합니다.
+* **Applications** > **Disk Utility**를 실행합니다.
+* USB를 선택한 뒤 **Erase**를 클릭합니다.
+* Format은 **MS-DOS (FAT)**으로 지정하고 Scheme은 디폴트 상태로 둔 뒤 **Erase**를 눌러 포맷을 진행합니다.
 
 ![Disk Utility에서 USB 포맷하기](https://files.slack.com/files-pri/T25783BPY-F8FR4GM0V/screenshot.png?pub_secret=d1d065ce2b)
 
-4. UNetbootin(https://unetbootin.github.io/)를 설치합니다.
-5. 설치한 UNetbootin에 다운받은 Ubuntu 14.04 파일(.iso)을 넣고 USB를 지정해주면 부팅 디스크를 만들어줍니다.
+* UNetbootin(https://unetbootin.github.io/)를 설치합니다.
+* 설치한 UNetbootin에 다운받은 Ubuntu 14.04 파일(.iso)을 넣고 USB를 지정해주면 부팅 디스크를 만들어줍니다.
 
 ![UNetbootin으로 부팅 디스크 만들기](https://files.slack.com/files-pri/T25783BPY-F8GGX7F0W/screenshot.png?pub_secret=32447bd174)
 
@@ -78,8 +78,8 @@ USB 하나를 부팅 디스크로 만들어야 합니다.
 
 Ubuntu에서 NVIDIA driver를 설치하는 가장 간단하고 권장되는 방법은 운영체제가 제공하는 설정 메뉴에서 GUI 그래픽 드라이버 설치 방법를 따르는 것입니다.
 
-1. Ubuntu에서 **System Settings** > **Software & Updates** > **Additional Drivers**를 클릭합니다.
-2. 잠시 기다린 뒤 표시되는 선택지 중에 **using NVIDIA binary driver**를 선택합니다.
+* Ubuntu에서 **System Settings** > **Software & Updates** > **Additional Drivers**를 클릭합니다.
+* 잠시 기다린 뒤 표시되는 선택지 중에 **using NVIDIA binary driver**를 선택합니다.
 
 ![System Settings에서 NVIDIA driver 다운로드 하기](https://files.slack.com/files-pri/T25783BPY-F8GU1GBQF/driver.png?pub_secret=a6137dc6e3)
 
@@ -106,9 +106,9 @@ CLI를 이용해 NVIDIA driver를 설치하고 싶다면 다음 자료를 참고
 
 현재 CUDA 최신 버전은 9.1이지만 TensorFlow는 CUDA 8.0 설치를 요구하고 있습니다. 따라서 여기에서도 CUDA 8.0을 설치하겠습니다.
 
-1. CUDA 8.0 다운로드 페이지 (https://developer.nvidia.com/cuda-80-ga2-download-archive)에 들어갑니다.
-2. **Linux > x86_64 > Ubuntu > 14.04 > deb (local)**을 선택하고 [다운로드](https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1404-8-0-local-ga2_8.0.61-1_amd64-deb)합니다.
-3. 다운로드 페이지에서 안내되는 것처럼 다음 명령어를 입력합니다.
+* CUDA 8.0 다운로드 페이지 (https://developer.nvidia.com/cuda-80-ga2-download-archive)에 들어갑니다.
+* **Linux > x86_64 > Ubuntu > 14.04 > deb (local)**을 선택하고 [다운로드](https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1404-8-0-local-ga2_8.0.61-1_amd64-deb)합니다.
+* 다운로드 페이지에서 안내되는 것처럼 다음 명령어를 입력합니다.
 
 ```bash
 sudo dpkg -i cuda-repo-ubuntu1404-8-0-local-ga2_8.0.61-1_amd64.deb
@@ -117,7 +117,7 @@ sudo apt-get install cuda
 sudo reboot
 ```
 
-4. bashrc 파일을 열고 맨 아래에 다음 환경변수를 추가합니다.
+* bashrc 파일을 열고 맨 아래에 다음 환경변수를 추가합니다.
 
 ```shell
 gedit ~/.bashrc
@@ -144,15 +144,15 @@ TensorFlow가 cuDNN 6.0을 요구하므로 최신 버전인 7.0이 아닌 6.0 �
 
 
 
-1. cuDNN 다운로드 페이지(https://developer.nvidia.com/cudnn)에 들어갑니다.
-2. **Download** 버튼을 클릭하면 회원 가입을 하라는 문구가 뜹니다. NVIDIA 회원 가입을 진행합니다.
-3. 로그인 후 다시 **Download** 버튼을 클릭하고 몇가지 질문에 답한 후 이용 약관에 동의하면 다운로드 가능한 버전들을 볼 수 있습니다.
-4. 이 중에서 **Download cuDNN v6.0 (April 27, 2017), for CUDA 8.0** 를 클릭하면 다운로드 리스트가 뜹니다.
-5. Linux용 버전인 [cuDNN v6.0 Library for Linux](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v6/prod/8.0_20170307/cudnn-8.0-linux-x64-v6.0-tgz) 링크를 클릭하면 다운로드가 진행됩니다.
+* cuDNN 다운로드 페이지(https://developer.nvidia.com/cudnn)에 들어갑니다.
+* **Download** 버튼을 클릭하면 회원 가입을 하라는 문구가 뜹니다. NVIDIA 회원 가입을 진행합니다.
+* 로그인 후 다시 **Download** 버튼을 클릭하고 몇가지 질문에 답한 후 이용 약관에 동의하면 다운로드 가능한 버전들을 볼 수 있습니다.
+* 이 중에서 **Download cuDNN v6.0 (April 27, 2017), for CUDA 8.0** 를 클릭하면 다운로드 리스트가 뜹니다.
+* Linux용 버전인 [cuDNN v6.0 Library for Linux](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v6/prod/8.0_20170307/cudnn-8.0-linux-x64-v6.0-tgz) 링크를 클릭하면 다운로드가 진행됩니다.
 
 ![cuDNN 다운로드 페이지](https://files.slack.com/files-pri/T25783BPY-F8FQY896W/cdnn-annotated.png?pub_secret=f996fb45cc)
 
-6. 다음 명령어를 입력해서 다운받은 cuDNN 파일의 압축을 풀고 cuda 라이브러리에 복사합니다.
+* 다음 명령어를 입력해서 다운받은 cuDNN 파일의 압축을 풀고 cuda 라이브러리에 복사합니다.
 
 ```shell
 cd Downloads/
@@ -181,16 +181,16 @@ sudo su
 
 
 
-1. Anaconda 아카이브 페이지(https://repo.continuum.io/archive/index.html)에 접속합니다.
-2. [Anaconda3-4.2.0-Linux-x86_64.sh](https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh) 버전을 선택하여 다운로드합니다. Anaconda3 4.2 버전은 Python 3.5가 디폴트인 버전입니다.
-3. 다운로드 받은 파일이 담긴 폴더로 이동하여 bash로 해당 파일을 실행합니다.
+* Anaconda 아카이브 페이지(https://repo.continuum.io/archive/index.html)에 접속합니다.
+* [Anaconda3-4.2.0-Linux-x86_64.sh](https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh) 버전을 선택하여 다운로드합니다. Anaconda3 4.2 버전은 Python 3.5가 디폴트인 버전입니다.
+* 다운로드 받은 파일이 담긴 폴더로 이동하여 bash로 해당 파일을 실행합니다.
 
 ```shell
 bash Anaconda3-4.2.0-Linux-x86_64.sh
 ```
 
-4. (Optional) 모든 사용자가 설치된 Python에 접근할 수 있게 하기 위해 Anaconda 설치 중 설치 경로 설정에서 `/opt/conda`를 입력하였습니다. 이 과정을 생략하면 사용자의 home 디렉토리 아래에 Anaconda가 설치됩니다.
-5. PATH를 추가하겠느냐는 질문에 yes를 입력합니다.
+* (Optional) 모든 사용자가 설치된 Python에 접근할 수 있게 하기 위해 Anaconda 설치 중 설치 경로 설정에서 `/opt/conda`를 입력하였습니다. 이 과정을 생략하면 사용자의 home 디렉토리 아래에 Anaconda가 설치됩니다.
+* PATH를 추가하겠느냐는 질문에 yes를 입력합니다.
 
 ### 설치 확인하기
 
@@ -212,13 +212,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 
 
-1. 다음 명령어로 libcupti-dev 라이브러리를 설치합니다. 이는 TensorFlow [공식 설치 가이드](https://www.tensorflow.org/install/install_linux)의 요구사항을 따른 것입니다. CUDA와 cuDNN은 이미 설치했으니 마지막 단계인 libcupti-dev 라이브러리만 남았습니다.
+* 다음 명령어로 libcupti-dev 라이브러리를 설치합니다. 이는 TensorFlow [공식 설치 가이드](https://www.tensorflow.org/install/install_linux)의 요구사항을 따른 것입니다. CUDA와 cuDNN은 이미 설치했으니 마지막 단계인 libcupti-dev 라이브러리만 남았습니다.
 
 ```shell
 sudo apt-get install libcupti-dev
 ```
 
-2. pip으로 TensorFlow GPU 버전을 설치합니다. pip으로 설치하는 가이드는 [Installinng with native pip](https://www.tensorflow.org/install/install_linux#InstallingNativePip)에서 찾을 수 있고 설치 URL은 [URL of the TensorFlow Python package](https://www.tensorflow.org/install/install_linux#the_url_of_the_tensorflow_python_package)에서 Python 3.5 버전을 선택했습니다.
+* pip으로 TensorFlow GPU 버전을 설치합니다. pip으로 설치하는 가이드는 [Installinng with native pip](https://www.tensorflow.org/install/install_linux#InstallingNativePip)에서 찾을 수 있고 설치 URL은 [URL of the TensorFlow Python package](https://www.tensorflow.org/install/install_linux#the_url_of_the_tensorflow_python_package)에서 Python 3.5 버전을 선택했습니다.
 
 ```shell
 pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp35-cp35m-linux_x86_64.whl
@@ -262,9 +262,9 @@ conda install pytorch torchvision -c pytorch
 
 ### 포트포워딩
 
-1. **192.168.0.1** 주소로 접속하여 iptime 관리 페이지로 이동합니다. 관리 페이지를 모를 때는 Ubuntu 내 Terminal에서 `ifconfig`를 입력하여 내부 IP 주소(inet addr)를 알아낸 뒤 마지막 자리를 1로 치환한 주소가 관리 페이지 주소일 가능성이 높습니다. 
-2. 로그인 후 **관리 도구 > 고급 설정 > NAT/라우터 관리 > 포트포워드 설정**로 이동합니다.
-3. 새 규칙을 추가합니다. **규칙 이름**과 **외부 포트**, **내부 포트**, 그리고 **내부 IP주소**를 설정해주면 됩니다.
+* **192.168.0.1** 주소로 접속하여 iptime 관리 페이지로 이동합니다. 관리 페이지를 모를 때는 Ubuntu 내 Terminal에서 `ifconfig`를 입력하여 내부 IP 주소(inet addr)를 알아낸 뒤 마지막 자리를 1로 치환한 주소가 관리 페이지 주소일 가능성이 높습니다. 
+* 로그인 후 **관리 도구 > 고급 설정 > NAT/라우터 관리 > 포트포워드 설정**로 이동합니다.
+* 새 규칙을 추가합니다. **규칙 이름**과 **외부 포트**, **내부 포트**, 그리고 **내부 IP주소**를 설정해주면 됩니다.
 
 ![iptime 포트포워딩 설정](https://files.slack.com/files-pri/T25783BPY-F8FSAKX0U/iptime.png?pub_secret=6b0d0ea838)
 
@@ -276,19 +276,19 @@ SSH 설정 방법은 [How to Enable SSH on Ubuntu](https://thishosting.rocks/how
 
 
 
-1. OpenSSH를 설치합니다.
+* OpenSSH를 설치합니다.
 
 ```shell
 sudo apt-get install openssh-server -y
 ```
 
-2. 다음 명령어로 SSH 설정 파일을 엽니다.
+* 다음 명령어로 SSH 설정 파일을 엽니다.
 
 ```shell
 sudo nano /etc/ssh/sshd_config
 ```
 
-3. Port 설정을 수정합니다.
+* Port 설정을 수정합니다.
 
 다음과 같은 라인을
 
@@ -302,7 +302,7 @@ sudo nano /etc/ssh/sshd_config
 Port 1337
 ```
 
-4. SSH를 재시작합니다.
+* SSH를 재시작합니다.
 
 ```shell
 sudo service ssh restart
