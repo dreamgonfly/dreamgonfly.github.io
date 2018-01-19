@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "AWS Lambda로 PyTorch 모델 서빙하기"
-date:   2018-01-20
+date:   2018-01-19
 tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
@@ -11,13 +11,11 @@ comments: true
 
 AWS Lambda는 서버 관리의 부담을 없애주는 서버 리스 컴퓨팅(Serverless computing) 서비스입니다. Lambda를 한마디로 설명하면 이벤트가 발생했을 때만 서버가 떠서 코드를 실행하는 이벤트 기반 클라우드 플랫폼입니다. Lambda는 코드가 실행된 시간에 대해서만 비용을 내는 효율성과, 이벤트가 갑자기 많이 발생해도 병렬처리가 가능한 확장성 덕분에 각광받고 있습니다.
 
-이 글에서는 Lambda 위에 PyTorch 모델을 업로드하여 API로 서비스하는 방법을 공유하겠습니다.
+이 글에서는 Lambda 위에 PyTorch 모델을 업로드하여 API로 서비스하는 방법을 공유하겠습니다. 이 글은 step-by-step으로 구성되어 있습니다. 배포 준비를 위해 Docker를 설치하고 PyTorch 라이브러리와 모델을 압축파일로 만들고 Lambda 위에 올린 뒤 API를 배포하는 것까지 차근차근 따라가 보겠습니다.
 
-이 글은 step-by-step으로 구성되어 있습니다. 배포 준비를 위해 Docker를 설치하고 PyTorch 라이브러리와 모델을 압축파일로 만들고 Lambda 위에 올린 뒤 API를 배포하는 것까지, 배포에 대해 전혀 몰랐더라도 따라하실 수 있도록 차근차근 알아보겠습니다.
+이 글에서 쓰이는 모든 코드는 github에 모아놓았습니다 : [github](https://github.com/dreamgonfly/pytorch-lambdapack)
 
-이 글에서 쓰이는 모든 코드는 github에 모아놓았습니다.
-
-![예제 파일 구성](https://files.slack.com/files-pri/T25783BPY-F8SKB9N4S/screenshot_2018-01-14_22.51.35.png?pub_secret=f234365e0d)
+![예제 파일 구성](https://files.slack.com/files-pri/T25783BPY-F8VCWU8GM/screenshot_2018-01-19_11.29.38.png?pub_secret=b61a06eeb7)
 
 # 샘플 모델 만들기
 
@@ -52,8 +50,6 @@ Lambda에서 코드를 실행하는 환경과 동일한 환경을 로컬에 쉽�
 
 Docker가 이미 설치되어 있으신 분은 이 부분을 생략하고 바로 다음으로 넘어가셔도 됩니다.
 
-참고로 제가 실험해보았을 때는, 이 글의 뒤에 나오는대로 PyTorch를 설치하고 불필요한 파일을 삭제했을 때 Linux (Ubuntu 14.04)에서는 AWS Lambda에 올릴 수 있는 크기가 나왔지만 MacOS (Sierra)에서는 그보다 큰 용량이 나왔습니다. 여러가지 환경에 따라 결과는 달라질 수 있으니 직접 실험해보는 것을 권장합니다.
-
 ## MacOS & Windows
 
 [Docker Community Edition 다운로드 페이지](https://store.docker.com/search?type=edition&offering=community)에서 원하는 환경의 설치 파일을 다운로드받으면 GUI 방식으로 쉽게 설치할 수 있습니다.
@@ -76,6 +72,8 @@ $ sudo sh get-docker.sh
 ```bash
 sudo usermod -aG docker <your-user>
 ```
+
+참고로 제가 실험해보았을 때는, 이 글의 뒤에 나오는대로 PyTorch를 설치하고 불필요한 파일을 삭제했을 때 Linux (Ubuntu 14.04)에서는 AWS Lambda에 올릴 수 있는 크기가 나왔지만 MacOS (Sierra)에서는 그보다 큰 용량이 나왔습니다. 여러가지 환경에 따라 결과는 달라질 수 있으니 직접 실험해보는 것을 권장합니다.
 
 # Amazon Linux Docker 이미지 다운받기
 
@@ -298,7 +296,7 @@ github에는 위에 설명드린 파일 외에도 몇가지 파일들이 더 있
 
 ## 압축 파일 및 모델 파일 업로드
 
-AWS Lambda에 코드를 올리는 방법은 세가지가 있습니다. 이 중 압축된 파일의 크기가 50MB를 넘는다면 압축 파일을 S3에 업로드한 뒤 Lambda에 압축 파일의 주소를 입력하는 방법을 사용해야 합니다. 이를 위해서 S3에 압축 파일을 업로드합니다. 또한 모델 파라미터와 전처리 파라미터 파일도 같이 S3에 업로드합니다.
+AWS Lambda에 코드를 올리는 방법은 세 가지가 있습니다. 이 중 압축된 파일의 크기가 50MB를 넘는다면 압축 파일을 S3에 업로드한 뒤 Lambda에 압축 파일의 주소를 입력하는 방법을 사용해야 합니다. 이를 위해서 S3에 압축 파일을 업로드합니다. 또한 모델 파라미터와 전처리 파라미터 파일도 같이 S3에 업로드합니다.
 
 이 글에서는 새로운 S3 bucket을 만들고 그곳에 필요한 모든 파일을 업로드하겠습니다. 하지만 실제로는 이미 있는 bucket을 사용해도 되며 모든 파일이 같은 곳에 위치할 필요는 없습니다.
 
@@ -340,19 +338,27 @@ API를 설정하고 나면 마지막으로 API를 호출할 수 있는 URL을 �
 
 ```shell
 $ curl -d "{\"category\":\"Russian\", \"start_letters\":\"RUS\"}" -X POST https://tcodv2ela9.execute-api.ap-northeast-2.amazonaws.com/v1
+
+{"statusCode": 200, "headers": {"Content-Type": "application/json"}, "body": "[\"Rovantov\", \"Uarthin\", \"Shantov\"]"}
 ```
 
-lambda의 로그 확인은 AWS CloudWatch에서 할 수 있습니다. **CloudWatch** > **Logs** > Log Group 선택 > Log Stream 선택으로 로그를 확인할 수 있습니다.
+lambda의 로그 확인은 AWS CloudWatch에서 합니다. **CloudWatch** > **Logs** > Log Group 선택 > Log Stream 선택으로 로그를 확인할 수 있습니다.
 
 ## 빠른 개발을 위해서
 
 lambda 함수를 개발하고 테스트하는 한 사이클에는 상당한 시간이 걸립니다. 코딩을 하고, docker에 환경을 구축한 뒤 압축해서 zip 파일로 만들고, 이를 S3에 업로드하고 다시 lambda에 넣은 뒤 url을 호출해 보아야 코드에 버그가 있는지 없는지 알 수 있습니다. 버그를 확인한 후 코드를 수정하고 나면 다시 위의 과정을 반복해야 하죠.
 
-코딩을 하고 테스트로 피드백을 받는 간격이 짧으면 짧을 수록 개발 속도는 빨라지게 됩니다. 빠른 개발을 위해서 github에는 위에 설명드린 파일 외에 몇가지 파일들이 더 있습니다.
+코딩을 하고 테스트로 피드백을 받는 간격이 짧으면 짧을 수록 개발 속도는 빨라지게 됩니다. 빠른 개발을 위해서 [github](https://github.com/dreamgonfly/pytorch-lambdapack)에는 위에 설명드린 파일 외에 몇가지 파일들이 더 있습니다.
 
 `add_pack_script.sh`는 `build_pack_script.sh`의 간소화된 버전이라고 할 수 있습니다. `add_pack_script.sh`는 Amazon Linux 환경을 다시 구축하는 과정을 생략하고 이미 만들어진 container 위에 파이썬 패키지 압축만 다시 합니다. `lambda_function.py` 등 몇가지 파일만 수정한 뒤 압축 파일을 다시 만들어야 할 때 유용하게 쓸 수 있습니다.
 
 `local_test.py`와 `local_test_script.sh`는 로컬에서 테스트를 할 수 있게 해주는 스크립트입니다. `local_test.py`를 수정하여 필요한 환경 변수와 event를 지정한 뒤 사용할 수 있습니다.
+
+# 마치며
+
+이것으로 PyTorch 모델을 AWS Lambda로 서빙하는 과정을 마쳤습니다. PyTorch와 AWS Lambda의 조합은 간단한 딥러닝 모델을 서빙하는 데 최적의 조합입니다. 요청이 없을 때는 과금이 없으며, 요청이 갑자기 많아지더라도 서버가 죽을 걱정이 없이 서비스할 수 있기 때문이죠.
+
+이제 여러분도 딥러닝 모델을 만드는 것에서 끝나는 것이 아니라 언제 어디서나 사용할 수 있도록 서비스화할 수 있습니다.
 
 # Reference
 
