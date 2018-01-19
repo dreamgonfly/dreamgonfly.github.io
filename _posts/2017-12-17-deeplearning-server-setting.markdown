@@ -2,7 +2,6 @@
 layout: post
 title:  "딥러닝용 서버 설치기"
 date:   2017-12-17 18:10:00
-tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
 ---

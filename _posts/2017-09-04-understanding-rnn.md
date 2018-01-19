@@ -3,7 +3,6 @@ layout: post
 title:  "Recurrent Neural Network (RNN) 이해하기"
 date:   2017-09-04
 categories: rnn
-tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
 ---

@@ -2,8 +2,6 @@
 layout: post
 title:  "머신 러닝 소개 (Introduction to Machine Learning)"
 date:   2017-08-13 17:32:30
-categories: machine learning
-tags: featured
 image: https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/blogs/545/images/s4KYd1XTZijRkleaJzpm_Think_of_Your_Strategy_as_a_Journey.jpg
 comments: true
 ---
