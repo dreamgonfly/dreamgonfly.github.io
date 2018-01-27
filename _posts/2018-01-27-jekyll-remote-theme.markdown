@@ -6,9 +6,9 @@ tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
 ---
-# 쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로
+  
 
-.github.io라는 url로 익숙한 GitHub Pages는 개인 블로그, 특히 개발 블로그 용으로 인기가 높습니다. 이 글에서는 가장 간단하게 수준 급의 GitHub Pages로 static 페이지를 호스팅하는 방법을 소개해 보겠습니다. 
+.github.io라는 url로 익숙한 GitHub Pages는 개인 블로그, 특히 개발 블로그 용으로 인기가 높습니다. 이 글에서는 가장 간단하게 수준 급의 GitHub Pages로 static 페이지를 호스팅하는 방법을 소개해 보겠습니다.
 
 이미 많은 글들이 GitHub Pages를 사용하는 방법을 설명하고 있지만, 이 글에서 소개하는 방법은 다음과 같은 특징이 있습니다.
 
