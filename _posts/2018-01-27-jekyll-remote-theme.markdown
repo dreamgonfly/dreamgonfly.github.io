@@ -6,7 +6,7 @@ tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
 ---
-  
+
 
 .github.io라는 url로 익숙한 GitHub Pages는 개인 블로그, 특히 개발 블로그 용으로 인기가 높습니다. 이 글에서는 가장 간단하게 수준 급의 GitHub Pages로 static 페이지를 호스팅하는 방법을 소개해 보겠습니다.
 
@@ -124,6 +124,8 @@ author_profile: true
 ```
 
 ![index.html 파일 생성하기](https://files.slack.com/files-pri/T25783BPY-F90EHDNK0/screenshot_2018-01-27_14.52.30.png?pub_secret=93cc25e567)
+
+테마에 따라서 추가로 가져와야 하는 파일이 있을 수도 있습니다. 예를 들어 어떤 테마에서는 `posts.md`라는 파일이 있어야 합니다. 페이지가 제대로 작동하지 않는다면 테마에 따라서 필요한 파일을 확인해 주세요.
 
 # 5. `_posts`에 새 글 쓰기
 
