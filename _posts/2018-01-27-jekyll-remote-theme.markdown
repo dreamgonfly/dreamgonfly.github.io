@@ -37,6 +37,8 @@ GitHub에는 이미 [수백 개의 Jekyll 테마](https://github.com/topics/jeky
 
 # 3. `_config.yml` 파일 가져오기
 
+![`_config.yml` 파일 가져오기](https://files.slack.com/files-pri/T25783BPY-F91H9F9K9/2018-01-29_23_01_37.gif?pub_secret=7c0ba1db24)
+
 * 선택한 테마 저장소(repository)에 들어가서 `_config.yml`라는 파일의 내용을 복사합니다. 이때 **Raw**를 누르면 군더더기 없이 파일의 내용만 볼 수 있습니다. 이 파일은 모든 Jekyll 사이트가 갖고 있는 설정 파일입니다. 
 * 자신이 방금 만든 저장소(repository)에 똑같이 `_config.yml`이라는 이름의 파일을 만들고 복사한 내용을 붙여넣기 합니다.
 * 이 파일에서 다음과 같이 한 줄을 추가하고 두 줄을 변경해야 합니다.
