@@ -1,4 +1,13 @@
-# Conda 가상 환경으로 PyTorch 설치하기
+---
+layout: post
+title:  "Conda 가상 환경으로 PyTorch 설치하기"
+date:   2018-01-30
+tags:
+image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
+comments: true
+---
+
+  
 
 PyTorch 설치가 어려울 때, conda 가상 환경 안에 PyTorch를 설치하면 깔끔하게 설치될 때가 많습니다. 이 글은 conda 가상 환경으로 PyTorch를 설치하고 Jupyter의 kernel로 등록하는 방법을 소개합니다. TensorFlow도 같은 방법으로 설치할 수 있습니다.
 
