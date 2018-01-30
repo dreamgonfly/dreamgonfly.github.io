@@ -3,33 +3,23 @@ layout: post
 title:  "Conda 가상 환경으로 PyTorch 설치하기"
 date:   2018-01-30
 tags:
-image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
+image:
 comments: true
 ---
 
-  
-
 PyTorch 설치가 어려울 때, conda 가상 환경 안에 PyTorch를 설치하면 깔끔하게 설치될 때가 많습니다. 이 글은 conda 가상 환경으로 PyTorch를 설치하고 Jupyter의 kernel로 등록하는 방법을 소개합니다. TensorFlow도 같은 방법으로 설치할 수 있습니다.
 
-# 요약
+# Windows
 
 **새 가상 환경 만들기** 
-
-`pytorch` 대신에 자신이 원하는 이름을 쓸 수 있습니다.
 
 ```shell
 $ conda create -y -n pytorch ipykernel
 ```
 
+`pytorch` 대신에 자신이 원하는 이름을 쓸 수 있습니다.
+
 **가상 환경 안으로 들어가기**
-
-* MacOS / Linux
-
-```shell
-$ source activate pytorch
-```
-
-- Windows
 
 ```shell
 $ activate pytorch
@@ -37,43 +27,65 @@ $ activate pytorch
 
 **PyTorch 설치하기**
 
-* MacOS / Linux
-
-```shell
-(pytorch)$ conda install -y pytorch torchvision -c pytorch
-```
-
-* Windows
-
 ```shell
 (pytorch)$ conda install -y -c peterjc123 pytorch
 ```
 
 **Jupyter에 새 kernel 등록하기** 
 
+```shell
+(pytorch)$ python -m ipykernel install --user --name pytorch --display-name "PyTorch"
+```
+
 `--display-name`은 Jupyter Notebook 위에서 표시될 kernel의 이름으로 `"PyTorch"` 대신 자신이 원하는 이름을 쓸 수 있습니다.
+
+**가상 환경 빠져나오기**
+
+```shell
+(pytorch)$ deactivate
+```
+
+# MacOS / Linux
+
+**새 가상 환경 만들기** 
+
+```shell
+$ conda create -y -n pytorch ipykernel
+```
+
+`pytorch` 대신에 자신이 원하는 이름을 쓸 수 있습니다.
+
+**가상 환경 안으로 들어가기**
+
+```shell
+$ source activate pytorch
+```
+
+**PyTorch 설치하기**
+
+```shell
+(pytorch)$ conda install -y pytorch torchvision -c pytorch
+```
+
+**Jupyter에 새 kernel 등록하기** 
 
 ```shell
 (pytorch)$ python -m ipykernel install --user --name pytorch --display-name "PyTorch"
 ```
 
-**등록된 kernel 확인하기**
-
-![Jupyter Notebook에 등록된 PyTorch kernel](https://files.slack.com/files-pri/T25783BPY-F901YJLAV/_______________.png?pub_secret=0974008d7a)
+`--display-name`은 Jupyter Notebook 위에서 표시될 kernel의 이름으로 `"PyTorch"` 대신 자신이 원하는 이름을 쓸 수 있습니다.
 
 **가상 환경 빠져나오기**
-
-* MacOS / Linux
 
 ```shell
 (pytorch)$ source deactivate
 ```
 
-* Windows
+# Jupyter에 등록된 kernel 확인하기
 
-```shell
-(pytorch)$ deactivate
-```
+이제 Jupyter Notebook에서 새 노트북을 만들 때 PyTorch kernel을 선택할 수 있습니다.
+
+![Jupyter Notebook에 등록된 PyTorch kernel](https://files.slack.com/files-pri/T25783BPY-F901YJLAV/_______________.png?pub_secret=0974008d7a)
 
 # 해설
 
