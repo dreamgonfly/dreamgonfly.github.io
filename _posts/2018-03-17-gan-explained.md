@@ -63,7 +63,8 @@ from torch.autograd import Variable
 #데이터 전처리 방식을 지정한다.
 transform = transforms.Compose([
   transforms.ToTensor(), # 데이터를 파이토치의 Tensor 형식으로바꾼다.
-  transforms.Normalize(mean=(0.5,), std=(0.5,))# 픽셀값 0 ~ 1 -> -1 ~ 1])
+  transforms.Normalize(mean=(0.5,), std=(0.5,)) # 픽셀값 0 ~ 1 -> -1 ~ 1
+])
 
 #MNIST 데이터셋을 불러온다. 지정한 폴더에 없을 경우 자동으로 다운로드한다.
 mnist =datasets.MNIST(root='data', download=True, transform=transform)
@@ -236,7 +237,7 @@ for epoch in range(100):
 
 다음으로 생성자를 학습할 차례다. 생성자의 목적은 구분자를 속이는 것이다. 다시 말해 생성자가 만들어낸 가짜 이미지를 구분자에 넣었을 때 출력값이 1에 가깝게 나오도록 해야 한다. 이 값이 1에서 떨어진 정도가 생성자의 손실 함수가 되고, 이를 최소화 시키도록 생성자를 학습시키게 된다.
 
-**<코드8> 생성자 학습시키기**
+##### <코드8> 생성자 학습시키기
 
 ```python
     # 생성자에 입력으로 줄 랜덤 벡터 z를 만든다.
