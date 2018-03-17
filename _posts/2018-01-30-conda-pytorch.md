@@ -17,7 +17,7 @@ PyTorch 설치가 어려울 때, conda 가상 환경 안에 PyTorch를 설치하
 $ conda create -y -n pytorch ipykernel
 ```
 
-`pytorch` 대신에 자신이 원하는 이름을 쓸 수 있습니다.
+`pytorch` 대신 자신이 원하는 이름을 쓸 수 있습니다.
 
 **가상 환경 안으로 들어가기**
 
@@ -53,7 +53,7 @@ $ activate pytorch
 $ conda create -y -n pytorch ipykernel
 ```
 
-`pytorch` 대신에 자신이 원하는 이름을 쓸 수 있습니다.
+`pytorch` 대신 자신이 원하는 이름을 쓸 수 있습니다.
 
 **가상 환경 안으로 들어가기**
 

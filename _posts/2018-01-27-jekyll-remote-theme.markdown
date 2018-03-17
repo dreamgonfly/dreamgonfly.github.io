@@ -2,7 +2,7 @@
 layout: post
 title:  "쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로"
 date:   2018-01-27
-tags: featured
+tags:
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 comments: true
 ---
