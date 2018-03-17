@@ -28,11 +28,11 @@ GAN의 두번째 단어인 ‘Adversarial’은 GAN이 두 개의 모델을 적�
 
 
 
-![<그림2> 생성자 – 구분자 도식](https://files.slack.com/files-pri/T25783BPY-F9SHTP6F9/picture2.png?pub_secret=6821873e68)
+![그림2: 생성자 – 구분자 도식](https://files.slack.com/files-pri/T25783BPY-F9SHTP6F9/picture2.png?pub_secret=6821873e68)
 
 GAN의 마지막 단어 ‘네트워크(Network)’는 이 모델이 인공신경망(Artificial Neural Network) 또는 딥러닝(Deep Learning)으로 만들어졌기 때문에 붙었다. 이 글에서는 ‘인공신경망’과 ‘딥러닝’을 구분 없이 사용하겠다. 사실 적대적 학습이라는 개념을 구현하기 위해 반드시 딥러닝을 써야 하는 것은 아니다. 하지만 알파고 등 여러 사례에서 볼 수 있듯이 딥러닝은 강력한 머신러닝 모델을 가능하게 만드는 기술이다. 딥러닝이 이런 힘을 갖게 된 비결을 비선형 활성 함수(non-Linear Activation Function)와 계층(Hierarchy) 구조, 그리고 역전파(Backpropagation)의 원리를 통해 간단하게 알아보자.
 
-![<그림3> 인공신경망 도식](https://files.slack.com/files-pri/T25783BPY-F9RGC95AN/picture3.png?pub_secret=8804cfbf83)
+![그림3: 인공신경망 도식](https://files.slack.com/files-pri/T25783BPY-F9RGC95AN/picture3.png?pub_secret=8804cfbf83)
 
 널리 알려져 있다시피 인공신경망 알고리즘은 인간 뇌 속 뉴런의 행동 방식에 영감을 받아 만들어졌다. 이전 층(Layer)의 뉴런의 출력값에 가중치(Weights)나 매개 변수(Parameters)를 곱해 합한 것이 다음 층 뉴런의 입력값이 된다. 이 입력값에 활성 함수(Activation Function)라 불리는 비선형 함수를 적용시키면 선형 함수로 표현할 수 없는 복잡한 관계를 표현할 수 있게 된다. 딥러닝의 강력함은 이런 층들이 매우 깊게 쌓을 수 있다는 점에서 나온다. 층을 많이 쌓을수록 더욱 복잡한 함수를 표현할 수 있는 힘(Representation Power)을 얻게 된다.
 
@@ -75,7 +75,7 @@ dataloader =DataLoader(mnist, batch_size=60, shuffle=True)
 GAN의 2가지 요소인 생성자와 구분자 중 생성자(Generator)를 먼저 만들어보자. 생성자는
 랜덤 벡터 ‘z’를 입력으로 받아 가짜 이미지를 출력하는 함수다. 여기서 ‘z’는 단순하게 균등 분포(Uniform Distribution)나 정규 분포(Normal Distribution)에서 무작위로 추출된 값이다. 생성자는 이렇게 단순한 분포를 사람 얼굴 이미지와 같은 복잡한 분포로 매핑(Mapping)하는 함수라고 볼 수 있다. 생성자 모델에 충분한 수의 매개 변수가 있다면 어떤 복잡한 분포도 근사할 수 있다는 것이 알려져 있다.
 
-![<그림4> 생성자는 단순한 분포를 복잡한 분포로 매핑하는 함수다.](https://files.slack.com/files-pri/T25783BPY-F9RFJ3VDJ/picture4.png?pub_secret=da0323f283)
+![그림4: 생성자는 단순한 분포를 복잡한 분포로 매핑하는 함수다.](https://files.slack.com/files-pri/T25783BPY-F9RFJ3VDJ/picture4.png?pub_secret=da0323f283)
 
 ‘z’ 벡터가 존재하는 공간을 잠재 공간(Latent Space)이라고도 부른다. 여기서는 잠재
 공간의 크기를 임의로 100차원으로 뒀다. 잠재 공간의 크기에는 제한이 없으나 나타내려고 하는 대상의 정보를 충분히 담을 수 있을 만큼은 커야 한다. GAN은 우리가 이해할 수는 없는 방식이지만 ‘z’ 벡터의 값을 이미지의 속성에 매핑시키기 때문이다. 뒤에 살펴볼 GAN의 파생 모델에서
@@ -91,7 +91,7 @@ Layer, Fully Connected Layer, Linear Transformation)를 쌓아서 생성자를 �
 충분한 표현력(Representation Power)을 얻을 수 있었다. MNIST는 비교적 간단한 문제에 속하므로 더욱 복잡한 문제를 풀기 위해서는 더 깊은 레이어 구조와 더 많은 양의 매개 변수가 필요할 것이다.
 
 ```python
-# <코드2>  GAN의 생성자(Generator)
+# <코드2> GAN의 생성자(Generator)
 
 # 생성자는 랜덤 벡터 z를 입력으로 받아 가짜 이미지를 출력한다.
 class Generator(nn.Module):
@@ -121,7 +121,7 @@ class Generator(nn.Module):
 한다. 이를 통해 모델이 과적합(Overfitting, 오버피팅)되는 것을 방지할 수 있고, 또한 구분자가 생성자보다 지나치게 빨리 학습되는 것도 막을 수 있다. 구분자의 마지막 레이어에서는 출력값을 0과 1 사이로 만들기 위해 활성 함수로 Sigmoid를 넣었다.
 
 ```python
-# <코드3>  GAN의 구분자(Discriminator)
+# <코드3> GAN의 구분자(Discriminator)
 
 # 구분자는 이미지를 입력으로 받아 이미지가 진짜인지 가짜인지 출력한다.
 class Discriminator(nn.Module):
@@ -236,9 +236,9 @@ for epoch in range(100):
 
 다음으로 생성자를 학습할 차례다. 생성자의 목적은 구분자를 속이는 것이다. 다시 말해 생성자가 만들어낸 가짜 이미지를 구분자에 넣었을 때 출력값이 1에 가깝게 나오도록 해야 한다. 이 값이 1에서 떨어진 정도가 생성자의 손실 함수가 되고, 이를 최소화 시키도록 생성자를 학습시키게 된다.
 
-```python
-# <코드8> 생성자 학습시키기
+**<코드8> 생성자 학습시키기**
 
+```python
     # 생성자에 입력으로 줄 랜덤 벡터 z를 만든다.
     z = Variable(torch.randn((batch_size, 100)))
     z = z.cuda()
@@ -262,9 +262,9 @@ for epoch in range(100):
     G_optimizer.step()
 ```
 
-![<그림5> 실제 MNIST 이미지](https://files.slack.com/files-pri/T25783BPY-F9RGFUHBL/picture5.png?pub_secret=b83bb25199)
+![그림5: 실제 MNIST 이미지](https://files.slack.com/files-pri/T25783BPY-F9RGFUHBL/picture5.png?pub_secret=b83bb25199)
 
-![<그림6> GAN으로 생성한 MNIST 이미지](https://files.slack.com/files-pri/T25783BPY-F9RL0A4N9/picture6.png?pub_secret=3ae8b223da)
+![그림6: GAN으로 생성한 MNIST 이미지](https://files.slack.com/files-pri/T25783BPY-F9RL0A4N9/picture6.png?pub_secret=3ae8b223da)
 
 지금까지 코드를 통해 GAN의 원리를 이해해봤다. 이제부터는 GAN이 발표된 이후로 나온 수많은 발전과 응용 중 가장 중요했던 모델들을 살펴보고 GAN으로 할 수 있는 여러 가지 일에 대해 알아보자.
 
@@ -276,7 +276,7 @@ DCGAN의 특징은 몇 가지로 요약할 수 있다. 먼저, 선형 레이어�
 Layer)를 최대한 배제하고 합성곱(Convolution)과 ‘Transposed Convolution(Fractional-Strided Convolution)’으로 네트워크 구조를 만들었다. 풀링 레이어는 여러 딥러닝 모델에서 불필요한 매개변수의 수를 줄이고 중요한 특징만을 골라내는
 역할을 하는 레이어지만 이미지의 위치 정보를 잃어버린다는 단점이 있다. 이미지를 생성하기 위해서는 위치 정보가 중요하기 때문에 DCGAN은 풀링 레이어를 배제했다. 선형 레이어 역시 마찬가지로 위치 정보를 잃어버리므로 모델의 깊은 레이어에서는 선형 레이어를 사용하지 않았다.
 
-![<그림7> DCGAN의 생성자 네트워크 구조](https://files.slack.com/files-pri/T25783BPY-F9SHY37JT/picture7.png?pub_secret=a4ad9b1733)
+![그림7: DCGAN의 생성자 네트워크 구조](https://files.slack.com/files-pri/T25783BPY-F9SHY37JT/picture7.png?pub_secret=a4ad9b1733)
 
 DCGAN의 또 다른 특징은 배치 정규화(Batch Normalization)를 사용했다는 점이다.
 배치 정규화는 레이어의 입력 데이터 분포가 치우쳐져 있을 때 평균과 분산을 조정해주는 역할을 한다. 이는 역전파가 각 레이어에 쉽게 전달되도록 해 학습이 안정적으로 이뤄지도록 돕는 데 중요한 역할을 한다.
@@ -358,7 +358,7 @@ DCGAN의또 다른 혁신은 학습이 잘 이뤄졌는지 확인하기 위한 �
 
 예를 들어 잠재공간에서 얼굴 방향에 해당하는 특성을 찾아낼 수 있고, ‘z’ 벡터에서 이에 해당하는 값을 바꿈으로써 이미지에서 얼굴이 바라보고 있는 방향을 바꿔볼수 있다. 이것이 가능하다는 것은 생성자가 얼굴의 의미적인 속성을 학습했다는 것을 뜻한다.
 
-![<그림8> DCGAN에서 생성한 얼굴의 방향을 바꿔보기](https://files.slack.com/files-pri/T25783BPY-F9R06368H/picture8.png?pub_secret=f19a88da19)
+![그림8: DCGAN에서 생성한 얼굴의 방향을 바꿔보기](https://files.slack.com/files-pri/T25783BPY-F9R06368H/picture8.png?pub_secret=f19a88da19)
 
 # 이미지를 새로운 이미지로 변형하는 cGAN
 
@@ -366,11 +366,11 @@ DCGAN의또 다른 혁신은 학습이 잘 이뤄졌는지 확인하기 위한 �
 
 기존의 GAN의 생성자가 랜덤 벡터를 입력으로 받는 것에 비해 cGAN의 생성자는 변형할 이미지를 입력으로 받는다. 그 뒤 생성자는 입력 이미지에 맞는 변형된 이미지를 출력한다. 예를 들어 스케치 사진을 받은 생성자는 그 스케치에 맞는 색을 칠한 뒤 채색된 이미지를 출력하는 것이다. 구분자는 스케치와 채색된 이미지를 모두 보고 그 채색된 이미지가 과연 스케치에 어울리는지 판단한다. 구분자를 속이기 위해서 생성자는 첫째, 진짜 같은 이미지를 만들어야 하고 둘째, 스케치에 맞는 이미지를 만들어야 한다.
 
-![<그림9> cGAN의 생성자와 구분자](https://files.slack.com/files-pri/T25783BPY-F9SBYT06A/picture9.png?pub_secret=fa4da6cab2)
+![그림9: cGAN의 생성자와 구분자](https://files.slack.com/files-pri/T25783BPY-F9SBYT06A/picture9.png?pub_secret=fa4da6cab2)
 
 cGAN의 혁신은 주어진 이미지를 새로운 이미지로 변형하는 수많은 문제를 하나의 간단한 네트워크 구조로 모두 풀었다는 점이다. 모든 문제는 이미지에서 의미적인 정보를 찾아내어 다른 이미지로 바꾸는 문제로 볼 수 있기 때문이다. 이렇게 한 영역의 이미지를 다른 영역의 이미지로 변형하는 문제의 경우 cGAN이 유용하게 쓰일 수 있다.
 
-![<그림10> cGAN으로 가능한 이미지 처리 예시](https://files.slack.com/files-pri/T25783BPY-F9RFM1UKW/picture10.png?pub_secret=eb61f533e7)
+![그림10: cGAN으로 가능한 이미지 처리 예시](https://files.slack.com/files-pri/T25783BPY-F9RFM1UKW/picture10.png?pub_secret=eb61f533e7)
 
 # 다양한 종류의 GAN
 
@@ -383,7 +383,7 @@ cGAN은 강력한 모델이지만 입력 이미지와 출력 이미지가 매칭
 
 GAN을 다양한 분야에 응용하려는 시도도 활발하다. 사진의 해상도를 높이는 ‘SRGAN(Super-Resolution GAN)’이나, 음성 녹음에서 노이즈를 줄여주는 ‘SEGAN(Speech Enhancement GAN)’을 예로 들 수 있다.
 
-![<그림11> 핸드백과 같은 스타일의 신발 이미지를 생성하는 DiscoGAN](https://files.slack.com/files-pri/T25783BPY-F9RL21UGM/picture11.png?pub_secret=a59d54d636)
+![그림11: 핸드백과 같은 스타일의 신발 이미지를 생성하는 DiscoGAN](https://files.slack.com/files-pri/T25783BPY-F9RL21UGM/picture11.png?pub_secret=a59d54d636)
 
 # GAN의 한계점
 
