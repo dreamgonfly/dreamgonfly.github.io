@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/</link>
+    <description>Recent content in Tags on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Sat, 17 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://dreamgonfly.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>deep learning</title>
+      <link>https://dreamgonfly.github.io/tags/deep-learning/</link>
+      <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pytorch</title>
+      <link>https://dreamgonfly.github.io/tags/pytorch/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/pytorch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://dreamgonfly.github.io/tags/blog/</link>
+      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://dreamgonfly.github.io/tags/aws/</link>
+      <pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hardware</title>
+      <link>https://dreamgonfly.github.io/tags/hardware/</link>
+      <pubDate>Sun, 17 Dec 2017 18:10:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>https://dreamgonfly.github.io/tags/machine-learning/</link>
+      <pubDate>Sun, 05 Nov 2017 21:07:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nlp</title>
+      <link>https://dreamgonfly.github.io/tags/nlp/</link>
+      <pubDate>Wed, 16 Aug 2017 21:07:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

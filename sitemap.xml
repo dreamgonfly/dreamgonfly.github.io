@@ -1,29 +1,104 @@
----
-layout: null
----
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for post in site.posts %}
-    <url>
-      <loc>{{ site.url }}{{ post.url }}</loc>
-      {% if post.lastmod == null %}
-        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-      {% else %}
-        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
-      {% endif %}
-
-      {% if post.sitemap.changefreq == null %}
-        <changefreq>weekly</changefreq>
-      {% else %}
-        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
-      {% endif %}
-
-      {% if post.sitemap.priority == null %}
-          <priority>0.5</priority>
-      {% else %}
-        <priority>{{ post.sitemap.priority }}</priority>
-      {% endif %}
-
-    </url>
-  {% endfor %}
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/deep-learning/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/gan-explained/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/conda-pytorch/</loc>
+    <lastmod>2018-01-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/pytorch/</loc>
+    <lastmod>2018-01-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/blog/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/jekyll-remote-theme/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/aws/</loc>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/pytorch-on-aws-lambda/</loc>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/hardware/</loc>
+    <lastmod>2017-12-17T18:10:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/hardware-for-deep-learning/</loc>
+    <lastmod>2017-12-17T18:10:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/machine-learning/</loc>
+    <lastmod>2017-11-05T21:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/lime/</loc>
+    <lastmod>2017-11-05T21:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/understanding-rnn/</loc>
+    <lastmod>2017-09-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/nlp/</loc>
+    <lastmod>2017-08-16T21:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/word2vec-explained/</loc>
+    <lastmod>2017-08-16T21:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/introduction-to-machine-learning/</loc>
+    <lastmod>2017-08-13T17:32:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/categories/</loc>
+  </url>
+  
 </urlset>

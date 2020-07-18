@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nlp on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/nlp/</link>
+    <description>Recent content in nlp on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Wed, 16 Aug 2017 21:07:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://dreamgonfly.github.io/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>쉽게 씌어진 word2vec</title>
+      <link>https://dreamgonfly.github.io/blog/word2vec-explained/</link>
+      <pubDate>Wed, 16 Aug 2017 21:07:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/word2vec-explained/</guid>
+      <description>텍스트 기반의 모델 만들기는 텍스트를 숫자로 바꾸려는 노력의 연속이다. 텍스트를 숫자로 바꾸어야만 알고리즘에 넣고 계산을 한 후 결과값을 낼 수 있기 때문이다.
+텍스트를 숫자로 바꾸는 일 중의 하나로 단어를 벡터로 바꾸는 일을 생각할 수 있다. 단어를 벡터로 바꾸는 가장 단순한 방법은 단어에 번호를 매기고, 그 번호에 해당하는 요소만 1이고 나머지는 0을 갖는 벡터로 바꾸는 것이다. 예를 들어 총 5개의 단어가 있는데 &amp;lsquo;강아지&amp;rsquo;라는 단어에 2번을 매겼다고 하자. 그러면 &amp;lsquo;강아지&amp;rsquo;는 2번째 요소만 1이고 나머지는 모두 0인 5차원의 벡터로 표현이 된다.</description>
+    </item>
+    
+  </channel>
+</rss>

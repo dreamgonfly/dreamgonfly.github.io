@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/blog/</link>
+    <description>Recent content in Blogs on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Sat, 17 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://dreamgonfly.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>쉽게 씌어진 GAN</title>
+      <link>https://dreamgonfly.github.io/blog/gan-explained/</link>
+      <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/gan-explained/</guid>
+      <description>이 글은 마이크로소프트웨어 391호 인공지능의 체크포인트(THE CHECKPOINT OF AI)에 &amp;lsquo;쉽게 쓰이는 GAN&amp;rsquo;이라는 제목으로 기고된 글입니다. 블로그에는 이 글의 원제이자 윤동주 시인의 &amp;lsquo;쉽게 씌어진 시&amp;rsquo;를 따라 지어진 제목인 &amp;lsquo;쉽게 씌어진 GAN&amp;rsquo;으로 포스팅합니다.
+ 페이스북 인공지능 연구팀의 리더이자 딥러닝의 아버지라 불리는 얀 르쿤(Yann LeCun) 교수는 GAN(Generative Adversarial Network)을 가리켜 최근 10년간 머신러닝 분야에서 가장 혁신적인 아이디어라고 말했다. 요즘 가장 주목받는 기술인 딥러닝 중에서도 GAN은 가장 많은 관심을 받고 있는 기술이다. 그만큼 GAN은 새로운 연구가 활발히 이루어지고 혁신이 빠르게 일어나고 있는 기술이기도 하다.</description>
+    </item>
+    
+    <item>
+      <title>Conda 가상 환경으로 PyTorch 설치하기</title>
+      <link>https://dreamgonfly.github.io/blog/conda-pytorch/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/conda-pytorch/</guid>
+      <description>PyTorch 설치가 어려울 때, conda 가상 환경 안에 PyTorch를 설치하면 깔끔하게 설치될 때가 많습니다. 이 글은 conda 가상 환경으로 PyTorch를 설치하고 Jupyter의 kernel로 등록하는 방법을 소개합니다. TensorFlow도 같은 방법으로 설치할 수 있습니다.
+Windows 새 가상 환경 만들기
+$ conda create -y -n pytorch ipykernel  pytorch 대신 자신이 원하는 이름을 쓸 수 있습니다.
+가상 환경 안으로 들어가기
+$ activate pytorch  PyTorch 설치하기
+(pytorch)$ conda install -y -c peterjc123 pytorch  Jupyter에 새 kernel 등록하기</description>
+    </item>
+    
+    <item>
+      <title>쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로</title>
+      <link>https://dreamgonfly.github.io/blog/jekyll-remote-theme/</link>
+      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/jekyll-remote-theme/</guid>
+      <description>.github.io라는 url로 익숙한 GitHub Pages는 개인 블로그, 특히 개발 블로그 용으로 인기가 높습니다. 이 글에서는 가장 간단하게 수준 급의 GitHub Pages로 static 페이지를 호스팅하는 방법을 소개해 보겠습니다.
+이미 많은 글들이 GitHub Pages를 사용하는 방법을 설명하고 있지만, 이 글에서 소개하는 방법은 다음과 같은 특징이 있습니다.
+ 쉽고 빠르다 : 프로그램 설치가 없습니다. 이 글에서 소개하는 방법으로는 로컬 컴퓨터에 Ruby, Jekyll 등의 프로그램을 설치하지 않고도 블로그를 만들 수 있습니다. 그렇기 때문에 누구나 쉽게 10분 만에 따라할 수 있습니다.</description>
+    </item>
+    
+    <item>
+      <title>AWS Lambda로 PyTorch 모델 서빙하기</title>
+      <link>https://dreamgonfly.github.io/blog/pytorch-on-aws-lambda/</link>
+      <pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/pytorch-on-aws-lambda/</guid>
+      <description>AWS Lambda로 PyTorch 모델 서빙하기 AWS Lambda는 서버 관리의 부담을 없애주는 서버 리스 컴퓨팅(Serverless computing) 서비스입니다. Lambda를 한마디로 설명하면 이벤트가 발생했을 때만 서버가 떠서 코드를 실행하는 이벤트 기반 클라우드 플랫폼입니다. Lambda는 코드가 실행된 시간에 대해서만 비용을 내는 효율성과, 이벤트가 갑자기 많이 발생해도 병렬처리가 가능한 확장성 덕분에 각광받고 있습니다.
+이 글에서는 Lambda 위에 PyTorch 모델을 업로드하여 API로 서비스하는 방법을 공유하겠습니다. 이 글은 step-by-step으로 구성되어 있습니다. 배포 준비를 위해 Docker를 설치하고 PyTorch 라이브러리와 모델을 압축파일로 만들고 Lambda 위에 올린 뒤 API를 배포하는 것까지 차근차근 따라가 보겠습니다.</description>
+    </item>
+    
+    <item>
+      <title>딥러닝용 서버 설치기</title>
+      <link>https://dreamgonfly.github.io/blog/hardware-for-deep-learning/</link>
+      <pubDate>Sun, 17 Dec 2017 18:10:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/hardware-for-deep-learning/</guid>
+      <description>어제 딥러닝용 1080 Ti GPU 서버의 개발 환경 세팅을 마쳤습니다. 이 글에서는 서버 구매부터 Ubuntu 설치, NVIDIA driver, CUDA 및 cuDNN 설치, 그리고 Tensorflow와 PyTorch 설치까지 제가 개발 환경을 세팅한 방법을 정리했습니다.
+하드웨어 구성 참고를 위해 제가 구성한 서버 하드웨어도 보여드리겠습니다.
+괄호 안의 가격은 실제 구매한 가격이 아니라 참고를 위해 적어놓은 현금 최저가입니다.
+ CPU : 인텔 코어X-시리즈 i7-6850K (브로드웰-E) (587,870원) 메인보드 : ASUS X99-A II STCOM (432,490원) 메모리 : 삼성전자 DDR4 16G PC4-19200 X 4 (185,850원) 그래픽카드 : GIGABYTE 지포스 GTX1080 Ti AORUS D5X 11GB (1,061,700원) 하드디스크 : WD 4TB BLUE WD40EZRZ (SATA3/5400/64M) (135,450원) 케이스 : BRAVOTEC 스텔스 TX 블랙 파노라마 윈도우 (58,000원) 파워 : 써멀테이크 터프파워 그랜드 RGB 850W 골드 풀 모듈러 (177,450원) 쿨러/튜닝 : CORSAIR HYDRO SERIES H80i v2 (148,540원) 외장HDD : Toshiba CANVIO BASIC 2 1TB (69,830원) 조립비 : 컴퓨터 프리미엄 조립 + 1년 전국 무상 방문출장AS (1대분) (35,000원)  총 상품 금액 : 3,604,000원 (배송비 9,000원 제외)</description>
+    </item>
+    
+    <item>
+      <title>머신러닝 모델의 블랙박스 속을 들여다보기 : LIME</title>
+      <link>https://dreamgonfly.github.io/blog/lime/</link>
+      <pubDate>Sun, 05 Nov 2017 21:07:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/lime/</guid>
+      <description>머신 러닝 모델에 대해서 예측의 이유를 설명하는 것은 어렵습니다. 모델이 복잡해질수록 예측의 정확도는 올라가지만, 결과의 해석은 어려워지죠. 그렇기 때문에 많은 머신 러닝 모델들이 블랙박스라고 불립니다.
+하지만 모델이 &amp;lsquo;왜&amp;rsquo; 그렇게 작동하는지 아는 것은 중요합니다. 의사가 &amp;ldquo;인공 지능이 이렇게 하래요&amp;quot;라고 말하면서 환자를 수술하지는 않겠죠. 은행에서 의심스러운 거래를 차단하는 경우에도 차단당한 이용자는 설명을 요구할 것입니다. 하물며 Netflix에서 볼 영화를 선택할 때도, 추천 영화에 시간을 투자하기 전에 어느 정도의 모델에 대한 신뢰감은 필요합니다.
+모델의 예측의 근거를 이해하는 것은 언제 모델을 신뢰할지 또는 신뢰하지 않을지 결정하는 데도 중요합니다.</description>
+    </item>
+    
+    <item>
+      <title>Recurrent Neural Network (RNN) 이해하기</title>
+      <link>https://dreamgonfly.github.io/blog/understanding-rnn/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/understanding-rnn/</guid>
+      <description>Recurrent Neural Network (RNN) 이해하기 음악, 동영상, 에세이, 시, 소스 코드, 주가 차트. 이것들의 공통점은 무엇일까요? 바로 시퀀스라는 점입니다. 음악은 음계들의 시퀀스, 동영상은 이미지의 시퀀스, 에세이는 단어들의 시퀀스로 볼 수 있습니다. 시퀀스의 길이는 가변적입니다. 소설에는 한 페이지짜리 단편소설도 있고 열권짜리 장편소설도 있죠. 기존의 뉴럴 네트워크 알고리즘은 이미지처럼 고정된 크기의 입력을 다루는 데는 탁월하지만, 가변적인 크기의 데이터를 모델링하기에는 적합하지 않습니다.
+RNN(Recurrent Neural Network, 순환신경망)은 시퀀스 데이터를 모델링 하기 위해 등장했습니다. RNN이 기존의 뉴럴 네트워크와 다른 점은 &amp;lsquo;기억&amp;rsquo;(다른 말로 hidden state)을 갖고 있다는 점입니다.</description>
+    </item>
+    
+    <item>
+      <title>쉽게 씌어진 word2vec</title>
+      <link>https://dreamgonfly.github.io/blog/word2vec-explained/</link>
+      <pubDate>Wed, 16 Aug 2017 21:07:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/word2vec-explained/</guid>
+      <description>텍스트 기반의 모델 만들기는 텍스트를 숫자로 바꾸려는 노력의 연속이다. 텍스트를 숫자로 바꾸어야만 알고리즘에 넣고 계산을 한 후 결과값을 낼 수 있기 때문이다.
+텍스트를 숫자로 바꾸는 일 중의 하나로 단어를 벡터로 바꾸는 일을 생각할 수 있다. 단어를 벡터로 바꾸는 가장 단순한 방법은 단어에 번호를 매기고, 그 번호에 해당하는 요소만 1이고 나머지는 0을 갖는 벡터로 바꾸는 것이다. 예를 들어 총 5개의 단어가 있는데 &amp;lsquo;강아지&amp;rsquo;라는 단어에 2번을 매겼다고 하자. 그러면 &amp;lsquo;강아지&amp;rsquo;는 2번째 요소만 1이고 나머지는 모두 0인 5차원의 벡터로 표현이 된다.</description>
+    </item>
+    
+    <item>
+      <title>머신 러닝 소개 (Introduction to Machine Learning)</title>
+      <link>https://dreamgonfly.github.io/blog/introduction-to-machine-learning/</link>
+      <pubDate>Sun, 13 Aug 2017 17:32:30 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/introduction-to-machine-learning/</guid>
+      <description>이 글은 머신 러닝에 관심은 있지만 머신 러닝이 무엇인지는 아직 잘 모르는 사람들을 위한 글입니다. 이 글에서는 머신 러닝의 개념과 일반적인 머신 러닝 프로젝트의 진행 과정(workflow)에 대해 알아봅니다.
+Introduction 머신 러닝은 이제 일상에서 뗄레야 뗄 수 없는 존재가 되었다. 한가지 예로, 네이버의 검색 페이지에는 머신 러닝 기술이 들어가지 않은 곳을 찾아보기 힘들 정도다. 자동 완성, 음성 인식, 연관검색어, 이미지 검색, 문장 요약 등의 영역에서 수많은 머신 러닝 기술들이 쓰이고 있다.</description>
+    </item>
+    
+  </channel>
+</rss>

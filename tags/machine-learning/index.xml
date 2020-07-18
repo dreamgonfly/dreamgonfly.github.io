@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>machine learning on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/machine-learning/</link>
+    <description>Recent content in machine learning on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Sun, 05 Nov 2017 21:07:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://dreamgonfly.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>머신러닝 모델의 블랙박스 속을 들여다보기 : LIME</title>
+      <link>https://dreamgonfly.github.io/blog/lime/</link>
+      <pubDate>Sun, 05 Nov 2017 21:07:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/lime/</guid>
+      <description>머신 러닝 모델에 대해서 예측의 이유를 설명하는 것은 어렵습니다. 모델이 복잡해질수록 예측의 정확도는 올라가지만, 결과의 해석은 어려워지죠. 그렇기 때문에 많은 머신 러닝 모델들이 블랙박스라고 불립니다.
+하지만 모델이 &amp;lsquo;왜&amp;rsquo; 그렇게 작동하는지 아는 것은 중요합니다. 의사가 &amp;ldquo;인공 지능이 이렇게 하래요&amp;quot;라고 말하면서 환자를 수술하지는 않겠죠. 은행에서 의심스러운 거래를 차단하는 경우에도 차단당한 이용자는 설명을 요구할 것입니다. 하물며 Netflix에서 볼 영화를 선택할 때도, 추천 영화에 시간을 투자하기 전에 어느 정도의 모델에 대한 신뢰감은 필요합니다.
+모델의 예측의 근거를 이해하는 것은 언제 모델을 신뢰할지 또는 신뢰하지 않을지 결정하는 데도 중요합니다.</description>
+    </item>
+    
+    <item>
+      <title>머신 러닝 소개 (Introduction to Machine Learning)</title>
+      <link>https://dreamgonfly.github.io/blog/introduction-to-machine-learning/</link>
+      <pubDate>Sun, 13 Aug 2017 17:32:30 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/introduction-to-machine-learning/</guid>
+      <description>이 글은 머신 러닝에 관심은 있지만 머신 러닝이 무엇인지는 아직 잘 모르는 사람들을 위한 글입니다. 이 글에서는 머신 러닝의 개념과 일반적인 머신 러닝 프로젝트의 진행 과정(workflow)에 대해 알아봅니다.
+Introduction 머신 러닝은 이제 일상에서 뗄레야 뗄 수 없는 존재가 되었다. 한가지 예로, 네이버의 검색 페이지에는 머신 러닝 기술이 들어가지 않은 곳을 찾아보기 힘들 정도다. 자동 완성, 음성 인식, 연관검색어, 이미지 검색, 문장 요약 등의 영역에서 수많은 머신 러닝 기술들이 쓰이고 있다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로 | Dreamgonfly&#39;s blog</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="This is an example post for hugo-theme-codex.">
+  <meta name="keywords" content="jekyll , github , github pages , blog">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로" />
+  <meta name="twitter:description" content="This is an example post for hugo-theme-codex."
+  />
+  <meta name="twitter:site" content="@https://twitter.com/dreamgonfly" />
+  <meta name="twitter:creator" content="@https://twitter.com/dreamgonfly" />
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/post.min.3b28d14676e4769849164baf362f2b0aa069ab25702fef98f0c4227cb68d74cd.css" integrity="sha256-OyjRRnbkdphJFkuvNi8rCqBpqyVwL&#43;&#43;Y8MQifLaNdM0="/>
+  
+    
+    <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/dreamgonfly.github.io\/"
+      },
+      "articleSection" : "blog",
+      "name" : "쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로",
+      "headline" : "쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로",
+      "description" : "This is an example post for hugo-theme-codex.",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2018",
+      "datePublished": "2018-01-27 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2018-01-27 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/dreamgonfly.github.io\/blog\/jekyll-remote-theme\/",
+      "wordCount" : "1211",
+      "keywords" : ["jekyll", "github", "github pages", "blog", "Blog"]
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" role="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">about</a>
+      </li>
+    
+      <li>
+        <a  class="active"
+         href="/blog">blog</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            <h1 id="post__title">쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로</h1>
+            <time datetime="2018-01-27 00:00:00 &#43;0000 UTC" class="post__date"
+            >Jan 27 2018</time>
+          </header>
+          <article class="post__content">
+              
+<p>.github.io라는 url로 익숙한 GitHub Pages는 개인 블로그, 특히 개발 블로그 용으로 인기가 높습니다. 이 글에서는 가장 간단하게 수준 급의 GitHub Pages로 static 페이지를 호스팅하는 방법을 소개해 보겠습니다.</p>
+<p>이미 많은 글들이 GitHub Pages를 사용하는 방법을 설명하고 있지만, 이 글에서 소개하는 방법은 다음과 같은 특징이 있습니다.</p>
+<ul>
+<li>쉽고 빠르다 : 프로그램 설치가 없습니다. 이 글에서 소개하는 방법으로는 로컬 컴퓨터에 Ruby, Jekyll 등의 프로그램을 설치하지 않고도 블로그를 만들 수 있습니다. 그렇기 때문에 누구나 쉽게 10분 만에 따라할 수 있습니다.</li>
+<li>수준 급이다 : 수백 개가 넘는 Jekyll theme이 이미 공개되어 있습니다. 이 글의 방법은 그 중 직접 마음에 드는 theme을 선택하고 그대로 내 블로그에 쓸 수 있게 해줍니다. 덕분에 프론트에 대한 고민 없이도 수준 급의 멋있는 블로그를 가질 수 있습니다.</li>
+</ul>
+<p>그럼 시작해 볼까요?</p>
+<h1 id="1-새-저장소repository-만들기">1. 새 저장소(repository) 만들기</h1>
+<p>GitHub에서 새 저장소(repository)를 만듭니다. 이 때 저장소의 이름을 자신의 username 뒤에 <code>.github.io</code>가 붙은 이름으로 짓습니다. 이렇게 해야 <code>yourname.github.io</code>의 도메인으로 접속할 수 있는 블로그가 됩니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8YCAF664/screenshot_2018-01-26_16.02.44.png?pub_secret=615fd6f28e" alt="새 프로젝트 만들기"></p>
+<blockquote>
+<p>프로젝트 별 페이지 만들기</p>
+<p>프로젝트 별로 페이지를 만들 수도 있습니다. 이 때는 프로젝트 이름이 <code>yourname.github.io</code>가 아니어도 상관 없으며 이미 존재하는 프로젝트에 페이지를 만들 수도 있습니다. 다만 이렇게 만든 페이지는 <code>yourname.github.io/projectname</code>의 url로 접속하게 됩니다.</p>
+</blockquote>
+<h1 id="2-마음에-드는-jekyll-테마-찾기">2. 마음에 드는 Jekyll 테마 찾기</h1>
+<p>GitHub에는 이미 <a href="https://github.com/topics/jekyll-theme">수백 개의 Jekyll 테마</a>가 공개되어 있습니다. jekyll-theme이라는 topic을 갖고 있는 repository는 모두 공개된 jekyll 테마인데요. 이 중 어떤 테마든 내 블로그에 적용하고 싶은 테마를 선택해 보세요.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8Z1NP17W/screenshot_2018-01-26_16.18.35.png?pub_secret=66a1198973" alt="공개된 Jekyll 테마들"></p>
+<p>이 글에서는 테마 리스트에서 가장 위에 보이는 minimal-mistakes라는 테마를 사용해 보겠습니다.</p>
+<h1 id="3-_configyml-파일-가져오기">3. <code>_config.yml</code> 파일 가져오기</h1>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F91H9F9K9/2018-01-29_23_01_37.gif?pub_secret=7c0ba1db24" alt="_config.yml 파일 가져오기"></p>
+<ul>
+<li>선택한 테마 저장소(repository)에 들어가서 <code>_config.yml</code>라는 파일의 내용을 복사합니다. 이때 <strong>Raw</strong>를 누르면 군더더기 없이 파일의 내용만 볼 수 있습니다. 이 파일은 모든 Jekyll 사이트가 갖고 있는 설정 파일입니다.</li>
+<li>자신이 방금 만든 저장소(repository)에 똑같이 <code>_config.yml</code>이라는 이름의 파일을 만들고 복사한 내용을 붙여넣기 합니다.</li>
+<li>이 파일에서 다음과 같이 한 줄을 추가하고 두 줄을 변경해야 합니다.</li>
+</ul>
+<p>다음과 같은 한 줄을 추가합니다.</p>
+<pre><code class="language-yaml">remote_theme : mmistakes/minimal-mistakes
+</code></pre>
+<p>이는 remote_theme을 지정하는 설정이며 GitHub의 <code>OWNER/REPOSITORY</code> 의 형식으로 이루어집니다. 아래는 mmistakes라는 owner의 minimal-mistakes라는 저장소의 Jekyll 테마를 가져오겠다는 뜻입니다.</p>
+<p>다음과 같이 설정 중에 url과 baseurl 두 줄을 수정합니다. url은 <code>yourname</code>을 자신의 username으로 바꾸어야 하며, baseurl은 빈 문자열로 두어야 합니다.</p>
+<pre><code class="language-yaml">url                      : &quot;https://yourname.github.io&quot; # the base hostname &amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;
+baseurl                  : &quot;&quot; # the subpath of your site, e.g. &quot;/blog&quot;
+</code></pre>
+<blockquote>
+<p>프로젝트 별 페이지 만들기</p>
+<p>프로젝트 별 페이지를 만들 때 baseurl은 <code>/projectname</code>처럼 써야 합니다. 이렇게 두어야 <code>https://yourname.github.io/projectname</code>의 url로 접속할 수 있습니다.</p>
+</blockquote>
+<p>제가 선택한 minimal-mistakes의 원본 <code>_config.yml</code> 중 일부분을 가져와 보았습니다.</p>
+<pre><code class="language-yaml"># Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
+
+minimal_mistakes_skin    : &quot;default&quot; # &quot;air&quot;, &quot;aqua&quot;, &quot;contrast&quot;, &quot;dark&quot;, &quot;dirt&quot;, &quot;neon&quot;, &quot;mint&quot;, &quot;plum&quot;, &quot;sunrise&quot;
+
+# Site Settings
+locale                   : &quot;en-US&quot;
+title                    : &quot;Site Title&quot;
+title_separator          : &quot;-&quot;
+name                     : &quot;Your Name&quot;
+description              : &quot;An amazing website.&quot;
+url                      : # the base hostname &amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;
+baseurl                  : # the subpath of your site, e.g. &quot;/blog&quot;
+repository               : # GitHub username/repo-name e.g. &quot;mmistakes/minimal-mistakes&quot;
+(뒷부분 생략)
+</code></pre>
+<p>수정된 설정 파일은 다음과 같습니다.</p>
+<pre><code class="language-yaml"># Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
+
+remote_theme : mmistakes/minimal-mistakes
+minimal_mistakes_skin    : &quot;default&quot; # &quot;air&quot;, &quot;aqua&quot;, &quot;contrast&quot;, &quot;dark&quot;, &quot;dirt&quot;, &quot;neon&quot;, &quot;mint&quot;, &quot;plum&quot;, &quot;sunrise&quot;
+
+# Site Settings
+locale                   : &quot;en-US&quot;
+title                    : &quot;Site Title&quot;
+title_separator          : &quot;-&quot;
+name                     : &quot;Your Name&quot;
+description              : &quot;An amazing website.&quot;
+url                      : &quot;https://yourname.github.io&quot; # the base hostname &amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;
+baseurl                  : &quot;&quot; # the subpath of your site, e.g. &quot;/blog&quot;
+repository               : # GitHub username/repo-name e.g. &quot;mmistakes/minimal-mistakes&quot;
+(뒷부분 생략)
+</code></pre>
+<p>설정 파일에서 이외에도 제목, 저자, 설명, 페이스북 설정 등 원하는 대로 설정을 바꾸셔도 됩니다.</p>
+<h1 id="4-index-파일-가져오기">4. index 파일 가져오기</h1>
+<ul>
+<li>선택한 테마 저장소(repository)에서 <code>index.html</code>, <code>index.md</code> 등의 파일을 찾습니다. 이 예시에서 사용하는 테마는 <code>index.html</code>이라는 이름의 파일로 있습니다. 이 파일이 Jekyll이 사이트를 생성할 때 가장 처음 보여주는 페이지입니다.</li>
+<li><code>index</code> 파일과 동일한 이름과 동일한 내용의 파일을 자신의 저장소(repository)에서도 만듭니다. 이 예시에서 <code>index.html</code>의 내용은 다음과 같이 몇 줄 되지 않습니다.</li>
+</ul>
+<pre><code class="language-markdown">---
+layout: home
+author_profile: true
+---
+</code></pre>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F90EHDNK0/screenshot_2018-01-27_14.52.30.png?pub_secret=93cc25e567" alt="index.html 파일 생성하기"></p>
+<p>테마에 따라서 추가로 가져와야 하는 파일이 있을 수도 있습니다. 예를 들어 어떤 테마에서는 <code>posts.md</code>라는 파일이 있어야 합니다. 페이지가 제대로 작동하지 않는다면 테마에 따라서 필요한 파일을 확인해 주세요.</p>
+<h1 id="5-_posts에-새-글-쓰기">5. <code>_posts</code>에 새 글 쓰기</h1>
+<ul>
+<li>자신의 GitHub 저장소에서 <strong>Create new file</strong>을 눌러 새 파일을 생성합니다.</li>
+<li>파일 이름에 <code>_posts/2018-01-26-first-post.md</code>을 입력합니다. 이 때 <code>/</code> 앞의 <code>_posts</code>는 폴더 이름으로 인식되며 GitHub에서 자동으로 폴더를 생성합니다. Jekyll은 <code>_posts</code> 아래의 markdown 글들을 블로그 포스트로 인식하고 블로그에서 보여주는데요. 파일 이름은 일반적으로 <code>YYYY-MM-DD-name-of-post.md</code> 형식으로 짓습니다.</li>
+<li>파일 내용 맨 처음에는 다음과 같이 글의 제목과 날짜 등을 적어줍니다. 이 형식은 <a href="https://jekyllrb.com/docs/frontmatter/">Front matter</a>라고 불리며, Jekyll에서 글의 메타 데이터를 확인하는 방법입니다. 테마에 따라서 여기에 들어가는 정보가 조금씩 다를 수 있으니 각 테마 별로 예시를 확인해 주세요.</li>
+</ul>
+<pre><code class="language-markdown">---
+title: &quot;Welcome to Jekyll!&quot;
+date: 2017-10-20 08:26:28 -0400
+categories: jekyll update
+---
+</code></pre>
+<ul>
+<li>이 뒤의 내용은 무엇을 쓰셔도 좋습니다. 다음은 제가 사용한 예시 파일의 전문입니다.</li>
+</ul>
+<pre><code class="language-markdown">---
+title: &quot;Welcome to Jekyll!&quot;
+date: 2017-10-20 08:26:28 -0400
+categories: jekyll update
+---
+You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+
+To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+
+Jekyll also offers powerful support for code snippets:
+
+​```python
+def print_hi(name):
+  print(&quot;hello&quot;, name)
+print_hi('Tom')
+​```
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+</code></pre>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8Z2HJ9PC/screenshot_2018-01-26_17.06.25.png?pub_secret=c19592b80f" alt="새 포스트 만들기"></p>
+<h1 id="확인하기">확인하기</h1>
+<p><code>yourname.github.io</code>로 접속하여 GitHub Pages가 잘 만들어졌는지 확인할 수 있습니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8YCMJQHW/screenshot_2018-01-26_16.52.30.png?pub_secret=04ae040a08" alt="만들어진 minimal-mistakes 테마의 GitHub Pages 블로그"></p>
+<blockquote>
+<p>프로젝트 별 페이지 만들기</p>
+<p>프로젝트 별 페이지를 만들 때는 한가지 과정이 더 필요합니다. 바로 GitHub 설정에서 Gihub Pages를 활성화하는 것입니다. (<code>yourname.github.io</code>라는 이름의 저장소는 이 설정이 자동으로 활성화되어 있습니다.)</p>
+<p>GitHub 저장소 메뉴 중에 <strong>Settings</strong>에 들어간 뒤 스크롤을 내리면 GitHub Pages 설정을 볼 수 있습니다. 여기에서 <strong>Source</strong>를 <strong>master branch</strong>로 설정한 뒤 Save를 누르면 GitHub Pages 설정이 완료되고, 접속할 수 있는 url이 나타납니다. 이 url로 들어가 GitHub Pages가 제대로 작동하는지 확인할 수 있습니다. url은 <code>https://yourname.github.io/projectname</code>의 형식으로 보이게 됩니다.</p>
+</blockquote>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8ZJAPDD2/screenshot_2018-01-27_15.02.43.png?pub_secret=b0da820a8c" alt="GitHub Pages 활성화하기"></p>
+<h1 id="마치며">마치며</h1>
+<p>이 글에서 소개드린 방법의 핵심은 <a href="https://github.com/benbalter/jekyll-remote-theme">jekyll remote theme</a>이었습니다. Jekyll remote theme은 GitHub에 공개되어 있는 어떤 Jekyll 테마든지 가져와서 쓸 수 있도록 하는 Jekyll의 플러그인입니다. <a href="https://github.com/blog/2464-use-any-theme-with-github-pages">Jekyll remote theme이 GitHub Pages에 내장</a>되어 있었기 때문에 이 글에서 소개한 방법이 가능했던 것입니다.</p>
+<p>물론 이 방법으로는 블로그의 css 등을 커스터마이징하는 것은 불가능합니다. 커스터마이징을 하기 위해서는 자신만의 <code>_layouts</code>, <code>_includes</code>, <code>_sass</code>, <code>assets</code> 등의 폴더들을 만들어야 합니다. (다른 말로 하면, jekyll remote theme은 이 폴더들의 내용을 지정한 테마에서 가져옵니다.) 또한 자신의 로컬 컴퓨터에 Jekyll 환경을 설치하고 빌드해 보아야 합니다. 자세한 내용은 <a href="https://jekyllrb.com">Jekyll의 공식 웹사이트</a>를 참고해야 합니다.</p>
+<p>커스터마이징을 하지 않고 이미 공개된 테마를 그대로 쓰고 싶다면 remote theme은 최소한의 설정으로 원하는 Jekyll 테마를 사용할 수 있는 쉽고 빠른 방법입니다.</p>
+
+
+              
+          </article>
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://dreamgonfly.github.io/tags/blog/">blog</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://dreamgonfly.github.io/blog/pytorch-on-aws-lambda/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">AWS Lambda로 PyTorch 모델 서빙하기</span>
+    </a>
+  
+
+  
+    <a class="pagination__item" href="https://dreamgonfly.github.io/blog/conda-pytorch/">
+      <span class="pagination__label">Next Post</span>
+      <span class="pagination__title" >Conda 가상 환경으로 PyTorch 설치하기</a>
+    </a>
+  
+</div>
+
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a class="social-icons__link" title="Twitter"
+         href="https://twitter.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/twitter.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="GitHub"
+         href="https://github.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Email"
+         href="mailto:dreamgonfly@gmail.com"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Facebook"
+         href="https://facebook.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/facebook.svg')"></div>
+      </a>
+    
+  
+     
+    
+  
+     
+    
+  
+     
+    
+      <a class="social-icons__link" title="LinkedIn"
+         href="https://www.linkedin.com/in/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+     
+</div>
+
+            <p>© 2020</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+          
+        <nav id="TableOfContents"></nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.49e4d8a384357d9b445b87371863419937ede9fa77737522ffb633073aebfa44.js" integrity="sha256-SeTYo4Q1fZtEW4c3GGNBmTft6fp3c3Ui/7YzBzrr&#43;kQ=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>

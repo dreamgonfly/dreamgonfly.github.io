@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hardware on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/hardware/</link>
+    <description>Recent content in hardware on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Sun, 17 Dec 2017 18:10:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://dreamgonfly.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>딥러닝용 서버 설치기</title>
+      <link>https://dreamgonfly.github.io/blog/hardware-for-deep-learning/</link>
+      <pubDate>Sun, 17 Dec 2017 18:10:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/hardware-for-deep-learning/</guid>
+      <description>어제 딥러닝용 1080 Ti GPU 서버의 개발 환경 세팅을 마쳤습니다. 이 글에서는 서버 구매부터 Ubuntu 설치, NVIDIA driver, CUDA 및 cuDNN 설치, 그리고 Tensorflow와 PyTorch 설치까지 제가 개발 환경을 세팅한 방법을 정리했습니다.
+하드웨어 구성 참고를 위해 제가 구성한 서버 하드웨어도 보여드리겠습니다.
+괄호 안의 가격은 실제 구매한 가격이 아니라 참고를 위해 적어놓은 현금 최저가입니다.
+ CPU : 인텔 코어X-시리즈 i7-6850K (브로드웰-E) (587,870원) 메인보드 : ASUS X99-A II STCOM (432,490원) 메모리 : 삼성전자 DDR4 16G PC4-19200 X 4 (185,850원) 그래픽카드 : GIGABYTE 지포스 GTX1080 Ti AORUS D5X 11GB (1,061,700원) 하드디스크 : WD 4TB BLUE WD40EZRZ (SATA3/5400/64M) (135,450원) 케이스 : BRAVOTEC 스텔스 TX 블랙 파노라마 윈도우 (58,000원) 파워 : 써멀테이크 터프파워 그랜드 RGB 850W 골드 풀 모듈러 (177,450원) 쿨러/튜닝 : CORSAIR HYDRO SERIES H80i v2 (148,540원) 외장HDD : Toshiba CANVIO BASIC 2 1TB (69,830원) 조립비 : 컴퓨터 프리미엄 조립 + 1년 전국 무상 방문출장AS (1대분) (35,000원)  총 상품 금액 : 3,604,000원 (배송비 9,000원 제외)</description>
+    </item>
+    
+  </channel>
+</rss>

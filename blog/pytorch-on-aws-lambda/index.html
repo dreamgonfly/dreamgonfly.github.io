@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>AWS Lambda로 PyTorch 모델 서빙하기 | Dreamgonfly&#39;s blog</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="">
+  <meta name="keywords" content="pytorch , aws lambda">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AWS Lambda로 PyTorch 모델 서빙하기" />
+  <meta name="twitter:description" content=""
+  />
+  <meta name="twitter:site" content="@https://twitter.com/dreamgonfly" />
+  <meta name="twitter:creator" content="@https://twitter.com/dreamgonfly" />
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/post.min.3b28d14676e4769849164baf362f2b0aa069ab25702fef98f0c4227cb68d74cd.css" integrity="sha256-OyjRRnbkdphJFkuvNi8rCqBpqyVwL&#43;&#43;Y8MQifLaNdM0="/>
+  
+    
+    <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/dreamgonfly.github.io\/"
+      },
+      "articleSection" : "blog",
+      "name" : "AWS Lambda로 PyTorch 모델 서빙하기",
+      "headline" : "AWS Lambda로 PyTorch 모델 서빙하기",
+      "description" : "",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2018",
+      "datePublished": "2018-01-19 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2018-01-19 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/dreamgonfly.github.io\/blog\/pytorch-on-aws-lambda\/",
+      "wordCount" : "1844",
+      "keywords" : ["pytorch", "aws lambda", "Blog"]
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" role="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">about</a>
+      </li>
+    
+      <li>
+        <a  class="active"
+         href="/blog">blog</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            <h1 id="post__title">AWS Lambda로 PyTorch 모델 서빙하기</h1>
+            <time datetime="2018-01-19 00:00:00 &#43;0000 UTC" class="post__date"
+            >Jan 19 2018</time>
+          </header>
+          <article class="post__content">
+              
+<h1 id="aws-lambda로-pytorch-모델-서빙하기">AWS Lambda로 PyTorch 모델 서빙하기</h1>
+<p>AWS Lambda는 서버 관리의 부담을 없애주는 서버 리스 컴퓨팅(Serverless computing) 서비스입니다. Lambda를 한마디로 설명하면 이벤트가 발생했을 때만 서버가 떠서 코드를 실행하는 이벤트 기반 클라우드 플랫폼입니다. Lambda는 코드가 실행된 시간에 대해서만 비용을 내는 효율성과, 이벤트가 갑자기 많이 발생해도 병렬처리가 가능한 확장성 덕분에 각광받고 있습니다.</p>
+<p>이 글에서는 Lambda 위에 PyTorch 모델을 업로드하여 API로 서비스하는 방법을 공유하겠습니다. 이 글은 step-by-step으로 구성되어 있습니다. 배포 준비를 위해 Docker를 설치하고 PyTorch 라이브러리와 모델을 압축파일로 만들고 Lambda 위에 올린 뒤 API를 배포하는 것까지 차근차근 따라가 보겠습니다.</p>
+<p>이 글에서 쓰이는 모든 코드는 github에 모아놓았습니다 : <a href="https://github.com/dreamgonfly/pytorch-lambdapack">github</a></p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8VCWU8GM/screenshot_2018-01-19_11.29.38.png?pub_secret=b61a06eeb7" alt="예제 파일 구성"></p>
+<h1 id="샘플-모델-만들기">샘플 모델 만들기</h1>
+<p>이 글에서 예제로 사용할 모델은 PyTorch Tutorial에서 제공하는 <a href="http://pytorch.org/tutorials/intermediate/char_rnn_generation_tutorial.html">Generating Names with a Character-Level RNN</a> 모델입니다. 텍스트로 인풋을 받고 텍스트로 아웃풋을 내기 때문에 API 설계가 간단해지는 장점이 있어 선택했습니다. 튜토리얼의 코드를 그대로 쓰되, 마지막에 학습된 모델을 저장하는 코드만 추가해서 사용하겠습니다. 아래는 맨 아래에 추가되는 코드입니다.</p>
+<pre><code class="language-python"># char_rnn_generation_tutorial.py
+
+# 튜토리얼 코드 생략
+
+# Save the model
+torch.save(rnn.state_dict(), 'model.pth')
+
+import pickle
+to_pickle = {
+    'all_categories': all_categories,
+    'n_categories': n_categories,
+    'all_letters': all_letters,
+    'n_letters': n_letters
+}
+with open('params.pkl', 'wb') as file:
+    pickle.dump(to_pickle, file)
+</code></pre>
+<p>PyTorch 모델을 저장할 때는 모델 전체가 아니라 모델의 state dict만 저장합니다. 이것은 모델을 다른 환경 위에서도 문제 없이 load하기 위해서입니다. PyTorch 모델을 저장하고 불러오는 방법은 공식 문서인 <a href="https://github.com/pytorch/pytorch/blob/761d6799beb3afa03657a71776412a2171ee7533/docs/source/notes/serialization.rst">Recommended approach for saving a model</a>을 따랐습니다.</p>
+<p>코드를 실행하면 저장된 모델 파일인 <code>model.pth</code>과 전처리를 위한 파라미터 파일인 <code>params.pkl</code>을 얻을 수 있습니다.</p>
+<h1 id="docker-설치하기">Docker 설치하기</h1>
+<p>Lambda에서 코드를 실행하는 환경과 동일한 환경을 로컬에 쉽게 구성하기 위해서는 Docker가 필요합니다. Lambda에 올린 코드를 디버깅할 때도 Docker에서 코드를 테스트해보는 것은 유용하죠.</p>
+<p>Docker가 이미 설치되어 있으신 분은 이 부분을 생략하고 바로 다음으로 넘어가셔도 됩니다.</p>
+<h2 id="macos--windows">MacOS &amp; Windows<a class="anchor" href="#macos--windows">#</a></h2>
+<p><a href="https://store.docker.com/search?type=edition&amp;offering=community">Docker Community Edition 다운로드 페이지</a>에서 원하는 환경의 설치 파일을 다운로드받으면 GUI 방식으로 쉽게 설치할 수 있습니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8TKZE5E3/screenshot_2018-01-14_17.31.30.png?pub_secret=a3d1253e1f" alt="MacOS에서 Docker 설치 화면"></p>
+<h2 id="ubuntu">Ubuntu<a class="anchor" href="#ubuntu">#</a></h2>
+<p>간편하게 만들어진 스크립트를 실행함으로써 Docker를 설치할 수 있습니다.</p>
+<blockquote>
+<p>이미 Docker가 설치되어 있다면 아래 스크립트를 실행하지 마세요. 아래 스크립트에 대한 자세한 설명은 <a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#upgrade-docker-ce-1">설치 페이지</a>에서 읽을 수 있습니다.</p>
+</blockquote>
+<pre><code class="language-shell">$ curl -fsSL get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+</code></pre>
+<p>그 후 Docker를 사용할 유저에게 권한을 주기 위해 유저를 Docker 그룹에 추가합니다.</p>
+<pre><code class="language-bash">sudo usermod -aG docker &lt;your-user&gt;
+</code></pre>
+<p>참고로 제가 실험해보았을 때는, 이 글의 뒤에 나오는대로 PyTorch를 설치하고 불필요한 파일을 삭제했을 때 Linux (Ubuntu 14.04)에서는 AWS Lambda에 올릴 수 있는 크기가 나왔지만 MacOS (Sierra)에서는 그보다 큰 용량이 나왔습니다. 여러가지 환경에 따라 결과는 달라질 수 있으니 직접 실험해보는 것을 권장합니다.</p>
+<h1 id="amazon-linux-docker-이미지-다운받기">Amazon Linux Docker 이미지 다운받기</h1>
+<p>Lambda에서 코드를 실행할 때 사용하는 환경은 Amazon Linux입니다. 따라서 Lambda의 배포 환경과 동일한 환경을 구축하기 위해서는 Docker를 이용해 Amazon Linux 이미지를 다운받아야 합니다.</p>
+<p><code>$ docker pull amazonlinux:latest</code></p>
+<p>다운로드가 끝나면 다음 명령어로 설치된 이미지를 확인할 수 있습니다.</p>
+<pre><code>$ docker images
+
+REPOSITORY     TAG        IMAGE ID       CREATED         SIZE
+amazonlinux    latest     6133b2c7d7c2   2 hours ago     165MB
+</code></pre>
+<h1 id="배포-패키지-압축-파일-만들기">배포 패키지 압축 파일 만들기</h1>
+<p>이제 Lambda에 업로드할 압축 파일(.zip)을 만들어야 합니다. 이를 위해서 Amazon Linux 환경 위에 필요한 패키지들을 모두 설치하고 설치된 파일을 압축하는 과정이 필요합니다.</p>
+<p>다음 코드는 그 과정을 모두 담고 있습니다. 코드에 대한 설명은 아래에 있습니다.</p>
+<pre><code class="language-shell"># build_pack_script.sh
+
+dev_install () {
+    yum -y update
+    yum -y upgrade
+    yum -y groupinstall &quot;Development Tools&quot;
+    yum install -y findutils zip
+    yum install -y python36-devel python36-virtualenv
+}
+
+make_virtualenv () {
+    cd /home
+    rm -rf env
+    python3 -m virtualenv env --python=python3
+    source env/bin/activate
+}
+
+install_pytorch () {
+    pip install http://download.pytorch.org/whl/cpu/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
+    pip install torchvision
+}
+
+install_packages () {
+    pip install -r /host/requirements.txt
+}
+
+gather_pack () {
+    cd /home
+    rm -rf lambdapack
+    mkdir lambdapack
+    cd lambdapack
+
+    # Copy python pakages from virtual environment
+    cp -R /home/env/lib/python3.6/site-packages/* .
+    cp -R /home/env/lib64/python3.6/site-packages/* .
+    
+    echo &quot;Original size $(du -sh /home/lambdapack | cut -f1)&quot;
+
+    # Clean pakages
+    find . -type d -name &quot;tests&quot; -exec rm -rf {} +
+    find -name &quot;*.so&quot; | xargs strip
+    find -name &quot;*.so.*&quot; | xargs strip
+    rm -r pip
+    rm -r pip-*
+    rm -r wheel
+    rm -r wheel-*
+    rm easy_install.py
+    find . -name \*.pyc -delete
+    echo &quot;Stripped size $(du -sh /home/lambdapack | cut -f1)&quot;
+
+    # Compress
+    zip -FS -r1 /host/pack.zip * &gt; /dev/null
+    echo &quot;Compressed size $(du -sh /host/pack.zip | cut -f1)&quot;
+}
+
+add_pack () {
+    cd /host
+    zip -9 -q -r pack.zip lambda_function.py
+    zip -9 -q -r pack.zip model.py
+}
+
+main () {
+    dev_install
+    make_virtualenv
+    install_pytorch
+    install_packages
+    gather_pack
+    add_pack
+}
+
+main
+</code></pre>
+<p>위의 코드를 다음과 같이 실행할 수 있습니다.</p>
+<pre><code class="language-shell">$ docker run -d -t --name lambdapack -v $(pwd):/host amazonlinux:latest
+$ docker exec -i -t lambdapack bash /host/build_pack_script.sh
+
+...
+Successfully installed numpy-1.14.0
+Successfully installed pyyaml-3.12 torch-0.3.0.post4
+Successfully installed pillow-5.0.0 six-1.11.0 torchvision-0.2.0
+...
+Original size 310M
+Stripped size 249M
+Compressed size 71M
+</code></pre>
+<p>그 후 이 코드를 실행한 디렉토리에 <code>pack.zip</code>이라는 압축파일이 생성된 것을 볼 수 있습니다. 이 압축파일 안에 우리가 실행할 코드와 라이브러리가 모두 들어 있습니다.</p>
+<p>이 압축파일을 Lambda에 올리고 API로 만드는 방법으로 넘어가기 전에, 위의 코드에서 중요한 부분을 몇가지 설명드리겠습니다.</p>
+<h2 id="pytorch-설치하기">PyTorch 설치하기<a class="anchor" href="#pytorch-설치하기">#</a></h2>
+<p>PyTorch를 CPU 버전으로 설치합니다. 참고로 CUDA 버전은 용량이 800MB에 달해서 Lambda에 올릴 수 있는 코드와 라이브러리 크기 제한인 250MB를 훨씬 뛰어넘습니다. Lambda에서는 CPU로 코드를 실행하기 때문에 CUDA 버전은 필요 없습니다.</p>
+<p>참고로 Lambda의 코드와 라이브러리 크기 제한은 압축 해제 시를 기준으로 합니다.</p>
+<h2 id="lambda_functionpy">lambda_function.py<a class="anchor" href="#lambda_functionpy">#</a></h2>
+<p><code>build_pack_script.sh</code> 코드 중 <code>add_pack</code>에서 <code>lambda_function.py</code>이란 파일을 압축 파일에 추가하는 부분이 있습니다. Lambda가 실제로 실행하는 코드는 바로 이 <code>lambda_function.py</code> 파일 안의 <code>lambda_handler</code>라는 함수입니다. 이 파일 역시 다른 라이브러리들과 함께 압축 파일 안에 포함되어 Lambda에 업로드되어야 합니다. 실행하는 파일과 함수의 이름을 Lambda 설정에서 변경할 수는 있지만 여기서는 디폴트 대로 파일과 함수 이름을 지었습니다.</p>
+<p><code>lambda_function.py</code>의 내용을 하나씩 살펴보겠습니다.</p>
+<pre><code class="language-python">import boto3
+import os
+import pickle
+import numpy as np
+import torch
+from model import RNN
+</code></pre>
+<p>필요한 패키지를 불러오는 부분입니다. 모든 패키지는 <code>build_pack.sh</code>을 실행할 때 pack.zip 안에 함께 들어가야 합니다. 단, boto3는 Lambda에 이미 설치되어 있으니 따로 설치할 필요는 없습니다.</p>
+<pre><code class="language-python">ACCESS_KEY = os.environ.get('ACCESS_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+BUCKET_NAME = os.environ.get('BUCKET_NAME')
+max_length = os.environ.get('max_length') # 20
+</code></pre>
+<p>Lambda에서는 설정으로 환경 변수를 지정할 수 있습니다. 이 환경 변수는 코드 내에서 <code>os.environ.get</code> 함수를 통해 가져올 수 있습니다. 참고로 모든 환경변수는 문자열 타입입니다.</p>
+<pre><code class="language-python">s3_client = boto3.client(
+    's3',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY,
+)
+</code></pre>
+<p>Lambda 내에서 S3에 접근하기 위해 위와 같이 s3 client를 생성합니다.</p>
+<pre><code class="language-python"># Load preprocessing parameters
+if not os.path.isfile('/tmp/params.pkl'):
+    s3_client.download_file(BUCKET_NAME, 'params.pkl', '/tmp/params.pkl')
+with open('/tmp/params.pkl', 'rb') as pkl:
+    params = pickle.load(pkl)
+all_categories = params['all_categories']
+n_categories = params['n_categories']
+all_letters = params['all_letters']
+n_letters = params['n_letters']
+
+# Check if models are available
+# Download model from S3 if model is not already present
+if not os.path.isfile('/tmp/model.pth'):
+    s3_client.download_file(BUCKET_NAME, 'model.pth', '/tmp/model.pth')
+rnn = RNN(n_letters, 128, n_letters, n_categories=n_categories)
+rnn.load_state_dict(torch.load(&quot;/tmp/model.pth&quot;))
+</code></pre>
+<p>샘플 모델을 학습한 뒤 저장한 <code>model.pth</code>와 <code>params.pkl</code>은 AWS S3에 올린 뒤 Lambda가 실행될 때 <code>/tmp/</code> 디렉토리 안으로 다운로드합니다. 이 예제에서는 모델의 크기가 매우 작기 때문에 이럴 필요는 없지만, 일반적인 경우에도 적용 가능하도록 예제를 만들었습니다. 이렇게 모델 파라미터를 S3에서 다운받는 것의 또 하나의 장점은 모델을 새로 학습시켜서 파라미터가 바뀌었을 때, 처음부터 다시 패키지 압축을 하지 않고 S3에 올려져 있는 모델 파라미터 파일을 교체하는 것만으로도 배포된 모델을 업데이트할 수 있다는 점입니다. 참고로 <code>/tmp/</code> 디렉토리 안에는 500MB까지 저장이 가능합니다.</p>
+<p>모델 파일을 S3에서 가져오면 lambda 함수가 실행될 때마다 네트워크 비용을 감수해야 하는 단점은 있습니다. 그러나 람다가 병렬 처리로 동작하고 S3 위의 파일은 읽기에 lock이 걸리지 않아 여러명이 동시에 읽을 수 있습니다. S3와 lambda 함수가 같은 region에 있다면 속도 저하를 거의 느낄 수 없는 수준입니다.</p>
+<pre><code class="language-python"># samples 함수 실행을 위해 튜토리얼에서 그대로 가져온 기타 함수들은 생략
+
+# Get multiple samples from one category and multiple starting letters
+def samples(category, start_letters='ABC'):
+    for start_letter in start_letters:
+        yield sample(category, start_letter)
+
+def lambda_handler(event, context):
+    # Create dummy input for model
+
+    if LEAVE_LOG: print('event:', event)
+
+    output_names = list(samples('Russian', 'RUS'))
+    
+    # return results formatted for AWS API Gateway
+    return {&quot;statusCode&quot;: 200, \
+            &quot;headers&quot;: {&quot;Content-Type&quot;: &quot;application/json&quot;}, \
+             &quot;body&quot;: json.dumps(output_names)}
+</code></pre>
+<p>AWS Lambda가 실제로 실행하는 것은 <code>lambda_handler</code>입니다. <code>lambda_handler</code> 함수가 실행될 때 event와 context 안에 lambda를 호출한 이벤트의 정보가 담깁니다. event 변수의 구체적인 형태는 이벤트 종류마다 다르지만, 이 예제의 경우 다음과 같은 정보가 event 객체가 담기게 됩니다.</p>
+<pre><code class="language-python">event: {'category': 'Russian', 'start_letters': 'RUS'}
+</code></pre>
+<h2 id="modelpy와-requirementstxt">model.py와 requirements.txt<a class="anchor" href="#modelpy와-requirementstxt">#</a></h2>
+<p>github에는 위에 설명드린 파일 외에도 몇가지 파일들이 더 있습니다.</p>
+<p><code>model.py</code>는 모델 정의가 그대로 담겨 있는 파일입니다. PyTorch 모델을 불러올 때는 모델 <code>class</code> 정의가 필요하기 때문입니다. 샘플 모델 대신 자신의 모델을 쓰고 싶다면 이 파일을 수정해주어야 합니다.</p>
+<p><code>requirements.txt</code>는 추가적으로 필요한 파이썬 패키지들을 명시하는 곳입니다. Pandas 등 필요한 패키지를 이곳에 적어놓으면 <code>build_pack_script.sh</code>가 실행되어 압축 파일을 만들면서 명시된 패키지가 함께 들어갑니다. 이 때 Stripped size가 250MB를 넘어서는 안된다는 점을 명심해주세요. 참고로 예시에는 로컬에서 테스트를 위해 boto3가 포함되어 있지만, 실제 Lambda에는 boto3가 이미 설치되어 있으므로 생략하는 것이 좋습니다.</p>
+<h1 id="aws-lambda로-배포하기">AWS Lambda로 배포하기</h1>
+<h2 id="압축-파일-및-모델-파일-업로드">압축 파일 및 모델 파일 업로드<a class="anchor" href="#압축-파일-및-모델-파일-업로드">#</a></h2>
+<p>AWS Lambda에 코드를 올리는 방법은 세 가지가 있습니다. 이 중 압축된 파일의 크기가 50MB를 넘는다면 압축 파일을 S3에 업로드한 뒤 Lambda에 압축 파일의 주소를 입력하는 방법을 사용해야 합니다. 이를 위해서 S3에 압축 파일을 업로드합니다. 또한 모델 파라미터와 전처리 파라미터 파일도 같이 S3에 업로드합니다.</p>
+<p>이 글에서는 새로운 S3 bucket을 만들고 그곳에 필요한 모든 파일을 업로드하겠습니다. 하지만 실제로는 이미 있는 bucket을 사용해도 되며 모든 파일이 같은 곳에 위치할 필요는 없습니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8SGERG0K/bucket-create.png?pub_secret=60e96730c4" alt="새 bucket 만들기"></p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8TM6NMUP/screenshot_2018-01-14_23.14.28.png?pub_secret=74984ee530" alt="S3에 업로드된 압축 파일과 모델 및 전처리 파라미터 파일"></p>
+<h2 id="iam-user-만들기">IAM User 만들기<a class="anchor" href="#iam-user-만들기">#</a></h2>
+<p>lambda 함수는 모델과 전처리 파라미터를 S3에서 가져오기 때문에 S3에 접근 권한이 필요합니다. root 권한을 줄 수도 있지만 보안에 취약해진다는 단점이 있습니다. 안전한 권한 관리를 위해서 S3 읽기 권한만 갖고 있는 새 IAM User를 만들어보겠습니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8VNST9SB/create_iam_user.gif?pub_secret=be05c04c7b" alt="새 IAM User 만들기"></p>
+<p>만들어진 유저의 Access key와 Secret access key는 안전한 곳에 잘 저장해놓아야 합니다. 한번 창을 닫으면 Access key와 Secret access key를 다시 볼 수 있는 방법은 없습니다.</p>
+<h2 id="lambda-함수-만들기">lambda 함수 만들기<a class="anchor" href="#lambda-함수-만들기">#</a></h2>
+<p>이제 새 lambda 함수를 만들어보겠습니다. <code>pytorch-lambda</code>라는 이름의 lambda 함수를 만듭니다. 이 때, 코드 및 라이브러리는 S3에 올려둔 압축 파일의 주소를 입력합니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8U4XD8F3/create_lambda.gif?pub_secret=50e33769f4" alt="새 lambda 함수 만들기"></p>
+<p>여기서는 lambda 함수의 메모리와 시간 제한을 최대인 3GB와 5분으로 정했습니다. 이 제한은 필요한 만큼 설정하시면 됩니다.</p>
+<h2 id="api-gateway로-api-만들기">API Gateway로 API 만들기<a class="anchor" href="#api-gateway로-api-만들기">#</a></h2>
+<p>이렇게 설정한 lambda를 API로 만들어서 서비스할 차례입니다. API Gateway에서 새 API를 만들며 이미 있는 lambda 함수에 연결할 수 있습니다.</p>
+<p>이 예제에서는 도메인이 다른 리소스에 접속할 수 있게 CORS 설정을 하는 부분까지 담았습니다.</p>
+<p>AWS의 API Gateway에서는 Deployment stage를 설정할 수 있습니다. 이를 통해서 개발 버전과 서비스 버전을 분리할 수 있습니다. 버전의 이름은 보통 <code>prob</code>, <code>live</code> 또는 <code>dev</code> 등으로 짓습니다.</p>
+<p>API를 설정하고 나면 마지막으로 API를 호출할 수 있는 URL을 얻게 됩니다.</p>
+<p><img src="https://files.slack.com/files-pri/T25783BPY-F8U4W55RP/create_api.gif?pub_secret=4a20b5a250" alt="새 API 만들기"></p>
+<h2 id="테스트하기">테스트하기<a class="anchor" href="#테스트하기">#</a></h2>
+<p>만들어진 API는 POST method로 호출해야 합니다. 커멘드 라인에서 url을 호출할 수 있게 해주는 curl로 간단하게 테스트 해볼 수 있습니다.</p>
+<pre><code class="language-shell">$ curl -d &quot;{\&quot;category\&quot;:\&quot;Russian\&quot;, \&quot;start_letters\&quot;:\&quot;RUS\&quot;}&quot; -X POST https://tcodv2ela9.execute-api.ap-northeast-2.amazonaws.com/v1
+
+{&quot;statusCode&quot;: 200, &quot;headers&quot;: {&quot;Content-Type&quot;: &quot;application/json&quot;}, &quot;body&quot;: &quot;[\&quot;Rovantov\&quot;, \&quot;Uarthin\&quot;, \&quot;Shantov\&quot;]&quot;}
+</code></pre>
+<p>lambda의 로그 확인은 AWS CloudWatch에서 합니다. <strong>CloudWatch</strong> &gt; <strong>Logs</strong> &gt; Log Group 선택 &gt; Log Stream 선택으로 로그를 확인할 수 있습니다.</p>
+<h2 id="빠른-개발을-위해서">빠른 개발을 위해서<a class="anchor" href="#빠른-개발을-위해서">#</a></h2>
+<p>lambda 함수를 개발하고 테스트하는 한 사이클에는 상당한 시간이 걸립니다. 코딩을 하고, docker에 환경을 구축한 뒤 압축해서 zip 파일로 만들고, 이를 S3에 업로드하고 다시 lambda에 넣은 뒤 url을 호출해 보아야 코드에 버그가 있는지 없는지 알 수 있습니다. 버그를 확인한 후 코드를 수정하고 나면 다시 위의 과정을 반복해야 하죠.</p>
+<p>코딩을 하고 테스트로 피드백을 받는 간격이 짧으면 짧을 수록 개발 속도는 빨라지게 됩니다. 빠른 개발을 위해서 <a href="https://github.com/dreamgonfly/pytorch-lambdapack">github</a>에는 위에 설명드린 파일 외에 몇가지 파일들이 더 있습니다.</p>
+<p><code>add_pack_script.sh</code>는 <code>build_pack_script.sh</code>의 간소화된 버전이라고 할 수 있습니다. <code>add_pack_script.sh</code>는 Amazon Linux 환경을 다시 구축하는 과정을 생략하고 이미 만들어진 container 위에 파이썬 패키지 압축만 다시 합니다. <code>lambda_function.py</code> 등 몇가지 파일만 수정한 뒤 압축 파일을 다시 만들어야 할 때 유용하게 쓸 수 있습니다.</p>
+<p><code>local_test.py</code>와 <code>local_test_script.sh</code>는 로컬에서 테스트를 할 수 있게 해주는 스크립트입니다. <code>local_test.py</code>를 수정하여 필요한 환경 변수와 event를 지정한 뒤 사용할 수 있습니다.</p>
+<h1 id="마치며">마치며</h1>
+<p>이것으로 PyTorch 모델을 AWS Lambda로 서빙하는 과정을 마쳤습니다. PyTorch와 AWS Lambda의 조합은 간단한 딥러닝 모델을 서빙하는 데 최적의 조합입니다. 요청이 없을 때는 과금이 없으며, 요청이 갑자기 많아지더라도 서버가 죽을 걱정이 없이 서비스할 수 있기 때문이죠.</p>
+<p>이제 여러분도 딥러닝 모델을 만드는 것에서 끝나는 것이 아니라 언제 어디서나 사용할 수 있도록 서비스화할 수 있습니다.</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://machinelearnings.co/serving-pytorch-models-on-aws-lambda-with-caffe2-onnx-7b096806cfac">Serving PyTorch Models on AWS Lambda with Caffe2 &amp; ONNX</a></li>
+<li><a href="https://beomi.github.io/2017/12/07/Deploy-Tensorflow-Keras-on-AWS-Lambda/">AWS Lambda에 Tensorflow/Keras 배포하기</a></li>
+<li><a href="https://www.networkworld.com/article/3053111/cloud-computing/what-is-amazon-cloud-s-lambda-and-why-is-it-a-big-deal.html">What is Amazon cloud’s Lambda and why is it a big deal?</a></li>
+</ul>
+
+
+              
+          </article>
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://dreamgonfly.github.io/tags/aws/">aws</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://dreamgonfly.github.io/blog/hardware-for-deep-learning/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">딥러닝용 서버 설치기</span>
+    </a>
+  
+
+  
+    <a class="pagination__item" href="https://dreamgonfly.github.io/blog/jekyll-remote-theme/">
+      <span class="pagination__label">Next Post</span>
+      <span class="pagination__title" >쉽고 빠르게 수준 급의 GitHub 블로그 만들기 - jekyll remote theme으로</a>
+    </a>
+  
+</div>
+
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a class="social-icons__link" title="Twitter"
+         href="https://twitter.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/twitter.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="GitHub"
+         href="https://github.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Email"
+         href="mailto:dreamgonfly@gmail.com"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Facebook"
+         href="https://facebook.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/facebook.svg')"></div>
+      </a>
+    
+  
+     
+    
+  
+     
+    
+  
+     
+    
+      <a class="social-icons__link" title="LinkedIn"
+         href="https://www.linkedin.com/in/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+     
+</div>
+
+            <p>© 2020</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+          
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#macos--windows">MacOS &amp; Windows</a></li>
+    <li><a href="#ubuntu">Ubuntu</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#pytorch-설치하기">PyTorch 설치하기</a></li>
+    <li><a href="#lambda_functionpy">lambda_function.py</a></li>
+    <li><a href="#modelpy와-requirementstxt">model.py와 requirements.txt</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#압축-파일-및-모델-파일-업로드">압축 파일 및 모델 파일 업로드</a></li>
+    <li><a href="#iam-user-만들기">IAM User 만들기</a></li>
+    <li><a href="#lambda-함수-만들기">lambda 함수 만들기</a></li>
+    <li><a href="#api-gateway로-api-만들기">API Gateway로 API 만들기</a></li>
+    <li><a href="#테스트하기">테스트하기</a></li>
+    <li><a href="#빠른-개발을-위해서">빠른 개발을 위해서</a></li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.49e4d8a384357d9b445b87371863419937ede9fa77737522ffb633073aebfa44.js" integrity="sha256-SeTYo4Q1fZtEW4c3GGNBmTft6fp3c3Ui/7YzBzrr&#43;kQ=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>
