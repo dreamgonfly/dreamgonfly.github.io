@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Sat, 17 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://dreamgonfly.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>강화학습 알고리즘 분류</title>
+      <link>https://dreamgonfly.github.io/blog/rl-taxonomy/</link>
+      <pubDate>Sat, 18 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/rl-taxonomy/</guid>
+      <description>이 글에서는 강화학습의 여러 알고리즘들을 카테고리로 묶는 분류 체계에 대해서 알아보겠습니다. 분류 체계를 이해하면 새로운 알고리즘이 등장하더라도 기존 알고리즘과 어떤 관계에 있는지 쉽게 파악할 수 있습니다.
+이 글은 David Silver의 Introduction to reinforcement learning과 OpenAI의 Spinning Up을 참고했습니다.
+Major Components of an RL Agent 강화학습의 분류 체계를 알아보기 전에 먼저 분류의 기준이 되는 강화학습 agent(행위자)의 구성 요소에 대해 알아보아야 합니다. 강화학습의 agent는 크게 다음 세가지의 요소를 갖습니다.
+Policy Agent의 행동 패턴입니다.</description>
+    </item>
     
     <item>
       <title>쉽게 씌어진 GAN</title>
