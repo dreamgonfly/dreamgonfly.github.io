@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Sat, 18 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2020 08:52:20 +0900</lastBuildDate>
     
 	<atom:link href="https://dreamgonfly.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CUDA Cores vs. Tensor Cores</title>
+      <link>https://dreamgonfly.github.io/blog/cuda-cores/</link>
+      <pubDate>Sun, 19 Jul 2020 08:52:20 +0900</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/cuda-cores/</guid>
+      <description>이 글에서는 Nvidia의 CUDA Core와 Tensor Core의 차이점에 대해 알아보겠습니다. 마지막에는 Nvidia가 Turing 아키텍쳐와 함께 발표한 Turing Tensor Core에 대해서도 알아봅니다.
+CUDA Cores 먼저 CUDA Core란 무엇인지에 대해 짚고 넘어가 봅시다. 한 줄로 요약하면, Nvidia GPU에서 CUDA Core가 하는 일은 CPU에서 CPU core가 하는 일과 같습니다. 차이점은 CUDA Core는 더 많은 수가 동시에 병렬로 연산하도록 설계되었다는 점입니다. CUDA Core는 CPU core보다 더 단순한 구조, 더 적은 캐시, 더 작은 instruction set, 더 낮은 clock rate를 갖습니다.</description>
+    </item>
     
     <item>
       <title>강화학습 알고리즘 분류</title>

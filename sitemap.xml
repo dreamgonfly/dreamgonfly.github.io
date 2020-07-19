@@ -4,21 +4,36 @@
   
   <url>
     <loc>https://dreamgonfly.github.io/</loc>
-    <lastmod>2020-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-19T08:52:20+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/blog/</loc>
-    <lastmod>2020-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-19T08:52:20+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dreamgonfly.github.io/tags/reinforcement-learning/</loc>
-    <lastmod>2020-07-18T00:00:00+00:00</lastmod>
+    <loc>https://dreamgonfly.github.io/blog/cuda-cores/</loc>
+    <lastmod>2020-07-19T08:52:20+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/gpu/</loc>
+    <lastmod>2020-07-19T08:52:20+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/hardware/</loc>
+    <lastmod>2020-07-19T08:52:20+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/tags/</loc>
+    <lastmod>2020-07-19T08:52:20+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/reinforcement-learning/</loc>
     <lastmod>2020-07-18T00:00:00+00:00</lastmod>
   </url>
   
@@ -65,11 +80,6 @@
   <url>
     <loc>https://dreamgonfly.github.io/blog/pytorch-on-aws-lambda/</loc>
     <lastmod>2018-01-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dreamgonfly.github.io/tags/hardware/</loc>
-    <lastmod>2017-12-17T18:10:00+00:00</lastmod>
   </url>
   
   <url>
