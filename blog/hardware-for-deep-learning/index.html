@@ -117,7 +117,7 @@
           <article class="post__content">
               
 <p>어제 딥러닝용 1080 Ti GPU 서버의 개발 환경 세팅을 마쳤습니다. 이 글에서는 서버 구매부터 Ubuntu 설치, NVIDIA driver, CUDA 및 cuDNN 설치, 그리고 Tensorflow와 PyTorch 설치까지 제가 개발 환경을 세팅한 방법을 정리했습니다.</p>
-<h1 id="하드웨어-구성">하드웨어 구성</h1>
+<h2 id="하드웨어-구성">하드웨어 구성<a class="anchor" href="#하드웨어-구성">#</a></h2>
 <p>참고를 위해 제가 구성한 서버 하드웨어도 보여드리겠습니다.</p>
 <p>괄호 안의 가격은 실제 구매한 가격이 아니라 참고를 위해 적어놓은 현금 최저가입니다.</p>
 <ul>
@@ -137,7 +137,7 @@
 <p><img src="https://files.slack.com/files-pri/T25783BPY-F8FUBADFF/screenshot.png?pub_secret=4f69dcc170" alt="다나와(www.danawa.com)"></p>
 <p><img src="https://files.slack.com/files-pri/T25783BPY-F8F6LG064/danawa.png?pub_secret=3ac2f607cb" alt="다나와 호환성 체크와 구매신청"></p>
 <p>주문을 완료한 뒤 배송이 오면 이제 개발 환경을 세팅할 차례입니다.</p>
-<h1 id="ubuntu-설치하기">Ubuntu 설치하기</h1>
+<h2 id="ubuntu-설치하기">Ubuntu 설치하기<a class="anchor" href="#ubuntu-설치하기">#</a></h2>
 <p>Ubuntu 14.04를 설치합니다. 최신 LTS인 16.04는 GTX1080 Ti GPU가 달린 서버에서 바로 부팅 시 검은 화면만 뜨는 문제가 있습니다. 설정을 바꿔 이 문제를 우회할 수는 있지만 설치 과정에서 복잡성을 최소화하기 위해 14.04를 설치하는 방법을 택했습니다. 14.04는 언제든지 16.04로 업그레이드할 수 있습니다.</p>
 <h3 id="ubuntu-다운받기">Ubuntu 다운받기<a class="anchor" href="#ubuntu-다운받기">#</a></h3>
 <p>Ubuntu 14.04로 검색한 뒤 나오는 페이지(<a href="http://releases.ubuntu.com/14.04/">http://releases.ubuntu.com/14.04/</a>)에서 <a href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-desktop-amd64.iso">64-bit PC (AMD64) desktop image</a>를 다운받습니다.</p>
@@ -159,9 +159,9 @@
 </ul>
 <p><img src="https://files.slack.com/files-pri/T25783BPY-F8GGX7F0W/screenshot.png?pub_secret=32447bd174" alt="UNetbootin으로 부팅 디스크 만들기"></p>
 <p>이제 부팅 디스크가 만들어졌습니다. 이 USB를 서버에 꽂은 뒤 BIOS에서 부팅을 할 때 <strong>Boot Menu</strong>에서 USB에 해당하는 항목을 클릭한 뒤 <strong>Install Ubuntu</strong>를 선택한 뒤 나오는 안내에 따라 설정을 입력하면 Ubuntu 설치가 완료됩니다.</p>
-<h5 id="트러블-슈팅">트러블 슈팅</h5>
+<h3 id="트러블-슈팅">트러블 슈팅<a class="anchor" href="#트러블-슈팅">#</a></h3>
 <p>서버의 전원을 켰을 때 <code>CPU Fan speed error detected</code>라는 문구가 계속해서 떴습니다. 이는 제가 수냉식 쿨러를 사용했고 ASUS 메인보드에서 이슈가 있었기 때문이었습니다. BIOS 상에서 Fan 설정을 바꾸어서 해결했습니다. (참고 : <a href="http://rgy0409.tistory.com/1165">아수스 CPU Fan speed errer detected 해결하기</a>)</p>
-<h1 id="nvidia-driver-설치하기">NVIDIA driver 설치하기</h1>
+<h2 id="nvidia-driver-설치하기">NVIDIA driver 설치하기<a class="anchor" href="#nvidia-driver-설치하기">#</a></h2>
 <p>Ubuntu에서 NVIDIA driver를 설치하는 가장 간단하고 권장되는 방법은 운영체제가 제공하는 설정 메뉴에서 GUI 그래픽 드라이버 설치 방법를 따르는 것입니다.</p>
 <ul>
 <li>Ubuntu에서 <strong>System Settings</strong> &gt; <strong>Software &amp; Updates</strong> &gt; <strong>Additional Drivers</strong>를 클릭합니다.</li>
@@ -173,13 +173,13 @@
 <p><code>nvidia-smi</code></p>
 <p><code>nvidia-settings</code></p>
 <p><img src="https://files.slack.com/files-pri/T25783BPY-F8F6NLDEC/smi.png?pub_secret=7ecd36a66c" alt="driver 설치 후 nvidia-smi가 정상적으로 표시된 화면"></p>
-<h5 id="참고-자료">참고 자료</h5>
+<h2 id="참고-자료">참고 자료<a class="anchor" href="#참고-자료">#</a></h2>
 <p>CLI를 이용해 NVIDIA driver를 설치하고 싶다면 다음 자료를 참고합니다. 다만 두번째 링크에서도 밝히고 있듯이 이는 권장되는 방식은 아닙니다.</p>
 <ul>
 <li><a href="http://pythonkim.tistory.com/48">[우분투] nvidia 드라이버 설치</a></li>
 <li><a href="https://askubuntu.com/questions/481414/install-nvidia-driver-instead-of-nouveau">Install Nvidia driver instead of nouveau</a></li>
 </ul>
-<h1 id="cuda-설치하기">CUDA 설치하기</h1>
+<h2 id="cuda-설치하기">CUDA 설치하기<a class="anchor" href="#cuda-설치하기">#</a></h2>
 <p>현재 CUDA 최신 버전은 9.1이지만 TensorFlow는 CUDA 8.0 설치를 요구하고 있습니다. 따라서 여기에서도 CUDA 8.0을 설치하겠습니다.</p>
 <ul>
 <li>CUDA 8.0 다운로드 페이지 (<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive">https://developer.nvidia.com/cuda-80-ga2-download-archive</a>)에 들어갑니다.</li>
@@ -201,12 +201,12 @@ export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 </code></pre>
 <p><img src="https://files.slack.com/files-pri/T25783BPY-F8F5HGB3J/cuda.png?pub_secret=88515d4aa2" alt="CUDA 다운로드 페이지"></p>
-<h5 id="참고-자료-1">참고 자료</h5>
+<h3 id="참고-자료-1">참고 자료<a class="anchor" href="#참고-자료-1">#</a></h3>
 <ul>
 <li><a href="http://haanjack.github.io/cuda/2016-02-29-cuda-linux/">Ubuntu에 CUDA 설치</a></li>
 <li><a href="https://seojmediview.com/2017/08/09/ubuntu-16-04-lts%ec%97%90-tensorflow-gpu%eb%b2%84%ec%a0%84-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0/">Ubuntu 16.04 LTS에 tensorflow gpu버전 설치하기</a></li>
 </ul>
-<h1 id="cudnn-설치하기">cuDNN 설치하기</h1>
+<h2 id="cudnn-설치하기">cuDNN 설치하기<a class="anchor" href="#cudnn-설치하기">#</a></h2>
 <p>TensorFlow가 cuDNN 6.0을 요구하므로 최신 버전인 7.0이 아닌 6.0 버전을 설치해보겠습니다.</p>
 <ul>
 <li>cuDNN 다운로드 페이지(<a href="https://developer.nvidia.com/cudnn">https://developer.nvidia.com/cudnn</a>)에 들어갑니다.</li>
@@ -226,11 +226,11 @@ sudo cp cuda/include/cudnn.h /usr/local/cuda-8.0/include
 sudo cp cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64
 sudo chmod a+r /usr/local/cuda-8.0/include/cudnn.h /usr/local/cuda-8.0/lib64/libcudnn*
 </code></pre>
-<h5 id="참고-자료-2">참고 자료</h5>
+<h3 id="참고-자료-2">참고 자료<a class="anchor" href="#참고-자료-2">#</a></h3>
 <ul>
 <li><a href="https://seojmediview.com/2017/08/09/ubuntu-16-04-lts%ec%97%90-tensorflow-gpu%eb%b2%84%ec%a0%84-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0/">Ubuntu 16.04 LTS에 tensorflow gpu버전 설치하기</a></li>
 </ul>
-<h1 id="anaconda-설치하기">Anaconda 설치하기</h1>
+<h2 id="anaconda-설치하기">Anaconda 설치하기<a class="anchor" href="#anaconda-설치하기">#</a></h2>
 <p>Anaconda는 Python과 여러 라이브러리들을 설치하는 가장 편리하고 빠른 방법입니다. 현재 Anaconda를 다운받으면 Python 3.6으로 설치되지만, <a href="https://github.com/tensorflow/tensorflow/issues/14182">TensorFlow 1.4 GPU 버전이 아직 Python 3.6을 지원하지 않기 때문에</a> Python 3.5 환경으로 맞춰줄 필요가 있습니다. 여기에서는 Python 3.5를 지원하는 Anaconda의 이전 버전을 설치하겠습니다.</p>
 <p>또한, 설치된 Python을 모든 사용자가 사용할 수 있게 하기 위해 아래 과정부터 CLI 명령어는 root 계정에서 실행하였습니다.</p>
 <pre><code class="language-shell">sudo su
@@ -254,7 +254,7 @@ Python 3.5.2 |Anaconda 4.2.0 (64-bit)| (default, Jul  2 2016, 17:53:06)
 [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 </code></pre>
-<h1 id="tensorflow-설치하기">Tensorflow 설치하기</h1>
+<h2 id="tensorflow-설치하기">Tensorflow 설치하기<a class="anchor" href="#tensorflow-설치하기">#</a></h2>
 <p>이 글을 작성하는 때에 TensorFlow의 최신 버전은 1.4입니다. 최신 버전인 TensorFlow 1.4 버전을 설치해 보겠습니다. TensorFlow에서는 가상 환경 위에 설치를 권장하고 있지만 여기에서는 사용의 편리함을 위해 디폴트 Python 위에 pip으로 바로 설치합니다.</p>
 <ul>
 <li>다음 명령어로 libcupti-dev 라이브러리를 설치합니다. 이는 TensorFlow <a href="https://www.tensorflow.org/install/install_linux">공식 설치 가이드</a>의 요구사항을 따른 것입니다. CUDA와 cuDNN은 이미 설치했으니 마지막 단계인 libcupti-dev 라이브러리만 남았습니다.</li>
@@ -276,11 +276,11 @@ pciBusID: 0000:01:00.0
 totalMemory: 10.91GiB freeMemory: 10.49GiB
 2017-12-17 11:56:09.494619: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -&gt; (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:01:00.0, compute capability: 6.1)&lt;tensorflow.python.client.session.Session object at 0x7f9c04d43668&gt;
 </code></pre>
-<h3 id="pytorch-설치하기">PyTorch 설치하기<a class="anchor" href="#pytorch-설치하기">#</a></h3>
+<h2 id="pytorch-설치하기">PyTorch 설치하기<a class="anchor" href="#pytorch-설치하기">#</a></h2>
 <p>PyTorch 설치는 공식 사이트(<a href="http://www.pytorch.org">www.pytorch.org</a>)를 그대로 따르면 됩니다. conda로 Python 3.5, CUDA 8.0 버전을 설치하였습니다.</p>
 <pre><code class="language-shell">conda install pytorch torchvision -c pytorch
 </code></pre>
-<h1 id="네트워크-연결하기">네트워크 연결하기</h1>
+<h2 id="네트워크-연결하기">네트워크 연결하기<a class="anchor" href="#네트워크-연결하기">#</a></h2>
 <p>이제 서버 개발 환경 세팅은 완료되었으니, 이 서버를 다른 컴퓨터에서도 접속할 수 있게 만들어야 합니다. 이를 위해서 외부 포트를 내부 포트로 연결하는 포트 포워딩을 설정하고, Ubuntu 내에서 SSH를 외부에서 접근 가능하도록 설정합니다.</p>
 <blockquote>
 <p>다음 과정은 iptime을 사용한다고 가정합니다. 다른 제품을 쓰는 경우 과정이 약간 다를 수 있습니다.</p>
@@ -446,57 +446,42 @@ totalMemory: 10.91GiB freeMemory: 10.49GiB
           
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#하드웨어-구성">하드웨어 구성</a></li>
+    <li><a href="#ubuntu-설치하기">Ubuntu 설치하기</a>
       <ul>
         <li><a href="#ubuntu-다운받기">Ubuntu 다운받기</a></li>
         <li><a href="#부팅-디스크-만들기">부팅 디스크 만들기</a></li>
+        <li><a href="#트러블-슈팅">트러블 슈팅</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#nvidia-driver-설치하기">NVIDIA driver 설치하기</a>
       <ul>
         <li><a href="#설치-확인하기">설치 확인하기</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#참고-자료">참고 자료</a></li>
+    <li><a href="#cuda-설치하기">CUDA 설치하기</a>
       <ul>
-        <li></li>
+        <li><a href="#참고-자료-1">참고 자료</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#cudnn-설치하기">cuDNN 설치하기</a>
       <ul>
-        <li></li>
+        <li><a href="#참고-자료-2">참고 자료</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#anaconda-설치하기">Anaconda 설치하기</a>
       <ul>
         <li><a href="#설치-확인하기-1">설치 확인하기</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#tensorflow-설치하기">Tensorflow 설치하기</a>
       <ul>
         <li><a href="#설치-확인하기-2">설치 확인하기</a></li>
-        <li><a href="#pytorch-설치하기">PyTorch 설치하기</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#pytorch-설치하기">PyTorch 설치하기</a></li>
+    <li><a href="#네트워크-연결하기">네트워크 연결하기</a>
       <ul>
         <li><a href="#포트포워딩">포트포워딩</a></li>
         <li><a href="#ssh-외부-접속-설정하기">SSH 외부 접속 설정하기</a></li>

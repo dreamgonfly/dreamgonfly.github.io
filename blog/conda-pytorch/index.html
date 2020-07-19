@@ -117,7 +117,7 @@
           <article class="post__content">
               
 <p>PyTorch 설치가 어려울 때, conda 가상 환경 안에 PyTorch를 설치하면 깔끔하게 설치될 때가 많습니다. 이 글은 conda 가상 환경으로 PyTorch를 설치하고 Jupyter의 kernel로 등록하는 방법을 소개합니다. TensorFlow도 같은 방법으로 설치할 수 있습니다.</p>
-<h1 id="windows">Windows</h1>
+<h2 id="windows">Windows<a class="anchor" href="#windows">#</a></h2>
 <p><strong>새 가상 환경 만들기</strong></p>
 <pre><code class="language-shell">$ conda create -y -n pytorch ipykernel
 </code></pre>
@@ -135,7 +135,7 @@
 <p><strong>가상 환경 빠져나오기</strong></p>
 <pre><code class="language-shell">(pytorch)$ deactivate
 </code></pre>
-<h1 id="macos--linux">MacOS / Linux</h1>
+<h2 id="macos--linux">MacOS / Linux<a class="anchor" href="#macos--linux">#</a></h2>
 <p><strong>새 가상 환경 만들기</strong></p>
 <pre><code class="language-shell">$ conda create -y -n pytorch ipykernel
 </code></pre>
@@ -153,11 +153,11 @@
 <p><strong>가상 환경 빠져나오기</strong></p>
 <pre><code class="language-shell">(pytorch)$ source deactivate
 </code></pre>
-<h1 id="jupyter에-등록된-kernel-확인하기">Jupyter에 등록된 kernel 확인하기</h1>
+<h2 id="jupyter에-등록된-kernel-확인하기">Jupyter에 등록된 kernel 확인하기<a class="anchor" href="#jupyter에-등록된-kernel-확인하기">#</a></h2>
 <p>이제 Jupyter Notebook에서 새 노트북을 만들 때 PyTorch kernel을 선택할 수 있습니다.</p>
 <p><img src="https://files.slack.com/files-pri/T25783BPY-F901YJLAV/_______________.png?pub_secret=0974008d7a" alt="Jupyter Notebook에 등록된 PyTorch kernel"></p>
-<h1 id="해설">해설</h1>
-<h4 id="새-가상-환경-만들기에-대해서">새 가상 환경 만들기에 대해서</h4>
+<h2 id="해설">해설<a class="anchor" href="#해설">#</a></h2>
+<h3 id="새-가상-환경-만들기에-대해서">새 가상 환경 만들기에 대해서<a class="anchor" href="#새-가상-환경-만들기에-대해서">#</a></h3>
 <p>Conda는 패키지 관리 프로그램인 동시에 가상 환경 관리 프로그램입니다. Conda로 기존 환경과 충돌이 없는 가상 환경을 만들고 관리할 수 있습니다.</p>
 <pre><code class="language-shell">$ conda create -y -n pytorch ipykernel
 </code></pre>
@@ -167,7 +167,7 @@
 <li><code>-n pytorch</code> : <code>--name pytorch</code>의 줄임말입니다. 환경 이름을 pytorch로 짓습니다. 환경 이름은 필수입니다. 이름은 원하는 대로 지을 수 있습니다.</li>
 <li><code>ipykernel</code> : ipykernel이 설치되어 있는 가상 환경을 만듭니다. ipykernel 외에 다른 패키지 이름을 쓸 수 있습니다.</li>
 </ul>
-<h4 id="jupyter에-새-kernel-등록하기에-대해서">Jupyter에 새 kernel 등록하기에 대해서</h4>
+<h3 id="jupyter에-새-kernel-등록하기에-대해서">Jupyter에 새 kernel 등록하기에 대해서<a class="anchor" href="#jupyter에-새-kernel-등록하기에-대해서">#</a></h3>
 <pre><code class="language-shell">(pytorch)$ python -m ipykernel install --user --name pytorch --display-name &quot;PyTorch&quot;
 </code></pre>
 <ul>
@@ -175,9 +175,9 @@
 <li><code>—name pytorch</code> : Jupyter 내부적으로 쓰이는 kernel의 이름을 지정합니다. 같은 이름을 쓰면 덮어쓰기가 됩니다.</li>
 <li><code>--display-name &quot;PyTorch&quot;</code> : Jupyter Notebook 위에서 사용자에게 보이는 kernel의 이름을 정합니다. 내부적으로 쓰이는 이름과 상관없이 띄어쓰기 등 특수문자도 포함하여 자유롭게 지을 수 있습니다.</li>
 </ul>
-<h1 id="유용한-conda-명령어">유용한 Conda 명령어</h1>
+<h2 id="유용한-conda-명령어">유용한 Conda 명령어<a class="anchor" href="#유용한-conda-명령어">#</a></h2>
 <p>conda를 사용할 때 자주 사용하는 명령어들을 모아보았습니다.</p>
-<h2 id="가상-환경-만들기-옵션">가상 환경 만들기 옵션<a class="anchor" href="#가상-환경-만들기-옵션">#</a></h2>
+<h3 id="가상-환경-만들기-옵션">가상 환경 만들기 옵션<a class="anchor" href="#가상-환경-만들기-옵션">#</a></h3>
 <p><strong>파이썬만 있는 최소한의 환경을 원할 때</strong></p>
 <pre><code class="language-shell">$ conda create --name myenv python
 </code></pre>
@@ -193,7 +193,7 @@
 <p><strong>파이썬 버전을 지정하고 아나콘다 환경을 만들고 싶을 때</strong></p>
 <pre><code class="language-shell">$ conda create --name myenv python=2.7 anaconda
 </code></pre>
-<h2 id="가상-환경-목록-보기">가상 환경 목록 보기<a class="anchor" href="#가상-환경-목록-보기">#</a></h2>
+<h3 id="가상-환경-목록-보기">가상 환경 목록 보기<a class="anchor" href="#가상-환경-목록-보기">#</a></h3>
 <pre><code class="language-shell">$ conda env list
 
 pytorch
@@ -201,10 +201,10 @@ myenv
 myenv2
 ...
 </code></pre>
-<h2 id="가상-환경-삭제하기">가상 환경 삭제하기<a class="anchor" href="#가상-환경-삭제하기">#</a></h2>
+<h3 id="가상-환경-삭제하기">가상 환경 삭제하기<a class="anchor" href="#가상-환경-삭제하기">#</a></h3>
 <pre><code class="language-shell">$ conda env remove --name myenv
 </code></pre>
-<h1 id="참고-자료">참고 자료</h1>
+<h2 id="참고-자료">참고 자료<a class="anchor" href="#참고-자료">#</a></h2>
 <ul>
 <li><a href="http://ipython.readthedocs.io/en/stable/install/kernel_install.html">Installing the IPython kernel</a></li>
 <li><a href="https://conda.io/docs/user-guide/tasks/manage-environments.html">Managing environments in Conda</a></li>
@@ -329,17 +329,23 @@ myenv2
           
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#windows">Windows</a></li>
+    <li><a href="#macos--linux">MacOS / Linux</a></li>
+    <li><a href="#jupyter에-등록된-kernel-확인하기">Jupyter에 등록된 kernel 확인하기</a></li>
+    <li><a href="#해설">해설</a>
       <ul>
-        <li></li>
+        <li><a href="#새-가상-환경-만들기에-대해서">새 가상 환경 만들기에 대해서</a></li>
+        <li><a href="#jupyter에-새-kernel-등록하기에-대해서">Jupyter에 새 kernel 등록하기에 대해서</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#가상-환경-만들기-옵션">가상 환경 만들기 옵션</a></li>
-    <li><a href="#가상-환경-목록-보기">가상 환경 목록 보기</a></li>
-    <li><a href="#가상-환경-삭제하기">가상 환경 삭제하기</a></li>
+    <li><a href="#유용한-conda-명령어">유용한 Conda 명령어</a>
+      <ul>
+        <li><a href="#가상-환경-만들기-옵션">가상 환경 만들기 옵션</a></li>
+        <li><a href="#가상-환경-목록-보기">가상 환경 목록 보기</a></li>
+        <li><a href="#가상-환경-삭제하기">가상 환경 삭제하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#참고-자료">참고 자료</a></li>
   </ul>
 </nav>
       </div>
