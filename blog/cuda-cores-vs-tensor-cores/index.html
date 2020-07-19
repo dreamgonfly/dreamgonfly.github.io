@@ -121,7 +121,7 @@
 <p>먼저 CUDA Core란 무엇인지에 대해 짚고 넘어가 봅시다. 한 줄로 요약하면, Nvidia GPU에서 CUDA Core가 하는 일은 CPU에서 CPU core가 하는 일과 같습니다. 차이점은 CUDA Core는 더 많은 수가 동시에 병렬로 연산하도록 설계되었다는 점입니다. CUDA Core는 CPU core보다 더 단순한 구조, 더 적은 캐시, 더 작은 instruction set, 더 낮은 clock rate를 갖습니다. 대신 일반적인 CPU가 1개에서 8개 정도의 core를 갖는 것에 비해 GPU는 보통 수 백개에서 수 천개의 core를 갖습니다. 따라서 GPU는 단순한 연산의 병렬 처리가 많은 그래픽 및 머신 러닝 작업에 적합합니다.</p>
 <p><img src="/images/cuda-cores-vs-tensor-cores/cuda-cores.jpg" alt="cuda-cores"></p>
 <h3 id="cuda-cores-vs-stream-processors">CUDA Cores vs. Stream Processors<a class="anchor" href="#cuda-cores-vs-stream-processors">#</a></h3>
-<p>AMD는 자사의 GPU core를 Stream processor라고 부릅니다. CUDA Core와 Stream processor의 역할은 같습니다. 그러나 두 회사의 GPU 아키텍쳐는 다르기 때문에 CUDA Cores의 수와 Stream Processor의 수를 직접 비교할 수는 없습니다. 즉, 500개의 CUDA Cores가 500개의 Stream Processor와 같은 성능을 갖지는 않습니다. GPU 간 정확한 성능 비교 위해서는 benchmark test를 사용합니다.</p>
+<p>AMD는 자사의 GPU core를 Stream Processor라고 부릅니다. CUDA Core와 Stream Processor의 역할은 같습니다. 그러나 두 회사의 GPU 아키텍쳐는 다르기 때문에 CUDA Cores의 수와 Stream Processor의 수를 직접 비교할 수는 없습니다. 즉, 500개의 CUDA Cores가 500개의 Stream Processor와 같은 성능을 갖지는 않습니다. GPU 간 정확한 성능 비교 위해서는 benchmark test를 사용합니다.</p>
 <h3 id="number-of-cuda-cores-and-computing-power">Number of CUDA Cores and computing power<a class="anchor" href="#number-of-cuda-cores-and-computing-power">#</a></h3>
 <p>같은 세대의 GPU 내에서 CUDA Core의 수가 많다는 것은 더 많은 컴퓨팅 파워를 의미합니다.</p>
 <p>하지만 아키텍쳐가 다른 GPU 사이에서 CUDA Core의 수를 일대일로 비교하는 것은 어렵습니다. 예컨대, Kepler 아키텍쳐에서 Maxwell 아키텍쳐로 바뀔 때 CUDA Core의 연산 능력은 약 40% 증가하였습니다. 이처럼 아키텍쳐의 차이는 CUDA Core의 수가 같더라도 효율성의 차이를 가져올 수 있습니다.</p>
