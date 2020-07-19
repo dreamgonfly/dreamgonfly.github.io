@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>CUDA Cores vs. Tensor Cores | Dreamgonfly&#39;s blog</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="Explaination of CUDA Cores vs. Tensor Cores">
+  <meta name="keywords" content="cuda , gpu , nvidia">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="CUDA Cores vs. Tensor Cores" />
+  <meta name="twitter:description" content="Explaination of CUDA Cores vs. Tensor Cores"
+  />
+  <meta name="twitter:site" content="@https://twitter.com/dreamgonfly" />
+  <meta name="twitter:creator" content="@https://twitter.com/dreamgonfly" />
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/post.min.3b28d14676e4769849164baf362f2b0aa069ab25702fef98f0c4227cb68d74cd.css" integrity="sha256-OyjRRnbkdphJFkuvNi8rCqBpqyVwL&#43;&#43;Y8MQifLaNdM0="/>
+  
+    
+    <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/dreamgonfly.github.io\/"
+      },
+      "articleSection" : "blog",
+      "name" : "CUDA Cores vs. Tensor Cores",
+      "headline" : "CUDA Cores vs. Tensor Cores",
+      "description" : "Explaination of CUDA Cores vs. Tensor Cores",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-07-19 08:52:20 \u002b0900 KST",
+      "dateModified" : "2020-07-19 08:52:20 \u002b0900 KST",
+      "url" : "https:\/\/dreamgonfly.github.io\/blog\/cuda-cores-vs-tensor-cores\/",
+      "wordCount" : "616",
+      "keywords" : ["cuda", "gpu", "nvidia", "Blog"]
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" role="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">about</a>
+      </li>
+    
+      <li>
+        <a  class="active"
+         href="/blog">blog</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            <h1 id="post__title">CUDA Cores vs. Tensor Cores</h1>
+            <time datetime="2020-07-19 08:52:20 &#43;0900 KST" class="post__date"
+            >Jul 19 2020</time>
+          </header>
+          <article class="post__content">
+              
+<p>이 글에서는 Nvidia의 CUDA Core와 Tensor Core의 차이점에 대해 알아보겠습니다. 마지막에는 Nvidia가 Turing 아키텍쳐와 함께 발표한 Turing Tensor Core에 대해서도 알아봅니다.</p>
+<h2 id="cuda-cores">CUDA Cores<a class="anchor" href="#cuda-cores">#</a></h2>
+<p>먼저 CUDA Core란 무엇인지에 대해 짚고 넘어가 봅시다. 한 줄로 요약하면, Nvidia GPU에서 CUDA Core가 하는 일은 CPU에서 CPU core가 하는 일과 같습니다. 차이점은 CUDA Core는 더 많은 수가 동시에 병렬로 연산하도록 설계되었다는 점입니다. CUDA Core는 CPU core보다 더 단순한 구조, 더 적은 캐시, 더 작은 instruction set, 더 낮은 clock rate를 갖습니다. 대신 일반적인 CPU가 1개에서 8개 정도의 core를 갖는 것에 비해 GPU는 보통 수 백개에서 수 천개의 core를 갖습니다. 따라서 GPU는 단순한 연산의 병렬 처리가 많은 그래픽 및 머신 러닝 작업에 적합합니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/cuda-cores.jpg" alt="cuda-cores"></p>
+<h3 id="cuda-cores-vs-stream-processors">CUDA Cores vs. Stream Processors<a class="anchor" href="#cuda-cores-vs-stream-processors">#</a></h3>
+<p>AMD는 자사의 GPU core를 Stream processor라고 부릅니다. CUDA Core와 Stream processor의 역할은 같습니다. 그러나 두 회사의 GPU 아키텍쳐는 다르기 때문에 CUDA Cores의 수와 Stream Processor의 수를 직접 비교할 수는 없습니다. 즉, 500개의 CUDA Cores가 500개의 Stream Processor와 같은 성능을 갖지는 않습니다. GPU 간 정확한 성능 비교 위해서는 benchmark test를 사용합니다.</p>
+<h3 id="number-of-cuda-cores-and-computing-power">Number of CUDA Cores and computing power<a class="anchor" href="#number-of-cuda-cores-and-computing-power">#</a></h3>
+<p>같은 세대의 GPU 내에서 CUDA Core의 수가 많다는 것은 더 많은 컴퓨팅 파워를 의미합니다.</p>
+<p>하지만 아키텍쳐가 다른 GPU 사이에서 CUDA Core의 수를 일대일로 비교하는 것은 어렵습니다. 예컨대, Kepler 아키텍쳐에서 Maxwell 아키텍쳐로 바뀔 때 CUDA Core의 연산 능력은 약 40% 증가하였습니다. 이처럼 아키텍쳐의 차이는 CUDA Core의 수가 같더라도 효율성의 차이를 가져올 수 있습니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/flow-of-cuda.jpg" alt="flow-of-cuda"></p>
+<h2 id="tensor-cores">Tensor Cores<a class="anchor" href="#tensor-cores">#</a></h2>
+<p>Tensor core를 한마디로 정리하면, 4x4 행렬 연산을 수행하는 GPU core입니다. CUDA Core가 1 GPU clock에 하나의 fp32 부동소수점 연산을 수행하는 데 비해, Tensor Core는 1 GPU clock에 4x4짜리 fp16 행렬을 두 개를 곱하고 그 결과를 4x4 fp32 행렬에 더하는 <strong>matrix multiply-accumulate</strong> 연산을 수행합니다. multiply-accumulate 연산이란 A와 B를 곱하고 C를 더하는 과정을 하나의 연산에서 한번에 수행하는 것입니다. Tensor Core의 matrix multiply-accumulate 연산을 그림으로 나타내면 다음과 같습니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/multiply-accumulate.png" alt="multiply-accumulate"></p>
+<p>이 과정은 fp16 행렬을 입력으로 받고 fp32 행렬로 출력을 반환하기 때문에 mixed precision이라고 불립니다. Volta 이상의 아키텍쳐에 기반한 GPU에서만 딥러닝 학습 시 mixed precision을 쓸 수 있는 것은 이 때문입니다. (Volta 이전의 아키텍쳐에서는 mixed precision을 시뮬레이션할 수는 있지만 실제 속도는 빨라지지 않습니다.)</p>
+<p>이처럼 부동소수점 연산에 사용되는 multiply-accumulate 연산은 (rounding이 한번일 때) **FMA (fused multiply-add)**라고 불리기도 합니다. 각 Tensor core는 한 번의 GPU clock에 64개의 부동소수점 FMA mixed precision 연산을 합니다. 출력 행렬의 한 원소를 계산하는 데 4개의 FMA 연산이 필요하고 총 4x4개의 원소가 있기 때문입니다. 각각의 FMA 연산을 도식화하면 아래 그림과 같습니다.<img src="/images/cuda-cores-vs-tensor-cores/fma.png" alt="fma"></p>
+<h3 id="how-fast-are-tensor-cores">How fast are Tensor Cores<a class="anchor" href="#how-fast-are-tensor-cores">#</a></h3>
+<p>CUDA 라이브러리인 cuBLAS와 cuDNN는 Tensor Core를 지원합니다. cuBLAS는 행렬과 행렬을 곱하는 GEMM 연산에, cuDNN은 convolution 연산에 Tensor Core를 사용합니다. Tensor Core는 cuBLAS에서 4~9배, cuDNN은 4~5배의 성능 향상을 이끌었습니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/tensor_core_cuBLAS_perf-1-e1508207263673.png" alt="tensor_core_cuBLAS_perf-1-e1508207263673"></p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/tensor_core_cudnn_speedup-1-e1508222018353.png" alt="tensor_core_cudnn_speedup-1-e1508222018353"></p>
+<h3 id="benefits--drawbacks-of-tensor-cores">Benefits &amp; drawbacks of Tensor Cores<a class="anchor" href="#benefits--drawbacks-of-tensor-cores">#</a></h3>
+<p>일반적으로 CUDA Core는 Tensor Core에 비해 느리지만 fp32 연산이기 때문에 더 높은 수준의 계산 정확도를 얻을 수 있습니다. 이에 비해 Tensor Core는 연산 속도가 매우 빠르지만 fp16 연산이기 때문에 어느정도 계산 정확도를 희생해야 합니다.</p>
+<h3 id="gpu-examples">GPU examples<a class="anchor" href="#gpu-examples">#</a></h3>
+<p>Nvidia는 2017년에 처음 Volta microarchitecture로 만들어진 Titan V를 출시하며 Tensor Core를 상용화했습니다. Titan V와 V100은 둘 다 5120개의 CUDA Core와 640개의 Tensor Core를 갖고 있습니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/v100.png" alt="v100"></p>
+<p>Titan V 또는 V100의 spec을 살펴보면 딥러닝용 연산 속도가 125 teraFLOPS라고 적혀 있습니다. 이 수치가 어떻게 나오는지 직접 계산해봅시다. 하나의 Tensor core는 한 cycle에 64개의 FMA를 수행하며 이는 곱셈과 덧셈을 따로 계산하면 128개의 부동소수점 연산을 수행하는 것입니다. Titan V에는 640개의 Tensor Core가 있으므로 cycle마다 128 * 640 = 81920 번의 floating point 연산을 할 수 있습니다. V100의 GPU boost clock speed는 1.53GHz이므로 81920 FLOPS * 1.53 billion = 125.33 TeraFLOPS가 나오게 됩니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/pascal-vs-volta.gif" alt="pascal-vs-volta"></p>
+<h2 id="turing-tensor-cores">Turing Tensor Cores<a class="anchor" href="#turing-tensor-cores">#</a></h2>
+<p>Nvidia가 Turing 아키텍쳐에 도입한 Turing Tensor Core는 Tensor Core에 딥러닝 모델의 인퍼런스를 위해 INT8과 INT4 연산을 추가했습니다. 연산에 필요한 비트 수를 낮추어 연산 속도를 빠르게 하는 quantization 기법이 적용된 모델이라면 이를 활용해서 인퍼런스 속도를 높일 수 있습니다. 아래 애니메이션에서 살펴볼 수 있듯이 비트 수가 줄어들 수록 연산 처리량은 더욱 많아집니다.</p>
+<p><img src="/images/cuda-cores-vs-tensor-cores/turing-tensor-cores.gif" alt="turing-tensor-cores"></p>
+<h2 id="references">References<a class="anchor" href="#references">#</a></h2>
+<ul>
+<li><a href="https://www.gamingscan.com/what-are-nvidia-cuda-cores/">https://www.gamingscan.com/what-are-nvidia-cuda-cores/</a></li>
+<li><a href="https://www.gamersnexus.net/dictionary/2-cuda-cores">https://www.gamersnexus.net/dictionary/2-cuda-cores</a></li>
+<li><a href="https://stackoverflow.com/questions/20976556/what-is-the-difference-between-cuda-core-and-cpu-core">https://stackoverflow.com/questions/20976556/what-is-the-difference-between-cuda-core-and-cpu-core</a></li>
+<li><a href="https://nerdtechy.com/cuda-cores-vs-stream-processors">https://nerdtechy.com/cuda-cores-vs-stream-processors</a></li>
+<li><a href="https://www.makeuseof.com/tag/what-are-cuda-cores-pc-gaming/">https://www.makeuseof.com/tag/what-are-cuda-cores-pc-gaming/</a></li>
+<li><a href="https://towardsdatascience.com/what-on-earth-is-a-tensorcore-bad6208a3c62">https://towardsdatascience.com/what-on-earth-is-a-tensorcore-bad6208a3c62</a></li>
+<li><a href="https://stackoverflow.com/questions/47335027/what-is-the-difference-between-cuda-vs-tensor-cores">https://stackoverflow.com/questions/47335027/what-is-the-difference-between-cuda-vs-tensor-cores</a></li>
+<li><a href="https://www.quora.com/What-is-the-difference-between-CUDA-cores-and-Tensor-cores">https://www.quora.com/What-is-the-difference-between-CUDA-cores-and-Tensor-cores</a></li>
+<li><a href="http://hwengineer.blogspot.com/2018/03/v100-tensor-core.html">http://hwengineer.blogspot.com/2018/03/v100-tensor-core.html</a></li>
+<li><a href="https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/">https://developer.nvidia.com/blog/programming-tensor-cores-cuda-9/</a></li>
+<li><a href="https://developer.nvidia.com/blog/nvidia-turing-architecture-in-depth/#:~:text=Turing%20Tensor%20Cores%20add%20new,workstations%20for%20the%20first%20time.">https://developer.nvidia.com/blog/nvidia-turing-architecture-in-depth/#:~:text=Turing%20Tensor%20Cores%20add%20new,workstations%20for%20the%20first%20time.</a></li>
+</ul>
+
+
+              
+          </article>
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://dreamgonfly.github.io/tags/hardware/">hardware</a>
+    </li>
+    <li class="tag__item">
+        <a class="tag__link" href="https://dreamgonfly.github.io/tags/gpu/">gpu</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://dreamgonfly.github.io/blog/rl-taxonomy/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">강화학습 알고리즘 분류</span>
+    </a>
+  
+
+  
+</div>
+
+          <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dreamgonfly-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a class="social-icons__link" title="Twitter"
+         href="https://twitter.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/twitter.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="GitHub"
+         href="https://github.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Email"
+         href="mailto:dreamgonfly@gmail.com"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Facebook"
+         href="https://facebook.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/facebook.svg')"></div>
+      </a>
+    
+  
+     
+    
+  
+     
+    
+  
+     
+    
+      <a class="social-icons__link" title="LinkedIn"
+         href="https://www.linkedin.com/in/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+     
+</div>
+
+            <p>© 2020</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+          
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cuda-cores">CUDA Cores</a>
+      <ul>
+        <li><a href="#cuda-cores-vs-stream-processors">CUDA Cores vs. Stream Processors</a></li>
+        <li><a href="#number-of-cuda-cores-and-computing-power">Number of CUDA Cores and computing power</a></li>
+      </ul>
+    </li>
+    <li><a href="#tensor-cores">Tensor Cores</a>
+      <ul>
+        <li><a href="#how-fast-are-tensor-cores">How fast are Tensor Cores</a></li>
+        <li><a href="#benefits--drawbacks-of-tensor-cores">Benefits &amp; drawbacks of Tensor Cores</a></li>
+        <li><a href="#gpu-examples">GPU examples</a></li>
+      </ul>
+    </li>
+    <li><a href="#turing-tensor-cores">Turing Tensor Cores</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.49e4d8a384357d9b445b87371863419937ede9fa77737522ffb633073aebfa44.js" integrity="sha256-SeTYo4Q1fZtEW4c3GGNBmTft6fp3c3Ui/7YzBzrr&#43;kQ=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>
