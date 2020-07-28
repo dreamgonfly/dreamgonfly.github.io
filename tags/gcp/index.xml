@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gcp on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/gcp/</link>
+    <description>Recent content in gcp on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Tue, 28 Jul 2020 16:13:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://dreamgonfly.github.io/tags/gcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GKE 클러스터 생성하기</title>
+      <link>https://dreamgonfly.github.io/blog/creating-gke-cluster/</link>
+      <pubDate>Tue, 28 Jul 2020 16:13:00 +0900</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/creating-gke-cluster/</guid>
+      <description>GKE(Google Kubernetes Engine)는 Google Cloud Platform이 제공하는 managed Kubernetes 서비스입니다. 이 글에서는 GKE에서 새 클러스터를 생성하는 방법을 단계 별로 알아보겠습니다. 그 전에 먼저, GKE가 다른 Kubernetes-as-a-Service인 AWS의 EKS, Azure의 AKS에 비해서 갖는 특징부터 살펴볼게요.
+GKE vs. EKS vs. AKS 이 절의 목적은 세 서비스의 모든 면을 상세히 비교하는 것이 아닙니다. 다른 서비스에 비해 GKE가 갖는 특징적인 부분 위주로 살펴보겠습니다. 제 주관적인 의견이 포함되어 있을 수 있습니다.
+Made by Google Kubernetes는 Google이 만든 오픈 소스 프로젝트입니다.</description>
+    </item>
+    
+  </channel>
+</rss>
