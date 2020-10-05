@@ -4,31 +4,36 @@
   
   <url>
     <loc>https://dreamgonfly.github.io/</loc>
-    <lastmod>2020-07-28T16:13:00+09:00</lastmod>
+    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/blog/</loc>
-    <lastmod>2020-07-28T16:13:00+09:00</lastmod>
+    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/tags/gcp/</loc>
-    <lastmod>2020-07-28T16:13:00+09:00</lastmod>
+    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dreamgonfly.github.io/blog/creating-gke-cluster/</loc>
-    <lastmod>2020-07-28T16:13:00+09:00</lastmod>
+    <loc>https://dreamgonfly.github.io/blog/deploying-web-app-to-gke-cluster/</loc>
+    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/tags/kubernetes/</loc>
-    <lastmod>2020-07-28T16:13:00+09:00</lastmod>
+    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/tags/</loc>
+    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/creating-gke-cluster/</loc>
     <lastmod>2020-07-28T16:13:00+09:00</lastmod>
   </url>
   

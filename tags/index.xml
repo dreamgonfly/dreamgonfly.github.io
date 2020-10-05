@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Tue, 28 Jul 2020 16:13:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2020 16:23:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dreamgonfly.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>gcp</title>
       <link>https://dreamgonfly.github.io/tags/gcp/</link>
-      <pubDate>Tue, 28 Jul 2020 16:13:00 +0900</pubDate>
+      <pubDate>Mon, 05 Oct 2020 16:23:00 +0900</pubDate>
       
       <guid>https://dreamgonfly.github.io/tags/gcp/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>kubernetes</title>
       <link>https://dreamgonfly.github.io/tags/kubernetes/</link>
-      <pubDate>Tue, 28 Jul 2020 16:13:00 +0900</pubDate>
+      <pubDate>Mon, 05 Oct 2020 16:23:00 +0900</pubDate>
       
       <guid>https://dreamgonfly.github.io/tags/kubernetes/</guid>
       <description></description>
