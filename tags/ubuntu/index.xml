@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://dreamgonfly.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 설치 시 디스크 파티션 나누기</title>
+      <link>https://dreamgonfly.github.io/blog/install-ubuntu-with-partition/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/install-ubuntu-with-partition/</guid>
+      <description>Ubuntu 18.04를 재설치하며 루트 디렉터리 (/) 와 홈 디렉터리 (/home)의 파티션을 나누면서 겪었던 과정과 트러블 슈팅을 정리하여 공유합니다.
+파티션을 나누면 좋은 이유 홈 디렉터리가 별개의 스토리지나 파티션에 있다면 데이터를 잃지 않으면서 운영체제를 재설치하기가 간편해집니다. 재설치를 할 때 홈 디렉터리는 포맷하지 않고 운영체제가 담긴 파티션만 포맷 후 새 운영체제를 설치하는 것으로 끝나기 때문입니다.
+ 참고: 디스크 파티션이란 디스크의 스토리지의 영역을 나누는 것을 &amp;ldquo;디스크 파티셔닝&amp;quot;이라고 부릅니다. 각 파티션의 위치와 크기는 디스크의 &amp;ldquo;파티션 테이블&amp;quot;이라는 곳에 저장됩니다.</description>
+    </item>
+    
+  </channel>
+</rss>

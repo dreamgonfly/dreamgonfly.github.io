@@ -73,6 +73,17 @@
     }
   
   </script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-91026007-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
 <body>
@@ -192,7 +203,7 @@
 <p>$$
 h = W^Tx = W^T_{(k, )} := v^T_{w_I}
 $$</p>
-<p>입력 레이어에서 히든 레이어로 넘어가면서 우리는 히든 레이어 h를 얻었다. 히든 레이어에서 출력 레이어로 넘어가기 위해, 우리는 또다른 행렬 $W'$ 가 필요하다. $W'$ 는 N X V의 행렬이다. 이 파라미터 행렬을 이용해서, 우리는 모든 단어에 대해 출력 레이어의 점수 $u_j$를 계산할 수 있다. 아래 식에서 $z_{w_j}$는 $W'$의 j번쩨 열을 뜻한다. 즉 <span>$u_j$</span> 는 j번째 단어에 대한 예측 점수이다.</p>
+<p>입력 레이어에서 히든 레이어로 넘어가면서 우리는 히든 레이어 h를 얻었다. 히든 레이어에서 출력 레이어로 넘어가기 위해, 우리는 또다른 행렬 $W&rsquo;$ 가 필요하다. $W&rsquo;$ 는 N X V의 행렬이다. 이 파라미터 행렬을 이용해서, 우리는 모든 단어에 대해 출력 레이어의 점수 $u_j$를 계산할 수 있다. 아래 식에서 $z_{w_j}$는 $W&rsquo;$의 j번쩨 열을 뜻한다. 즉 <span>$u_j$</span> 는 j번째 단어에 대한 예측 점수이다.</p>
 <p>$$
 u_j = {z_{w_j}}^T h
 $$</p>
@@ -205,7 +216,7 @@ $$</p>
 p(w_j|w_I) = \frac{\exp({z_{w_j}}^Tv_{w_I})}{\sum^V_{j&rsquo; = 1}\exp({z_{w_{j&rsquo;}}}^Tv_{w_I})}
 $$</p>
 <p>$$v′$$</p>
-<p>결과적으로 단어 w는 두가지 벡터로 표현된다. 바로 $v_w$ 와 $z_w$ 이다. $z_w$는 입력 레이어에서 히든 레이어로 넘어가는 행렬 W에서 나오며, $z_w$는 히든 레이어에서 출력 레이어로 넘어가는 행렬 $W'$ 에서 나온다. $v_w$를 단어 w의 입력 벡터(input vector), $z_w$를 단어 w의 출력 벡터(output vector)라고도 부른다.</p>
+<p>결과적으로 단어 w는 두가지 벡터로 표현된다. 바로 $v_w$ 와 $z_w$ 이다. $z_w$는 입력 레이어에서 히든 레이어로 넘어가는 행렬 W에서 나오며, $z_w$는 히든 레이어에서 출력 레이어로 넘어가는 행렬 $W&rsquo;$ 에서 나온다. $v_w$를 단어 w의 입력 벡터(input vector), $z_w$를 단어 w의 출력 벡터(output vector)라고도 부른다.</p>
 <p>입력 벡터(input vector)와 출력 벡터(output vector) 모두 각각 단어의 의미를 담고 있지만, 이 둘을 조합하면 단어의 의미를 더욱 잘 표현할 수 있다고 알려져 있다.</p>
 <p>여기에서는 word2vec의 가장 기본적인 알고리즘만을 알아보았다. 이 파라미터들이 어떻게 학습되는지, 맥락이 여러 단어일 경우에는 어떻게 일반화되는지, skip-gram은 어떻게 작동하는지, 알고리즘의 계산 속도를 높이기 위해 어떤 방법들이 쓰이는지를 알고 싶다면 <a href="https://arxiv.org/abs/1411.2738">word2vec Parameter Learning Explained</a>를 참고하기 바란다.</p>
 <h3 id="시각화해서-이해하기">시각화해서 이해하기<a class="anchor" href="#시각화해서-이해하기">#</a></h3>

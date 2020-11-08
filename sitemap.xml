@@ -4,12 +4,27 @@
   
   <url>
     <loc>https://dreamgonfly.github.io/</loc>
-    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://dreamgonfly.github.io/blog/</loc>
-    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/tags/ubuntu/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dreamgonfly.github.io/blog/install-ubuntu-with-partition/</loc>
+    <lastmod>2020-10-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -24,11 +39,6 @@
   
   <url>
     <loc>https://dreamgonfly.github.io/tags/kubernetes/</loc>
-    <lastmod>2020-10-05T16:23:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dreamgonfly.github.io/tags/</loc>
     <lastmod>2020-10-05T16:23:00+09:00</lastmod>
   </url>
   

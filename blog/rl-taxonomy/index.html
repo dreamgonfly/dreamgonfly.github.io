@@ -73,6 +73,17 @@
     }
   
   </script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-91026007-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
 <body>
@@ -132,7 +143,7 @@
 <p>$$v_{\pi}(s) = E_{\pi}[R_{t+1} + \lambda R_{t+2} + \lambda^2 R_{t+3} + … | S_t = s]$$</p>
 <h3 id="model">Model<a class="anchor" href="#model">#</a></h3>
 <p>environment(환경)의 다음 state와 reward가 어떨지에 대한 agent의 예상입니다. State model과 Reward model로 나눌 수 있습니다.</p>
-<p>$$\mathcal{P}^a_{ss&rsquo;} = P[S_{t+1} = s&rsquo; | S_t = s, A_t = a ]$$</p>
+<p>$$\mathcal{P}^a_{ss'} = P[S_{t+1} = s' | S_t = s, A_t = a ]$$</p>
 <p>$$\mathcal{R}^a_s = P[R_{t+1} | S_t = s, A_t = a ]$$</p>
 <h2 id="model-free-vs-model-based">Model-Free vs Model-Based<a class="anchor" href="#model-free-vs-model-based">#</a></h2>
 <p>강화학습 알고리즘을 구분은 첫번째 구분은 environment에 대한 model의 존재 여부입니다. Model을 갖는 것은 장점과 단점이 있습니다.</p>

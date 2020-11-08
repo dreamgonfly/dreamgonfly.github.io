@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Sun, 05 Nov 2017 21:07:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://dreamgonfly.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 05 Nov 2017 21:07:00 +0000</lastBuildDate><atom:link href="https://dreamgonfly.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>머신러닝 모델의 블랙박스 속을 들여다보기 : LIME</title>
       <link>https://dreamgonfly.github.io/blog/lime/</link>

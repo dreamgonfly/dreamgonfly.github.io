@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Mon, 05 Oct 2020 16:23:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://dreamgonfly.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 05 Oct 2020 16:23:00 +0900</lastBuildDate><atom:link href="https://dreamgonfly.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GKE에 웹 어플리케이션 배포하기</title>
       <link>https://dreamgonfly.github.io/blog/deploying-web-app-to-gke-cluster/</link>
