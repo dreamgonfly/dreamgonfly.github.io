@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>푸리에 변환 뽀개기 1 | Dreamgonfly&#39;s blog</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="Background knowledge for understanding Fourier Transform">
+  <meta name="keywords" content="Fourier Transform , math">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="푸리에 변환 뽀개기 1" />
+  <meta name="twitter:description" content="Background knowledge for understanding Fourier Transform"
+  />
+  <meta name="twitter:site" content="@https://twitter.com/dreamgonfly" />
+  <meta name="twitter:creator" content="@https://twitter.com/dreamgonfly" />
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/post.min.3b28d14676e4769849164baf362f2b0aa069ab25702fef98f0c4227cb68d74cd.css" integrity="sha256-OyjRRnbkdphJFkuvNi8rCqBpqyVwL&#43;&#43;Y8MQifLaNdM0="/>
+  
+    
+    <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/dreamgonfly.github.io\/"
+      },
+      "articleSection" : "blog",
+      "name" : "푸리에 변환 뽀개기 1",
+      "headline" : "푸리에 변환 뽀개기 1",
+      "description" : "Background knowledge for understanding Fourier Transform",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-09-23 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2021-09-23 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/dreamgonfly.github.io\/blog\/fourier-transform-background\/",
+      "wordCount" : "1105",
+      "keywords" : ["Fourier Transform", "math", "Blog"]
+    }
+  
+  </script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-91026007-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" role="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">about</a>
+      </li>
+    
+      <li>
+        <a  class="active"
+         href="/blog">blog</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            <h1 id="post__title">푸리에 변환 뽀개기 1</h1>
+            <time datetime="2021-09-23 00:00:00 &#43;0000 UTC" class="post__date"
+            >Sep 23 2021</time>
+          </header>
+          <article class="post__content">
+              
+<p>푸리에 변환은 공학과 과학의 거의 모든 분야에서 쓰이고 있습니다. 신호 처리, 이미지 처리, 회로 설계, 분광학, 결정학 등등 예시를 들자면 끝이 없죠. 제가 그랬듯이, 푸리에 변환을 쓰고는 있지만 이해하지 못한 채로 찝찝한 마음을 가지고 있기도 합니다. 하지만 모든 일이 그렇듯 푸리에 변환 역시 이해하고 나면 별 것 아닙니다. 최대한 간결하면서도 찝찝합이 남지 않도록 푸리에 변환을 이해해 보도록 하겠습니다.</p>
+<p>이 글은 시리즈입니다. 첫번째 글은 푸리에 변환을 이해하기 위한 배경 지식을 다루고 있습니다.</p>
+<p>이 글은 스탠포드 대학의 <a href="https://see.stanford.edu/course/ee261">푸리에 변환과 응용</a> 강의와 그 <a href="https://see.stanford.edu/materials/lsoftaee261/book-fall-07.pdf">강의 노트</a>를 요약한 글임을 먼저 밝힙니다.</p>
+<h2 id="복소수">복소수<a class="anchor" href="#복소수">#</a></h2>
+<p>푸리에 변환을 이해하기 위해서는 몇가지 배경 지식이 필요합니다. 첫번째는 복소수(complex numbers)입니다.
+$$
+i = \sqrt{-1}
+$$
+아마 고등학교에서 처음 복소수라는 것을 접하게 되었을 겁니다. 여기서는 두가지만 짚고 넘어가고자 합니다.</p>
+<p>첫번째, 복소수를 쓰는 것은 우리가 앞으로 다룰 수식을 매우 단순하게 만들어 줍니다. 이게 복소수를 쓰는 유일한 이유는 아니지만, 좋은 이유죠.</p>
+<p>두번째, 우리는 앞으로 실수인 어떤 대상(예를 들면 실수 신호)을 표현하기 위해 복소수를 쓸 것입니다. 이게 처음에는 이상해 보일 수도 있습니다. 어쩌면 실수와 허수의 관계에 대한 철학적인 고민에 빠질 수도 있습니다. 하지만 익숙해지는 것 외에는 별 방도가 없습니다. 허수와 실수가 어떻게 연결될 수 있는지는 오일러 공식을 다루며 살펴보겠습니다.</p>
+<h3 id="실수부와-허수부">실수부와 허수부<a class="anchor" href="#실수부와-허수부">#</a></h3>
+<p>복소수는 두 개의 실수로 이루어집니다. 실수부(real part)와 허수부(imaginary part)입니다.
+$$
+z = x + iy
+$$
+x와 y는 실수이고, $ i^2 = -1 $ 입니다. x를 실수부, y를 허수부라고 부릅니다.</p>
+<h3 id="켤레복소수">켤레복소수<a class="anchor" href="#켤레복소수">#</a></h3>
+<p>$z = x + iy$의 켤레복소수(complex conjugate)는 다음과 같습니다.
+$$
+\overline{z} = x - iy
+$$
+켤레복소수에서는 다음 공식들이 성립합니다.
+$$
+\overline{z + w} = \overline{z} + \overline{w}
+$$</p>
+<p>$$
+\overline{zw} = \overline{z} * \overline{w}
+$$</p>
+<h3 id="복소수의-크기">복소수의 크기<a class="anchor" href="#복소수의-크기">#</a></h3>
+<p>$z = x + iy$의 크기(magnitude)는 다음과 같습니다.
+$$
+| z | = \sqrt{x^2 + y^2}
+$$</p>
+<h3 id="극좌표-형식">극좌표 형식<a class="anchor" href="#극좌표-형식">#</a></h3>
+<p>복소수가 두 개의 실수로 이루어지기 때문에, $z = x + iy$를 $(x, y)$ 쌍에 연결시키는 건 자연스러운 일입니다. 따라서 $z$를 데카르트 좌표계(Cartesian coordinates) 위의 한 점으로 표현할 수 있습니다. 이때 가로축은 &ldquo;실수축(real axis)&rdquo;, 세로축은 &ldquo;허수축(imaginary axis)&ldquo;이라고도 부릅니다.</p>
+<p><img src="/images/fourier-transform-background/polar.gif" alt="polar"></p>
+<p>극좌표 $r$과 $\theta$를 도입해서 복소수 $z = x + iy$와 다음 식으로 연결시킬 수도 있습니다.
+$$
+r = \sqrt{x^2 + y^2}
+$$</p>
+<p>$$
+\theta = \tan^{-1}(\frac{y}{x})
+$$</p>
+<p>$\theta$ 각도는 편각(argument) 또는 페이즈(phase)라고 불립니다.</p>
+<p>극좌표에서 데카르트 좌표로 변환하면서 우리는 복소수의 극좌표 형식(polar form)을 얻게 됩니다.
+$$
+x + iy = r\cos \theta + ir\sin \theta  = r(\cos \theta + i\sin \theta)
+$$</p>
+<h2 id="복소지수와-오일러-공식">복소지수와 오일러 공식<a class="anchor" href="#복소지수와-오일러-공식">#</a></h2>
+<h3 id="복소지수">복소지수<a class="anchor" href="#복소지수">#</a></h3>
+<p>앞으로 우리는 복소지수함수(complex exponential function)를 자주 보게 될 것입니다. 복소수 $z$에 대해서 지수 함수 $e^z$는 실수인 경우와 마찬가지로 테일러 급수(Tayor series)로 정의됩니다. 지수함수가 테일러 급수로 정의된다는 걸 알아둬서 나쁠 건 없겠죠.
+$$
+e^z = 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \dots = \sum_{n=0}^{\infty}\frac{z^n}{n!}
+$$
+지수함수가 단지 복소수의 합, 곱, 상수배로 정의된다는 걸 알 수 있습니다. 따라서 켤레복소수에 대해 다음이 성립합니다.
+$$
+\overline{e^z} = e^{\overline{z}}
+$$</p>
+<h3 id="오일러-공식">오일러 공식<a class="anchor" href="#오일러-공식">#</a></h3>
+<p>복소지수함수에서 지수(exponent)가 순수한 허수일 때 재밌는 현상이 일어납니다. 바로 오일러 공식(Euler&rsquo;s formula)라고 불리는 공식입니다.
+$$
+e^{i\theta} = \cos\theta + i\sin\theta
+$$
+오일러 공식은 놀라운 발견입니다. 지수함수가 사인이나 코사인 같은 삼각함수와 관련이 있다니 누가 상상이나 해보았을까요?</p>
+<p>$\theta = \pi$를 대입하면 다음을 얻게 됩니다.
+$$
+e^{i\pi} + 1 = 0
+$$
+이는 수학에서 <a href="https://randerson112358.medium.com/the-most-beautiful-equation-706082d9c951">가장 아름다운 공식</a>으로 알려져 있습니다.</p>
+<h3 id="오일러-공식의-증명">오일러 공식의 증명<a class="anchor" href="#오일러-공식의-증명">#</a></h3>
+<p>오일러 공식을 증명하는 방법은 여러가지가 있지만, 가장 간단하고 제가 제일 좋아하는 증명을 소개하겠습니다. 테일러 급수를 이용한 증명입니다.
+$$
+\sin x = \sum^{\infty}_{n=0}\frac{(-1)^n}{(2n+1)!}x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} + \dots
+$$</p>
+<p>$$
+\cos x = \sum^{\infty}_{n=0}\frac{(-1)^n}{(2n)!}x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + \dots
+$$</p>
+<p>$$
+e^z = \sum_{n=0}^{\infty}\frac{z^n}{n!} = 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \dots
+$$</p>
+<p>마지막 급수에서 $z = ix$로 대체하면 다음을 얻게 됩니다.
+$$
+e^{ix} = 1 + ix + \frac{(ix)^2}{2!} + \frac{(ix)^3}{3!} + \dots
+$$</p>
+<p>$$
+= 1 + ix - \frac{x^2}{2!} - i\frac{x^3}{3!} + \frac{x^4}{4!} + i\frac{x^5}{5!} - \dots
+$$</p>
+<p>$$
+= (1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots ) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots)
+$$</p>
+<p>$$
+= \cos x + i\sin x
+$$</p>
+<h3 id="오일러-공식의-활용">오일러 공식의 활용<a class="anchor" href="#오일러-공식의-활용">#</a></h3>
+<p>극좌표 형식 $z = r(\cos \theta + i \sin \theta)$은 이제 다음과 같이 쓸 수 있습니다.
+$$
+z = re^{i\theta}
+$$
+여기서 $r = |z|$ 는 복소수의 크기이고 $\theta$는 복소수의 페이즈입니다.</p>
+<p>오일러 공식을 이용하면 사인과 코사인의 합공식을 유도하는 것 정도는 식은 죽 먹기입니다. 복소지수함수를 두가지 방식으로 풀어 써 봅시다. 한편으로,
+$$
+e^{i(\alpha + \beta)} = e^{i\alpha}e^{i\beta}
+$$</p>
+<p>$$
+= (\cos \alpha + i\sin \alpha)(\cos \beta + i\sin \beta)
+$$</p>
+<p>$$
+= (\cos \alpha \cos \beta - \sin \alpha \sin \beta) + i(\sin \alpha \cos \beta+ \cos \alpha \sin \beta)
+$$</p>
+<p>다른 한편으로는,
+$$
+e^{i(\alpha + \beta)} = \cos (\alpha + \beta) + i\sin (\alpha + \beta)
+$$
+실수부와 허수부를 각각 같다고 두면 다음을 얻습니다.
+$$
+\cos (\alpha + \beta) = \cos \alpha \cos \beta - \sin \alpha \sin \beta
+$$</p>
+<p>$$
+\sin (\alpha + \beta) = \sin \alpha \cos \beta+ \cos \alpha \sin \beta
+$$</p>
+<p>오일러 공식을 이용해 삼각함수의 합공식을 유도해본 이유는 이 유도 과정이 수학에서 아주 중요한 원칙 하나를 드러내주기 때문입니다.</p>
+<blockquote>
+<p>같은 것을 두가지 다른 방식으로 풀어낼 수 있다면, 어쩌면 굉장히 의미 있는 일을 한 것이다.</p>
+</blockquote>
+<p>어떤 면에서 이는 푸리에 변환의 정수입니다. 앞으로 보게 되겠지만 푸리에 변환은 같은 신호를 시간 도메인과 주파수 도메인 두가지 다른 시각으로 볼 수 있게 해주기 때문입니다. 때때로 이는 굉장히 의미 있는 일입니다.</p>
+<h3 id="오일러-공식의-활용-2">오일러 공식의 활용 2<a class="anchor" href="#오일러-공식의-활용-2">#</a></h3>
+<p>지금까지 우리는 오일러 공식 $e^{i\theta} = \cos\theta + i\sin\theta$에 대해 살펴봤습니다. 알아둬서 나쁠 것 없는 공식이었죠. 이제 잠시 $\theta$를 $t$로 바꾸어 봅시다.
+$$
+e^{it} = \cos t + i\sin t
+$$
+위 식이 평면에서 시간에 따라 움직이는 점을 나타낸다고 생각해 보죠. 이 점은 어떻게 움직이는 점일까요? 복소수의 극좌표 형식으로 보았을 때 크기 $r = 1$이기 때문에 이 점은 단위원(unit circle)을 따라 도는 점입니다. $t$가 $0$에서 $2\pi$까지 움직이며 시계 반대 방향으로 원을 딱 한번 돌지요.</p>
+<p>위 식을 살짝 바꾼 다음 식을 다루는 게 좀 더 편리합니다.
+$$
+e^{2\pi i t} = \cos 2\pi t + i\sin 2\pi t
+$$
+코사인과 사인에서 알 수 있듯이 위 식은 1Hz의 주파수를 갖습니다. $2\pi$가 있느냐 없느냐는 주파수를 Hz, 즉 초당 회전수 단위로 볼 것인가 각진동수(angular frequency), 즉 초당 라디안(radien) 으로 볼 것인가의 차이입니다. $2\pi$가 있으면 $t$가 0부터 1까지 가면서 점이 단위 원을 시계 반대 방향으로 한번 돌게 되죠. $e^{2\pi i t}$에 있는 단위는 다음과 같습니다.
+$$
+e^{2\pi \text{ radians/cycle} * i * 1 \text{ cycles/sec} * t \text{  sec}}
+$$
+$2\pi$가 없다면 $e^{it}$의 단위는 다음과 같습니다.
+$$
+e^{i * 1 \text{ radians/sec} * t \text{  sec}}
+$$
+이제 우리는 신호의 크기(amplitude), 주파수, 페이즈 변화(phase shift)를 복소지수함수로 편하게 나타낼 수 있습니다.
+$$
+Ae^{i(2\pi\textit{v} t + \phi)}
+$$
+이 신호의 크기는 $A$입니다. 즉 이 점은 반지름의 크기가 $A$인 원을 돌고 있는 것입니다. $\textit{v}$가 양수라고 가정하면 이 점은 시계 반대 방향으로 초당 $\textit{v}$번 원을 돌고 있습니다. 페이즈 $\phi$는 원에서 시작점의 각도을 나타냅니다.</p>
+<p>$\textit{v}$가 음수면 어떻게 될까요? 간단하게 시계 반대 방향에서 시계 방향으로 움직임의 방향이 바뀐다고 생각하면 됩니다. 양의 주파수(positive frequency)는 시계 반대 방향을 뜻하고 음의 주파수(negative frequency)는 시계 방향을 뜻합니다.</p>
+
+
+              
+                  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+              
+          </article>
+          
+
+<ul class="tags__list">
+    
+    </ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://dreamgonfly.github.io/blog/install-ubuntu-with-partition/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">Ubuntu 설치 시 디스크 파티션 나누기</span>
+    </a>
+  
+
+  
+</div>
+
+          <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dreamgonfly-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a class="social-icons__link" title="Twitter"
+         href="https://twitter.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/twitter.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="GitHub"
+         href="https://github.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Email"
+         href="mailto:dreamgonfly@gmail.com"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a class="social-icons__link" title="Facebook"
+         href="https://facebook.com/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/facebook.svg')"></div>
+      </a>
+    
+  
+     
+    
+  
+     
+    
+  
+     
+    
+      <a class="social-icons__link" title="LinkedIn"
+         href="https://www.linkedin.com/in/dreamgonfly"
+         target="_blank" rel="noopener">
+        <div class="social-icons__icon" style="background-image: url('https://dreamgonfly.github.io/images/social/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+     
+</div>
+
+            <p>© 2021</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+          
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#복소수">복소수</a>
+      <ul>
+        <li><a href="#실수부와-허수부">실수부와 허수부</a></li>
+        <li><a href="#켤레복소수">켤레복소수</a></li>
+        <li><a href="#복소수의-크기">복소수의 크기</a></li>
+        <li><a href="#극좌표-형식">극좌표 형식</a></li>
+      </ul>
+    </li>
+    <li><a href="#복소지수와-오일러-공식">복소지수와 오일러 공식</a>
+      <ul>
+        <li><a href="#복소지수">복소지수</a></li>
+        <li><a href="#오일러-공식">오일러 공식</a></li>
+        <li><a href="#오일러-공식의-증명">오일러 공식의 증명</a></li>
+        <li><a href="#오일러-공식의-활용">오일러 공식의 활용</a></li>
+        <li><a href="#오일러-공식의-활용-2">오일러 공식의 활용 2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.49e4d8a384357d9b445b87371863419937ede9fa77737522ffb633073aebfa44.js" integrity="sha256-SeTYo4Q1fZtEW4c3GGNBmTft6fp3c3Ui/7YzBzrr&#43;kQ=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fourier Transform on Dreamgonfly&#39;s blog</title>
+    <link>https://dreamgonfly.github.io/tags/fourier-transform/</link>
+    <description>Recent content in Fourier Transform on Dreamgonfly&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://dreamgonfly.github.io/tags/fourier-transform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>푸리에 변환 뽀개기 1</title>
+      <link>https://dreamgonfly.github.io/blog/fourier-transform-background/</link>
+      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://dreamgonfly.github.io/blog/fourier-transform-background/</guid>
+      <description>푸리에 변환은 공학과 과학의 거의 모든 분야에서 쓰이고 있습니다. 신호 처리, 이미지 처리, 회로 설계, 분광학, 결정학 등등 예시를 들자면 끝이 없죠. 제가 그랬듯이, 푸리에 변환을 쓰고는 있지만 이해하지 못한 채로 찝찝한 마음을 가지고 있기도 합니다. 하지만 모든 일이 그렇듯 푸리에 변환 역시 이해하고 나면 별 것 아닙니다. 최대한 간결하면서도 찝찝합이 남지 않도록 푸리에 변환을 이해해 보도록 하겠습니다.
+이 글은 시리즈입니다. 첫번째 글은 푸리에 변환을 이해하기 위한 배경 지식을 다루고 있습니다.</description>
+    </item>
+    
+  </channel>
+</rss>
